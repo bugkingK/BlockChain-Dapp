@@ -5,40 +5,28 @@
 
 </div>
 
+# BlockChain-Dapp
+
+<div align=center>
+  <a href="https://github.com/bugkingK/BlockChain-Dapp/graphs/contributors">기여해주신 분</a>
+</div>
+
 ## :memo: Table of Contents
-* [What is this?](#what-is-this?)
+* [What is BlockChain?](#What-is-BlockChain?)
+* [What is this Application?](#What-is-this-Application?)
+* [Development order](#Development-order)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# What is this?
 
 
 # What is BlockChain?
 
-## :bulb: What is BlockChain?
-
 블록체인이 무엇인가요?
 
-## :bulb: What is this Application?
+# What is this Application?
 
 이 앱과 웹사이트는 어떤 기능을 하나요?
 
-## :bulb: Development order
+# Development order
 
 1. 서버에 블록체인을 담는 방법
 2. html과 Web3를 이용하여 블록체인과 통신하기.
