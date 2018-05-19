@@ -12,7 +12,7 @@
 </div>
 
 ## :memo: Table of Contents
-* [What is BlockChain?](#what-is-blockChain?)
+* [What is BlockChain?](#what-is-blockchain?)
 * [What is this Application?](#what-is-this-application?)
 * [Development order](#development-order)
 
