@@ -68,7 +68,7 @@ contract BVC {
         // 등록된 투표장 보기
         // return placeCode 필요
         string tmpPlace;
-        for (uint i =0; i < placelist.length; i++) {
+        for (uint i =0; i < placeList.length; i++) {
             if (placeList[i].voting = true) {
                 tmpPlace.concat(uintToString(i));
                 tmpPlace.concat("/");
@@ -94,7 +94,7 @@ contract BVC {
     function vote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
         // 투표하기 실패 성공 여부 확인해야할까?
         // 전화번호 중복여부
-        if (checkVoted() == false) {
+        if (checkVoted(_phone, _votedPlace) == false) {
             voterList.length += 1;
             uint voterID = voterList.length - 1;
             voterList[voterID].phone = _phone;
@@ -122,11 +122,11 @@ contract BVC {
     }
 
     function voteStart(uint _placeID) {
-        placeList[_placeID].voting = 1;
+        placeList[_placeID].voting = true;
     }
 
     function voteEnd(uint _placeID) {
-        placeList[_placeID].voting = 0;
+        placeList[_placeID].voting = false;
     }
 
     function counting(uint _candidateID) returns(uint) {
