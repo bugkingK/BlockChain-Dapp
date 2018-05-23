@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>candidate1</string>
+		<key>candidateName</key>
+		<string>문재인</string>
+		<key>partyName</key>
+		<string>더불어 민주당</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>candidate2</string>
+		<key>candidateName</key>
+		<string>홍준표</string>
+		<key>partyName</key>
+		<string>자유한국당</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>candidate3</string>
+		<key>candidateName</key>
+		<string>안철수</string>
+		<key>partyName</key>
+		<string>국민의 당</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>candidate4</string>
+		<key>candidateName</key>
+		<string>유승민</string>
+		<key>partyName</key>
+		<string>바른 정당</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>candidate5</string>
+		<key>candidateName</key>
+		<string>심상정</string>
+		<key>partyName</key>
+		<string>정의당</string>
+	</dict>
+</array>
+</plist>

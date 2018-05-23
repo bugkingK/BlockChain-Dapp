@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>list1</string>
+		<key>title</key>
+		<string>제 19대 대통령 선거</string>
+		<key>date</key>
+		<string>0000년 00월 00일</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>list2</string>
+		<key>title</key>
+		<string>제 20대 국회의원 선거</string>
+		<key>date</key>
+		<string>0000년 00월 00일</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>list1</string>
+		<key>title</key>
+		<string>제 18대 대통령 선거</string>
+		<key>date</key>
+		<string>0000년 00월 00일</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>list2</string>
+		<key>title</key>
+		<string>제 17대 대통령 선거</string>
+		<key>date</key>
+		<string>0000년 00월 00일</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>list1</string>
+		<key>title</key>
+		<string>제 16대 대통령 선거</string>
+		<key>date</key>
+		<string>0000년 00월 00일</string>
+	</dict>
+</array>
+</plist>

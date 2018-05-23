@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="SCw-gI-OMR">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Code Pro LC.otf">
+            <string>Code-Pro-LC</string>
+        </array>
+        <array key="Proxima Nova Regular.otf">
+            <string>ProximaNova-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Vote List View Controller-->
+        <scene sceneID="ROD-OC-ORS">
+            <objects>
+                <viewController id="6Dm-47-IrE" customClass="VoteListViewController" customModule="BVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3x6-LW-2eL"/>
+                        <viewControllerLayoutGuide type="bottom" id="FXM-Iu-Dje"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NB4-vH-612">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.396078431372549" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" id="CtB-X1-9Wz"/>
+                    <navigationItem key="navigationItem" id="Vgf-YX-nvD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTN-GS-e6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="264" y="-804"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="kBQ-eN-QO0">
+            <objects>
+                <navigationController id="Gru-UI-cNa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="om9-0Y-aRJ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jX0-RB-wjb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000000000002" green="0.39607843139999999" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6Dm-47-IrE" kind="relationship" relationship="rootViewController" id="nZw-Ah-SsR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iqg-L8-tPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-258" y="-803"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="Pph-gK-Ha4">
+            <objects>
+                <viewController id="Vrl-y1-hA8" customClass="TabBarFirstItemVC" customModule="BVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K7J-SZ-m1a"/>
+                        <viewControllerLayoutGuide type="bottom" id="j5w-7V-X3W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BlQ-7m-b4a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.36862745099999999" green="0.36470588240000001" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="8so-RL-UHr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gIx-dS-NO8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-257" y="-1585"/>
+        </scene>
+        <!--Folding Tab Bar Controller-->
+        <scene sceneID="KXc-xR-XV7">
+            <objects>
+                <tabBarController id="SCw-gI-OMR" customClass="YALFoldingTabBarController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="TLP-Mt-cXk" customClass="YALCustomHeightTabBar">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vrl-y1-hA8" kind="relationship" relationship="viewControllers" id="4gY-2a-vZc"/>
+                        <segue destination="Gru-UI-cNa" kind="relationship" relationship="viewControllers" id="YkS-Be-L5A"/>
+                        <segue destination="TTW-Y5-eqP" kind="relationship" relationship="viewControllers" id="j3q-99-f1a"/>
+                        <segue destination="QTM-sz-MWG" kind="relationship" relationship="viewControllers" id="DxN-GC-Qbu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YcH-An-YQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-973" y="-1183"/>
+        </scene>
+        <!--Item 4-->
+        <scene sceneID="DNY-h2-80A">
+            <objects>
+                <viewController id="QTM-sz-MWG" customClass="AuthViewController" customModule="BVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rer-T3-Pl4"/>
+                        <viewControllerLayoutGuide type="bottom" id="IKd-y4-ptB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xm0-Dn-na1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.2274509804" green="0.68627450980000004" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 4" id="AAE-LP-vDe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DyU-LD-opY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1247" y="11"/>
+        </scene>
+        <!--제목-->
+        <scene sceneID="nFS-bO-qnu">
+            <objects>
+                <viewController id="yuF-Pa-gci" customClass="ReportViewController" customModule="BVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hk1-oa-j9H"/>
+                        <viewControllerLayoutGuide type="bottom" id="9gI-7q-0lT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kSy-AE-zSL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="현재시간" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXp-Hv-hCt">
+                                <rect key="frame" x="0.0" y="256" width="375" height="62"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="투표자 수 : 0명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQw-j1-AM6">
+                                <rect key="frame" x="0.0" y="199" width="375" height="62"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.64638157890000003" green="0.71037212169999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="제목" id="HC6-c2-HAr"/>
+                    <connections>
+                        <outlet property="currentDate" destination="bXp-Hv-hCt" id="1ea-OV-60J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FY6-6u-JKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="603.5" y="10.5"/>
+        </scene>
+        <!--Item 3-->
+        <scene sceneID="Dp5-Jv-tiQ">
+            <objects>
+                <viewController id="Clj-Ty-Odk" userLabel="Item 3" customClass="VoteStatusViewController" customModule="BVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TIS-WZ-Zax"/>
+                        <viewControllerLayoutGuide type="bottom" id="f8d-CX-0bl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dXr-J4-uUW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zL3-1e-TxQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="523"/>
+                                <color key="backgroundColor" red="0.36862745098039218" green="0.36470588235294116" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="jAQ-k5-Ua6">
+                                    <size key="itemSize" width="320" height="109"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="VoteStatusViewCell" id="Paj-OG-Cb9" customClass="VoteStatusViewCell" customModule="BVC" customModuleProvider="target">
+                                        <rect key="frame" x="27.5" y="0.0" width="320" height="109"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ann Drewer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldc-Lt-2tj" userLabel="nameLabel">
+                                                    <rect key="frame" x="0.0" y="20" width="320" height="42"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" name="Code-Pro-LC" family="Code Pro LC" pointSize="25"/>
+                                                    <color key="textColor" red="0.43529411764705883" green="0.81568627450980391" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" fixedFrame="YES" text="Great news! And when will you..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HK7-Ab-znC" userLabel="messageLabel">
+                                                    <rect key="frame" x="0.0" y="63" width="320" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="16"/>
+                                                    <color key="textColor" red="0.85882352941176465" green="0.86274509803921573" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="마감" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhM-fW-Mmg">
+                                                    <rect key="frame" x="5" y="36" width="54" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.40000000000000002" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="date" destination="HK7-Ab-znC" id="hcu-X0-8rQ"/>
+                                            <outlet property="title" destination="ldc-Lt-2tj" id="65f-be-ngW"/>
+                                            <segue destination="yuF-Pa-gci" kind="push" id="rq2-Gq-TEH"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Clj-Ty-Odk" id="Mhm-Kd-0Cg"/>
+                                    <outlet property="delegate" destination="Clj-Ty-Odk" id="sM7-4v-ZN5"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="zL3-1e-TxQ" firstAttribute="top" secondItem="TIS-WZ-Zax" secondAttribute="bottom" id="92y-Oa-4ub"/>
+                            <constraint firstAttribute="bottom" secondItem="zL3-1e-TxQ" secondAttribute="bottom" constant="80" id="aKc-Ua-2wS"/>
+                            <constraint firstAttribute="trailing" secondItem="zL3-1e-TxQ" secondAttribute="trailing" id="f1h-DM-SE5"/>
+                            <constraint firstItem="zL3-1e-TxQ" firstAttribute="leading" secondItem="dXr-J4-uUW" secondAttribute="leading" id="pNP-oZ-rkr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="투표현황" id="S3j-QB-50e"/>
+                    <connections>
+                        <outlet property="collectionView" destination="zL3-1e-TxQ" id="gIs-Lo-xMh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O68-Y2-Onr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-11.5" y="10.5"/>
+        </scene>
+        <!--Item 3-->
+        <scene sceneID="1Ro-6J-GrJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TTW-Y5-eqP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 3" id="c78-kZ-av6"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="5wN-Oa-SPg">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.36862745099999999" green="0.35686274509999999" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Clj-Ty-Odk" kind="relationship" relationship="rootViewController" id="i9l-GP-foG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xxw-45-B44" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-628" y="11"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>image</key>
+		<string>bg_page1</string>
+		<key>title</key>
+		<string>무슨 앱인가요?</string>
+		<key>contents</key>
+		<string>내용이 필요필요</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>bg_page2</string>
+		<key>title</key>
+		<string>어떤 기술이 사용되었나요?</string>
+		<key>contents</key>
+		<string>내용이 필요함</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>bg_page3</string>
+		<key>title</key>
+		<string>기대효과</string>
+		<key>contents</key>
+		<string>Great!</string>
+	</dict>
+	<dict>
+		<key>image</key>
+		<string>bg_page3</string>
+		<key>title</key>
+		<string>지금바로!</string>
+		<key>contents</key>
+		<string>Vote Vote!!</string>
+	</dict>
+</array>
+</plist>

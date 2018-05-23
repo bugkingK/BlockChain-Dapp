@@ -1,0 +1,674 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		856422292093454400E665D0 /* VoteListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856422282093454400E665D0 /* VoteListLayout.swift */; };
+		8564222F20940F8500E665D0 /* extUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564222E20940F8500E665D0 /* extUIColor.swift */; };
+		8564223720941BD200E665D0 /* HowToContents.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8564223620941BD200E665D0 /* HowToContents.plist */; };
+		8564223B209566CC00E665D0 /* extUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564223A209566CC00E665D0 /* extUserDefaults.swift */; };
+		856422432096C65C00E665D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856422422096C65C00E665D0 /* Images.xcassets */; };
+		85E1E40220974D5E003C20AC /* CandidateDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85E1E40120974D5E003C20AC /* CandidateDataList.plist */; };
+		85F87D5620B502CC00E15BF2 /* UIView+Insets.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3420B502CC00E15BF2 /* UIView+Insets.m */; };
+		85F87D5720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */; };
+		85F87D5820B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3B20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
+		85F87D5920B502CC00E15BF2 /* YALAnimatingTabBarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3E20B502CC00E15BF2 /* YALAnimatingTabBarConstants.m */; };
+		85F87D5A20B502CC00E15BF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F87D4220B502CC00E15BF2 /* Info.plist */; };
+		85F87D5B20B502CC00E15BF2 /* YALSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4520B502CC00E15BF2 /* YALSpringAnimation.m */; };
+		85F87D5C20B502CC00E15BF2 /* YALFoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4A20B502CC00E15BF2 /* YALFoldingTabBarController.m */; };
+		85F87D5D20B502CC00E15BF2 /* YALTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4E20B502CC00E15BF2 /* YALTabBarItem.m */; };
+		85F87D5E20B502CC00E15BF2 /* YALCustomHeightTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D5120B502CC00E15BF2 /* YALCustomHeightTabBar.m */; };
+		85F87D5F20B502CC00E15BF2 /* YALFoldingTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D5520B502CC00E15BF2 /* YALFoldingTabBar.m */; };
+		85F87D6420B503A200E15BF2 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85F87D6220B503A200E15BF2 /* Proxima Nova Regular.otf */; };
+		85F87D6520B503A200E15BF2 /* Code Pro LC.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85F87D6320B503A200E15BF2 /* Code Pro LC.otf */; };
+		85F87D7620B503AE00E15BF2 /* CandidateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6720B503AE00E15BF2 /* CandidateViewCell.swift */; };
+		85F87D7720B503AE00E15BF2 /* VoteStatusViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6820B503AE00E15BF2 /* VoteStatusViewCell.swift */; };
+		85F87D7820B503AE00E15BF2 /* HowToCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6920B503AE00E15BF2 /* HowToCollectionViewCell.swift */; };
+		85F87D7920B503AE00E15BF2 /* VoteListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6A20B503AE00E15BF2 /* VoteListViewCell.swift */; };
+		85F87D7A20B503AE00E15BF2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */; };
+		85F87D7B20B503AE00E15BF2 /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */; };
+		85F87D7C20B503AE00E15BF2 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6E20B503AE00E15BF2 /* EndViewController.swift */; };
+		85F87D7D20B503AE00E15BF2 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */; };
+		85F87D7E20B503AE00E15BF2 /* VoteStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */; };
+		85F87D7F20B503AE00E15BF2 /* TabBarFirstItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7120B503AE00E15BF2 /* TabBarFirstItemVC.swift */; };
+		85F87D8020B503AE00E15BF2 /* HowToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7220B503AE00E15BF2 /* HowToViewController.swift */; };
+		85F87D8120B503AE00E15BF2 /* PromiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */; };
+		85F87D8220B503AE00E15BF2 /* CandidateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */; };
+		85F87D8320B503AE00E15BF2 /* VoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */; };
+		C5B230561D7451E200A625DF /* StatusDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5B230551D7451E200A625DF /* StatusDataList.plist */; };
+		C5E3508E1D73FFEA0023E7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E3508C1D73FFEA0023E7F7 /* LaunchScreen.storyboard */; };
+		C5E350F61D7402B00023E7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E350F51D7402B00023E7F7 /* AppDelegate.swift */; };
+		C5E350F91D7402C20023E7F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E350F81D7402C20023E7F7 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		856422282093454400E665D0 /* VoteListLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteListLayout.swift; sourceTree = "<group>"; };
+		8564222E20940F8500E665D0 /* extUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extUIColor.swift; sourceTree = "<group>"; };
+		8564223620941BD200E665D0 /* HowToContents.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HowToContents.plist; sourceTree = "<group>"; };
+		8564223A209566CC00E665D0 /* extUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extUserDefaults.swift; sourceTree = "<group>"; };
+		856422422096C65C00E665D0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		85E1E40120974D5E003C20AC /* CandidateDataList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CandidateDataList.plist; sourceTree = "<group>"; };
+		85F87D3320B502CC00E15BF2 /* UIView+Insets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Insets.h"; sourceTree = "<group>"; };
+		85F87D3420B502CC00E15BF2 /* UIView+Insets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Insets.m"; sourceTree = "<group>"; };
+		85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+YALTabBarViewAnimations.m"; sourceTree = "<group>"; };
+		85F87D3820B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+YALTabBarViewAnimations.h"; sourceTree = "<group>"; };
+		85F87D3B20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CATransaction+TransactionWithAnimationsAndCompletion.m"; sourceTree = "<group>"; };
+		85F87D3C20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CATransaction+TransactionWithAnimationsAndCompletion.h"; sourceTree = "<group>"; };
+		85F87D3E20B502CC00E15BF2 /* YALAnimatingTabBarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALAnimatingTabBarConstants.m; sourceTree = "<group>"; };
+		85F87D3F20B502CC00E15BF2 /* YALAnimatingTabBarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALAnimatingTabBarConstants.h; sourceTree = "<group>"; };
+		85F87D4120B502CC00E15BF2 /* FoldingTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoldingTabBar.h; sourceTree = "<group>"; };
+		85F87D4220B502CC00E15BF2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85F87D4520B502CC00E15BF2 /* YALSpringAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSpringAnimation.m; sourceTree = "<group>"; };
+		85F87D4620B502CC00E15BF2 /* YALSpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSpringAnimation.h; sourceTree = "<group>"; };
+		85F87D4920B502CC00E15BF2 /* YALFoldingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALFoldingTabBarController.h; sourceTree = "<group>"; };
+		85F87D4A20B502CC00E15BF2 /* YALFoldingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALFoldingTabBarController.m; sourceTree = "<group>"; };
+		85F87D4D20B502CC00E15BF2 /* YALTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALTabBarItem.h; sourceTree = "<group>"; };
+		85F87D4E20B502CC00E15BF2 /* YALTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALTabBarItem.m; sourceTree = "<group>"; };
+		85F87D5120B502CC00E15BF2 /* YALCustomHeightTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALCustomHeightTabBar.m; sourceTree = "<group>"; };
+		85F87D5220B502CC00E15BF2 /* YALCustomHeightTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALCustomHeightTabBar.h; sourceTree = "<group>"; };
+		85F87D5420B502CC00E15BF2 /* YALFoldingTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALFoldingTabBar.h; sourceTree = "<group>"; };
+		85F87D5520B502CC00E15BF2 /* YALFoldingTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALFoldingTabBar.m; sourceTree = "<group>"; };
+		85F87D6220B503A200E15BF2 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
+		85F87D6320B503A200E15BF2 /* Code Pro LC.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Code Pro LC.otf"; sourceTree = "<group>"; };
+		85F87D6720B503AE00E15BF2 /* CandidateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateViewCell.swift; sourceTree = "<group>"; };
+		85F87D6820B503AE00E15BF2 /* VoteStatusViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteStatusViewCell.swift; sourceTree = "<group>"; };
+		85F87D6920B503AE00E15BF2 /* HowToCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToCollectionViewCell.swift; sourceTree = "<group>"; };
+		85F87D6A20B503AE00E15BF2 /* VoteListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteListViewCell.swift; sourceTree = "<group>"; };
+		85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhyViewController.swift; sourceTree = "<group>"; };
+		85F87D6E20B503AE00E15BF2 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
+		85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteStatusViewController.swift; sourceTree = "<group>"; };
+		85F87D7120B503AE00E15BF2 /* TabBarFirstItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarFirstItemVC.swift; sourceTree = "<group>"; };
+		85F87D7220B503AE00E15BF2 /* HowToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToViewController.swift; sourceTree = "<group>"; };
+		85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseViewController.swift; sourceTree = "<group>"; };
+		85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateViewController.swift; sourceTree = "<group>"; };
+		85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteListViewController.swift; sourceTree = "<group>"; };
+		C5B230551D7451E200A625DF /* StatusDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StatusDataList.plist; sourceTree = "<group>"; };
+		C5E350801D73FFEA0023E7F7 /* BVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5E3508D1D73FFEA0023E7F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C5E3508F1D73FFEA0023E7F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5E350C41D74009B0023E7F7 /* BVC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BVC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5E350F51D7402B00023E7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C5E350F81D7402C20023E7F7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C5E3507D1D73FFEA0023E7F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		856422342094184400E665D0 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				856422282093454400E665D0 /* VoteListLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		856422352094192700E665D0 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				8564222E20940F8500E665D0 /* extUIColor.swift */,
+				8564223A209566CC00E665D0 /* extUserDefaults.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		85F87D3020B502CC00E15BF2 /* FoldingTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3120B502CC00E15BF2 /* Category */,
+				85F87D3D20B502CC00E15BF2 /* Constants */,
+				85F87D4020B502CC00E15BF2 /* Resources */,
+				85F87D4320B502CC00E15BF2 /* Animation */,
+				85F87D4720B502CC00E15BF2 /* Controller */,
+				85F87D4B20B502CC00E15BF2 /* Model */,
+				85F87D4F20B502CC00E15BF2 /* View */,
+			);
+			path = FoldingTabBar;
+			sourceTree = "<group>";
+		};
+		85F87D3120B502CC00E15BF2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3220B502CC00E15BF2 /* UIView */,
+				85F87D3520B502CC00E15BF2 /* CAAnimation */,
+				85F87D3920B502CC00E15BF2 /* CATransaction */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		85F87D3220B502CC00E15BF2 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3320B502CC00E15BF2 /* UIView+Insets.h */,
+				85F87D3420B502CC00E15BF2 /* UIView+Insets.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		85F87D3520B502CC00E15BF2 /* CAAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3620B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations */,
+			);
+			path = CAAnimation;
+			sourceTree = "<group>";
+		};
+		85F87D3620B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */,
+				85F87D3820B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.h */,
+			);
+			path = "CAAnimation+YALTabBarViewAnimations";
+			sourceTree = "<group>";
+		};
+		85F87D3920B502CC00E15BF2 /* CATransaction */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3A20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion */,
+			);
+			path = CATransaction;
+			sourceTree = "<group>";
+		};
+		85F87D3A20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3B20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m */,
+				85F87D3C20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.h */,
+			);
+			path = "CATransaction+TransactionWithAnimationsAndCompletion";
+			sourceTree = "<group>";
+		};
+		85F87D3D20B502CC00E15BF2 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3E20B502CC00E15BF2 /* YALAnimatingTabBarConstants.m */,
+				85F87D3F20B502CC00E15BF2 /* YALAnimatingTabBarConstants.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		85F87D4020B502CC00E15BF2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4120B502CC00E15BF2 /* FoldingTabBar.h */,
+				85F87D4220B502CC00E15BF2 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		85F87D4320B502CC00E15BF2 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4420B502CC00E15BF2 /* YALSpringAnimation */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		85F87D4420B502CC00E15BF2 /* YALSpringAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4520B502CC00E15BF2 /* YALSpringAnimation.m */,
+				85F87D4620B502CC00E15BF2 /* YALSpringAnimation.h */,
+			);
+			path = YALSpringAnimation;
+			sourceTree = "<group>";
+		};
+		85F87D4720B502CC00E15BF2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4820B502CC00E15BF2 /* FoldingTabBarController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		85F87D4820B502CC00E15BF2 /* FoldingTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4920B502CC00E15BF2 /* YALFoldingTabBarController.h */,
+				85F87D4A20B502CC00E15BF2 /* YALFoldingTabBarController.m */,
+			);
+			path = FoldingTabBarController;
+			sourceTree = "<group>";
+		};
+		85F87D4B20B502CC00E15BF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4C20B502CC00E15BF2 /* TabBarItem */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85F87D4C20B502CC00E15BF2 /* TabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D4D20B502CC00E15BF2 /* YALTabBarItem.h */,
+				85F87D4E20B502CC00E15BF2 /* YALTabBarItem.m */,
+			);
+			path = TabBarItem;
+			sourceTree = "<group>";
+		};
+		85F87D4F20B502CC00E15BF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D5020B502CC00E15BF2 /* CustomHeightTabBar */,
+				85F87D5320B502CC00E15BF2 /* FoldingTabBar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85F87D5020B502CC00E15BF2 /* CustomHeightTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D5120B502CC00E15BF2 /* YALCustomHeightTabBar.m */,
+				85F87D5220B502CC00E15BF2 /* YALCustomHeightTabBar.h */,
+			);
+			path = CustomHeightTabBar;
+			sourceTree = "<group>";
+		};
+		85F87D5320B502CC00E15BF2 /* FoldingTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D5420B502CC00E15BF2 /* YALFoldingTabBar.h */,
+				85F87D5520B502CC00E15BF2 /* YALFoldingTabBar.m */,
+			);
+			path = FoldingTabBar;
+			sourceTree = "<group>";
+		};
+		85F87D6020B503A200E15BF2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D6120B503A200E15BF2 /* Font */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		85F87D6120B503A200E15BF2 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D6220B503A200E15BF2 /* Proxima Nova Regular.otf */,
+				85F87D6320B503A200E15BF2 /* Code Pro LC.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		85F87D6620B503AE00E15BF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D6720B503AE00E15BF2 /* CandidateViewCell.swift */,
+				85F87D6820B503AE00E15BF2 /* VoteStatusViewCell.swift */,
+				85F87D6920B503AE00E15BF2 /* HowToCollectionViewCell.swift */,
+				85F87D6A20B503AE00E15BF2 /* VoteListViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		85F87D6B20B503AE00E15BF2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */,
+				85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */,
+				85F87D6E20B503AE00E15BF2 /* EndViewController.swift */,
+				85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */,
+				85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */,
+				85F87D7120B503AE00E15BF2 /* TabBarFirstItemVC.swift */,
+				85F87D7220B503AE00E15BF2 /* HowToViewController.swift */,
+				85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */,
+				85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */,
+				85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C5E350771D73FFEA0023E7F7 = {
+			isa = PBXGroup;
+			children = (
+				C5E350821D73FFEA0023E7F7 /* BVC-iOS */,
+				C5E350811D73FFEA0023E7F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C5E350811D73FFEA0023E7F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5E350801D73FFEA0023E7F7 /* BVC.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C5E350821D73FFEA0023E7F7 /* BVC-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D3020B502CC00E15BF2 /* FoldingTabBar */,
+				C5E350C41D74009B0023E7F7 /* BVC-iOS-Bridging-Header.h */,
+				C5E3508F1D73FFEA0023E7F7 /* Info.plist */,
+				85E1E40120974D5E003C20AC /* CandidateDataList.plist */,
+				C5B230551D7451E200A625DF /* StatusDataList.plist */,
+				8564223620941BD200E665D0 /* HowToContents.plist */,
+				856422422096C65C00E665D0 /* Images.xcassets */,
+				85F87D6020B503A200E15BF2 /* Resources */,
+				85F87D6620B503AE00E15BF2 /* View */,
+				85F87D6B20B503AE00E15BF2 /* ViewControllers */,
+				C5E350F41D7402B00023E7F7 /* AppDelegate */,
+				C5E3508C1D73FFEA0023E7F7 /* LaunchScreen.storyboard */,
+				C5E350F71D7402C20023E7F7 /* Storyboard */,
+				856422352094192700E665D0 /* extension */,
+				856422342094184400E665D0 /* Layout */,
+			);
+			path = "BVC-iOS";
+			sourceTree = "<group>";
+		};
+		C5E350F41D7402B00023E7F7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				C5E350F51D7402B00023E7F7 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		C5E350F71D7402C20023E7F7 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C5E350F81D7402C20023E7F7 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C5E3507F1D73FFEA0023E7F7 /* BVC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5E350921D73FFEA0023E7F7 /* Build configuration list for PBXNativeTarget "BVC" */;
+			buildPhases = (
+				C5E3507C1D73FFEA0023E7F7 /* Sources */,
+				C5E3507D1D73FFEA0023E7F7 /* Frameworks */,
+				C5E3507E1D73FFEA0023E7F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BVC;
+			productName = "Example-Swift";
+			productReference = C5E350801D73FFEA0023E7F7 /* BVC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C5E350781D73FFEA0023E7F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Yalantis;
+				TargetAttributes = {
+					C5E3507F1D73FFEA0023E7F7 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 6QG49X22JS;
+						LastSwiftMigration = 0930;
+					};
+				};
+			};
+			buildConfigurationList = C5E3507B1D73FFEA0023E7F7 /* Build configuration list for PBXProject "BVC" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C5E350771D73FFEA0023E7F7;
+			productRefGroup = C5E350811D73FFEA0023E7F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C5E3507F1D73FFEA0023E7F7 /* BVC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5E3507E1D73FFEA0023E7F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85F87D6520B503A200E15BF2 /* Code Pro LC.otf in Resources */,
+				C5B230561D7451E200A625DF /* StatusDataList.plist in Resources */,
+				856422432096C65C00E665D0 /* Images.xcassets in Resources */,
+				85E1E40220974D5E003C20AC /* CandidateDataList.plist in Resources */,
+				8564223720941BD200E665D0 /* HowToContents.plist in Resources */,
+				C5E350F91D7402C20023E7F7 /* Main.storyboard in Resources */,
+				85F87D6420B503A200E15BF2 /* Proxima Nova Regular.otf in Resources */,
+				C5E3508E1D73FFEA0023E7F7 /* LaunchScreen.storyboard in Resources */,
+				85F87D5A20B502CC00E15BF2 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C5E3507C1D73FFEA0023E7F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5E350F61D7402B00023E7F7 /* AppDelegate.swift in Sources */,
+				85F87D7F20B503AE00E15BF2 /* TabBarFirstItemVC.swift in Sources */,
+				85F87D7E20B503AE00E15BF2 /* VoteStatusViewController.swift in Sources */,
+				85F87D5920B502CC00E15BF2 /* YALAnimatingTabBarConstants.m in Sources */,
+				85F87D7A20B503AE00E15BF2 /* AuthViewController.swift in Sources */,
+				85F87D7820B503AE00E15BF2 /* HowToCollectionViewCell.swift in Sources */,
+				85F87D8120B503AE00E15BF2 /* PromiseViewController.swift in Sources */,
+				85F87D8320B503AE00E15BF2 /* VoteListViewController.swift in Sources */,
+				85F87D5620B502CC00E15BF2 /* UIView+Insets.m in Sources */,
+				85F87D5E20B502CC00E15BF2 /* YALCustomHeightTabBar.m in Sources */,
+				85F87D7620B503AE00E15BF2 /* CandidateViewCell.swift in Sources */,
+				85F87D8220B503AE00E15BF2 /* CandidateViewController.swift in Sources */,
+				85F87D7920B503AE00E15BF2 /* VoteListViewCell.swift in Sources */,
+				8564222F20940F8500E665D0 /* extUIColor.swift in Sources */,
+				85F87D5820B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */,
+				85F87D5B20B502CC00E15BF2 /* YALSpringAnimation.m in Sources */,
+				85F87D7D20B503AE00E15BF2 /* ReportViewController.swift in Sources */,
+				85F87D7C20B503AE00E15BF2 /* EndViewController.swift in Sources */,
+				85F87D5C20B502CC00E15BF2 /* YALFoldingTabBarController.m in Sources */,
+				85F87D5F20B502CC00E15BF2 /* YALFoldingTabBar.m in Sources */,
+				85F87D7B20B503AE00E15BF2 /* WhyViewController.swift in Sources */,
+				8564223B209566CC00E665D0 /* extUserDefaults.swift in Sources */,
+				85F87D5720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m in Sources */,
+				85F87D5D20B502CC00E15BF2 /* YALTabBarItem.m in Sources */,
+				856422292093454400E665D0 /* VoteListLayout.swift in Sources */,
+				85F87D8020B503AE00E15BF2 /* HowToViewController.swift in Sources */,
+				85F87D7720B503AE00E15BF2 /* VoteStatusViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C5E3508C1D73FFEA0023E7F7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5E3508D1D73FFEA0023E7F7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C5E350901D73FFEA0023E7F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C5E350911D73FFEA0023E7F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C5E350931D73FFEA0023E7F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6QG49X22JS;
+				INFOPLIST_FILE = "BVC-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.lasel.bugking.BVC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BVC-iOS/BVC-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		C5E350941D73FFEA0023E7F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 6QG49X22JS;
+				INFOPLIST_FILE = "BVC-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.lasel.bugking.BVC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BVC-iOS/BVC-iOS-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C5E3507B1D73FFEA0023E7F7 /* Build configuration list for PBXProject "BVC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5E350901D73FFEA0023E7F7 /* Debug */,
+				C5E350911D73FFEA0023E7F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5E350921D73FFEA0023E7F7 /* Build configuration list for PBXNativeTarget "BVC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5E350931D73FFEA0023E7F7 /* Debug */,
+				C5E350941D73FFEA0023E7F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C5E350781D73FFEA0023E7F7 /* Project object */;
+}
