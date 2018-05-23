@@ -37,7 +37,7 @@ contract BVC {
     }
 
     struct Candidate {
-        uint placeID
+        uint placeID;
         uint voteCount; 
     }
 
@@ -68,9 +68,10 @@ contract BVC {
         // 등록된 투표장 보기
         // return placeCode 필요
         string tmpPlace;
-        for (uint i =0; i < pollingPlace.length; i++) {
+        for (uint i =0; i < placelist.length; i++) {
             if (placeList[i].voting = true) {
-                tmpPlace += (tostring(i) + ",");
+                tmpPlace.concat(uintToString(i));
+                tmpPlace.concat("/");
             }
         }
         return tmpPlace;
