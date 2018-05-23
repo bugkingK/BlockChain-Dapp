@@ -38,7 +38,7 @@ contract BVC {
 
     struct Candidate {
         uint placeID;
-        uint voteCount; 
+        uint voteCount;
     }
 
     struct PollingPlace {
@@ -53,11 +53,12 @@ contract BVC {
         // 투표장 구조체 생성
         placeList.length += 1;
         uint placeID = placeList.length - 1;
+        placeList[placeID].voting = false;
         return placeID;
     }
 
     function setCandidate(uint _placeID) returns(uint) {
-        // 후보자구조체 등록 
+        // 후보자구조체 등록
         candidateList.length += 1;
         uint candidateID = candidateList.length - 1;
         candidateList[candidateID].placeID = _placeID;
@@ -85,10 +86,10 @@ contract BVC {
             if (candidateList[i].placeID == _placeID) {
                 tmpCandidate.concat(uintToString(i));
                 tmpCandidate.concat("/");
-                
+
             }
         }
-        return tmpCandidate;        
+        return tmpCandidate;
     }
 
     function vote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
@@ -104,7 +105,7 @@ contract BVC {
         } else {
             return false;
         }
-        
+
 
     }
 
@@ -133,7 +134,7 @@ contract BVC {
         // 개표하기
         return candidateList[_candidateID].voteCount;
     }
-       
+
         //uintToString 함수
     function uintToString(uint v) constant returns (string str) {
         uint maxlength = 100;
@@ -151,4 +152,3 @@ contract BVC {
         str = string(s);
     }
 }
-
