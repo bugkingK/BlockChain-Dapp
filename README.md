@@ -20,7 +20,7 @@
 
 # What is BlockChain?
 
-블록체인이 무엇인가요?
+블록체인이 무엇인가요? blockChain
 
 # What is this Application?
 
@@ -32,6 +32,7 @@
 2. html과 Web3를 이용하여 블록체인과 통신하기.
 3. 웹페이지 구성
 4. 애플리케이션 구성
+
 
 
 
