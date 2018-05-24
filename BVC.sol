@@ -98,7 +98,7 @@ contract BVC {
         }
     }
 
-    function getCandidate() constant returns(string) {
+    function getAllCandidate() constant returns(string) {
       return candidateNow;
     }
 
