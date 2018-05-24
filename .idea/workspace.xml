@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-WEB/test.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/getallplace.html" afterPath="$PROJECT_DIR$/BVC-WEB/getallplace.html" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/setpollingplace.html" afterPath="$PROJECT_DIR$/BVC-WEB/setpollingplace.html" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/vote.html" afterPath="$PROJECT_DIR$/BVC-WEB/vote.html" />
-      <change beforePath="$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/dist/ethereumjs-accounts.js" afterPath="$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/dist/ethereumjs-accounts.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/server.js" afterPath="$PROJECT_DIR$/BVC-WEB/server.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -74,8 +69,8 @@
       <file leaf-file-name="setpollingplace.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/setpollingplace.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="32" />
+            <state relative-caret-position="394">
+              <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -166,7 +161,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="38" />
+    <option name="y" value="29" />
     <option name="width" value="1397" />
     <option name="height" value="1002" />
   </component>
@@ -293,15 +289,15 @@
       <workItem from="1527079735480" duration="1250000" />
       <workItem from="1527081487899" duration="3000" />
       <workItem from="1527131280830" duration="320000" />
-      <workItem from="1527131705012" duration="13412000" />
+      <workItem from="1527131705012" duration="13414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14985000" />
+    <option name="totallyTimeSpent" value="14987000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1397" height="1002" extended-state="0" />
+    <frame x="38" y="29" width="1397" height="1002" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19255547" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
@@ -691,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/setpollingplace.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="39" column="32" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="32" />
+        <state relative-caret-position="394">
+          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
           <folding />
         </state>
       </provider>

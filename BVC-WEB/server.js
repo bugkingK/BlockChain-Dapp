@@ -22,40 +22,39 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 // ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
 
 app.get('/', function (req, res) {
-  var successFail = "";
-  var placeid = "";
-  var jsonString = {
-	"result" : successFail,
-	"placeid" : placeid
-  }
-
-  setPollingPlace();
-  var json = JSON.stringify(jsonString);
-  res.json(json);
+  
+  setPollingPlace(function(jsonData){
+    res.json(jsonData);
+  });
 });
 
 // 투표장을 생성하는 메소드입니다.
-function setPollingPlace() {
+function setPollingPlace(json){
   BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
-      console.log(res);
-      getPollingPlace();
+      
+      BVC.getPollingPlace.call(function(err, res){
+        if(!err) {
+          console.log(res);
+          var jsonString = {
+            "result" : "",
+            "placeid" : ""
+          }
+          jsonString["result"] = "success";
+          jsonString["placeid"] = res;
+          json(jsonString);
+        } else {
+          console.log(err);
+        }
+      })
+
     } else {
       console.log(err);
+      
     }
   })
 }
 
-// 투표장의 placeid를 얻는 메소드입니다.
-function getPollingPlace() {
-  BVC.getPollingPlace.call(function(err, res) {
-    if(!err) {
-      console.log(result);
-    } else {
-      console.log(err);
-    }
-  })
-}
 
 
 app.listen(4210, function () {
