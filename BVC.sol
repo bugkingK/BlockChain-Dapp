@@ -49,12 +49,15 @@ contract BVC {
     Candidate[] public candidateList;
     PollingPlace[] public placeList;
 
-    function setPollingPlace() returns(uint) {
+    function setPollingPlace() {
         // 투표장 구조체 생성
         placeList.length += 1;
         uint placeID = placeList.length - 1;
         placeList[placeID].voting = false;
-        return placeID;
+
+    }
+    function getPollingPlace() constant returns(uint){
+      return placeList.length - 1;
     }
 
     function setCandidate(uint _placeID) returns(uint) {
@@ -150,5 +153,8 @@ contract BVC {
             s[j] = reversed[i - j];
         }
         str = string(s);
+        return str;
     }
+    //테스트용 체크보트
+
 }
