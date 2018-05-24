@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE json>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="application/json">
 
-    <link rel="stylesheet" type="text/css" href="main.css">
-
-    <script src="./node_modules/web3/dist/web3.min.js"></script>
 </head>
 <body>
+<script src="./node_modules/web3/dist/web3.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script>
     if (typeof web3 !== 'undefined') {
         // 현재 사용가능한 Web3 열기, 예를 들면 크롬 metamask
@@ -30,20 +29,18 @@
     // 로그가 찍히면 연결성공
     console.log(BVC);
 
-    // 현재 블록에 담겨있는 값을 가져와 json 형태로 변경한 후 출력합니다.
-    // json 예제
-    // var json = new Object();
-    // json.result = "success";
-    // json.placeID = result[0];
-    // json.nn = result[1];
-    // document.write(JSON.stringify(json));
+
 
     BVC.setPollingPlace.sendTransaction(function(error, result){
         if(!error) {
-            console.log(result);
             BVC.getPollingPlace.call(function(error, result){
                 if(!error) {
-                    document.write(JSON.stringify(result));
+                    var json = new Object();
+                    json.result = "success";
+                    json.placeid = result;
+
+                    document.write(JSON.stringify(json));
+
                 } else {
                     console.log(error);
                 }
@@ -52,11 +49,6 @@
             console.log(error);
         }
     });
-
-
-
-    // BVC로 setPollingPlace 접근 필요...
-
 
 </script>
 </body>

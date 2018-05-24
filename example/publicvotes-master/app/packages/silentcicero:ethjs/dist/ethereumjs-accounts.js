@@ -12840,7 +12840,7 @@ module.exports={
   "description": "EC cryptography",
   "main": "lib/elliptic.js",
   "scripts": {
-    "test": "make lint && mocha --reporter=spec test/*-test.js"
+    "test": "make lint && mocha --reporter=spec test/*-test.html"
   },
   "repository": {
     "type": "git",
@@ -19053,7 +19053,7 @@ module.exports={
   "description": "EC cryptography",
   "main": "lib/elliptic.js",
   "scripts": {
-    "test": "make lint && mocha --reporter=spec test/*-test.js"
+    "test": "make lint && mocha --reporter=spec test/*-test.html"
   },
   "repository": {
     "type": "git",
@@ -36324,7 +36324,7 @@ module.exports={
   "description": "EC cryptography",
   "main": "lib/elliptic.js",
   "scripts": {
-    "test": "make lint && mocha --reporter=spec test/*-test.js"
+    "test": "make lint && mocha --reporter=spec test/*-test.html"
   },
   "repository": {
     "type": "git",
