@@ -37,8 +37,8 @@ contract BVC {
     }
 
     struct Candidate {
-        uint placeID
-        uint voteCount; 
+        uint placeID;
+        uint voteCount;
     }
 
     struct PollingPlace {
@@ -49,15 +49,19 @@ contract BVC {
     Candidate[] public candidateList;
     PollingPlace[] public placeList;
 
-    function setPollingPlace() returns(uint) {
+    function setPollingPlace() {
         // 투표장 구조체 생성
         placeList.length += 1;
         uint placeID = placeList.length - 1;
-        return placeID;
+        placeList[placeID].voting = false;
+
+    }
+    function getPollingPlace() constant returns(uint){
+      return placeList.length - 1;
     }
 
     function setCandidate(uint _placeID) returns(uint) {
-        // 후보자구조체 등록 
+        // 후보자구조체 등록
         candidateList.length += 1;
         uint candidateID = candidateList.length - 1;
         candidateList[candidateID].placeID = _placeID;
@@ -68,9 +72,10 @@ contract BVC {
         // 등록된 투표장 보기
         // return placeCode 필요
         string tmpPlace;
-        for (uint i =0; i < pollingPlace.length; i++) {
+        for (uint i =0; i < placeList.length; i++) {
             if (placeList[i].voting = true) {
-                tmpPlace += (tostring(i) + ",");
+                tmpPlace.concat(uintToString(i));
+                tmpPlace.concat("/");
             }
         }
         return tmpPlace;
@@ -84,16 +89,16 @@ contract BVC {
             if (candidateList[i].placeID == _placeID) {
                 tmpCandidate.concat(uintToString(i));
                 tmpCandidate.concat("/");
-                
+
             }
         }
-        return tmpCandidate;        
+        return tmpCandidate;
     }
 
     function vote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
         // 투표하기 실패 성공 여부 확인해야할까?
         // 전화번호 중복여부
-        if (checkVoted() == false) {
+        if (checkVoted(_phone, _votedPlace) == false) {
             voterList.length += 1;
             uint voterID = voterList.length - 1;
             voterList[voterID].phone = _phone;
@@ -103,7 +108,7 @@ contract BVC {
         } else {
             return false;
         }
-        
+
 
     }
 
@@ -121,18 +126,18 @@ contract BVC {
     }
 
     function voteStart(uint _placeID) {
-        placeList[_placeID].voting = 1;
+        placeList[_placeID].voting = true;
     }
 
     function voteEnd(uint _placeID) {
-        placeList[_placeID].voting = 0;
+        placeList[_placeID].voting = false;
     }
 
     function counting(uint _candidateID) returns(uint) {
         // 개표하기
         return candidateList[_candidateID].voteCount;
     }
-       
+
         //uintToString 함수
     function uintToString(uint v) constant returns (string str) {
         uint maxlength = 100;
@@ -148,6 +153,8 @@ contract BVC {
             s[j] = reversed[i - j];
         }
         str = string(s);
+        return str;
     }
-}
+    //테스트용 체크보트
 
+}
