@@ -22,11 +22,11 @@
     //eth의 기본 지갑은 0번째 지갑입니다.
     web3.eth.defaultAccount = web3.eth.accounts[0];
     // contract로 abi를 정의해 줍니다. 해당 abi는 sol파일을 컴파일 했을 때 추출됩니다.
-    var BVCContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"getCandidate","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"getAllPlace","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voterList","outputs":[{"name":"phone","type":"uint256"},{"name":"votedPlace","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_phone","type":"uint256"},{"name":"_votedPlace","type":"uint256"}],"name":"checkVoted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_votedPlace","type":"uint256"},{"name":"_candidateID","type":"uint256"},{"name":"_phone","type":"uint256"}],"name":"vote","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"setPollingPlace","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"placeID","type":"uint256"},{"name":"voteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteEnd","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"placeList","outputs":[{"name":"voting","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setCandidate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteStart","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"v","type":"uint256"}],"name":"uintToString","outputs":[{"name":"str","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_candidateID","type":"uint256"}],"name":"counting","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]);
+    var BVCContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"getCandidate","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"getAllPlace","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voterList","outputs":[{"name":"phone","type":"uint256"},{"name":"votedPlace","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_phone","type":"uint256"},{"name":"_votedPlace","type":"uint256"}],"name":"checkVoted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_votedPlace","type":"uint256"},{"name":"_candidateID","type":"uint256"},{"name":"_phone","type":"uint256"}],"name":"vote","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPollingPlace","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"setPollingPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"placeID","type":"uint256"},{"name":"voteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteEnd","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"placeList","outputs":[{"name":"voting","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setCandidate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteStart","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"v","type":"uint256"}],"name":"uintToString","outputs":[{"name":"str","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_candidateID","type":"uint256"}],"name":"counting","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]);
 
     // eth의 컨트렉트 주소를 작성해줍니다. 블록체인에 많은 스마트 컨트렉트들 중에 자신의 컨트렉트를 찾기 위함입니다.
     // 여기까지 설정이 완료된다면 블록체인과 연결된 것입니다. 따라서 solidity파일에 작성한 함수와 변수를 사용할 수 있습니다.
-    var BVC = BVCContract.at('0x203cfc9abf4f5cb421a6a11727117d916ad631b7');
+    var BVC = BVCContract.at('0xae6a360065c2a5912d70cf9dd7fa4f7ff79c129b');
     // 로그가 찍히면 연결성공
     console.log(BVC);
 
@@ -37,6 +37,22 @@
     // json.placeID = result[0];
     // json.nn = result[1];
     // document.write(JSON.stringify(json));
+
+    BVC.setPollingPlace.sendTransaction(function(error, result){
+        if(!error) {
+            console.log(result);
+            BVC.getPollingPlace.call(function(error, result){
+                if(!error) {
+                    document.write(JSON.stringify(result));
+                } else {
+                    console.log(error);
+                }
+            });
+        } else {
+            console.log(error);
+        }
+    });
+
 
 
     // BVC로 setPollingPlace 접근 필요...
