@@ -88,7 +88,7 @@ contract BVC {
       return placeNow;
     }
 
-    function setCandidate(uint _placeID) returns(string) {
+    function setAllCandidate(uint _placeID) returns(string) {
         // 등록된 후보 보기
       for (uint i = 0; i < candidateList.length; i++) {
           if (candidateList[i].placeID == _placeID) {
