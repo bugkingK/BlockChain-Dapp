@@ -43,9 +43,11 @@
 		C5E3508E1D73FFEA0023E7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E3508C1D73FFEA0023E7F7 /* LaunchScreen.storyboard */; };
 		C5E350F61D7402B00023E7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E350F51D7402B00023E7F7 /* AppDelegate.swift */; };
 		C5E350F91D7402C20023E7F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5E350F81D7402C20023E7F7 /* Main.storyboard */; };
+		F637AE8DB771D0903E08C58B /* Pods_BVC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9F6BD427D36758291016AF /* Pods_BVC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D9C2FE76B931D00B76E7575 /* Pods-BVC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BVC.release.xcconfig"; path = "Pods/Target Support Files/Pods-BVC/Pods-BVC.release.xcconfig"; sourceTree = "<group>"; };
 		856422282093454400E665D0 /* VoteListLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteListLayout.swift; sourceTree = "<group>"; };
 		8564222E20940F8500E665D0 /* extUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extUIColor.swift; sourceTree = "<group>"; };
 		8564223620941BD200E665D0 /* HowToContents.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HowToContents.plist; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseViewController.swift; sourceTree = "<group>"; };
 		85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandidateViewController.swift; sourceTree = "<group>"; };
 		85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteListViewController.swift; sourceTree = "<group>"; };
+		A34090EA3A02D878787F267C /* Pods-BVC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BVC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BVC/Pods-BVC.debug.xcconfig"; sourceTree = "<group>"; };
 		C5B230551D7451E200A625DF /* StatusDataList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StatusDataList.plist; sourceTree = "<group>"; };
 		C5E350801D73FFEA0023E7F7 /* BVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E3508D1D73FFEA0023E7F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		C5E350C41D74009B0023E7F7 /* BVC-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BVC-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		C5E350F51D7402B00023E7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5E350F81D7402C20023E7F7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EE9F6BD427D36758291016AF /* Pods_BVC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BVC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,12 +106,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F637AE8DB771D0903E08C58B /* Pods_BVC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F97AE850CFBC11675DC3D4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE9F6BD427D36758291016AF /* Pods_BVC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		856422342094184400E665D0 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,11 +346,22 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		BEEA93E286C474677FAD6B35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A34090EA3A02D878787F267C /* Pods-BVC.debug.xcconfig */,
+				5D9C2FE76B931D00B76E7575 /* Pods-BVC.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C5E350771D73FFEA0023E7F7 = {
 			isa = PBXGroup;
 			children = (
 				C5E350821D73FFEA0023E7F7 /* BVC-iOS */,
 				C5E350811D73FFEA0023E7F7 /* Products */,
+				BEEA93E286C474677FAD6B35 /* Pods */,
+				2F97AE850CFBC11675DC3D4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -394,9 +418,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5E350921D73FFEA0023E7F7 /* Build configuration list for PBXNativeTarget "BVC" */;
 			buildPhases = (
+				43059A4D7B4E94744D64856A /* [CP] Check Pods Manifest.lock */,
 				C5E3507C1D73FFEA0023E7F7 /* Sources */,
 				C5E3507D1D73FFEA0023E7F7 /* Frameworks */,
 				C5E3507E1D73FFEA0023E7F7 /* Resources */,
+				C0D61DB1DBF1BB4C129E0ABF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -460,6 +486,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43059A4D7B4E94744D64856A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BVC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0D61DB1DBF1BB4C129E0ABF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BVC/Pods-BVC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BVC/Pods-BVC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C5E3507C1D73FFEA0023E7F7 /* Sources */ = {
@@ -616,6 +681,7 @@
 		};
 		C5E350931D73FFEA0023E7F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A34090EA3A02D878787F267C /* Pods-BVC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -633,6 +699,7 @@
 		};
 		C5E350941D73FFEA0023E7F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D9C2FE76B931D00B76E7575 /* Pods-BVC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
