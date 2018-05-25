@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ReportViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class ReportViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         getCurrentDate()
+        networkTest()
     }
 
     func getCurrentDate() {
@@ -26,5 +28,14 @@ class ReportViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale?
         currentDate.text = dateFormatter.string(from: now as Date)
+    }
+    
+    
+    // 서버와 통신여부 확인함.
+    func networkTest() {
+        Alamofire.request("http://bug.lasel.kr:4210", method: .get, parameters: nil).responseJSON { response in
+            print(response)
+            
+        }
     }
 }
