@@ -21,19 +21,57 @@ var BVC = contract.at(contractAddress);
 web3.eth.defaultAccount = web3.eth.accounts[0];
 // ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
 
-app.get('/', function (req, res) {
-  
+// 투표장을 생성합니다.
+app.get('/setPollingPlace', function (req, res) {  
   setPollingPlace(function(jsonData){
     res.json(jsonData);
   });
 });
 
+// 후보자를 등록합니다.
+app.get('/setCandidate', function (req, res) {  
+  
+});
+
+// 등록된 투표장을 볼 수 있습니다.
+app.get('/setAllplace', function (req, res) {  
+  
+});
+
+// 투표권을 행사합니다.
+app.get('/setVote', function (req, res) {  
+  
+});
+
+// 투표했는지 여부를 확인합니다.
+app.get('/getCheckVoted', function (req, res) {  
+  
+});
+
+// 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
+app.get('/setVoteStart', function (req, res) {  
+  
+});
+
+// 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
+app.get('/setVoteEnd', function (req, res) {  
+  
+});
+
+// 개표합니다.
+app.get('/getCounting', function (req, res) {  
+  
+});
+
+
+// ------------------------- 메소드입니다 -----------------------------
 // 투표장을 생성하는 메소드입니다.
 function setPollingPlace(json){
   BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
       
       BVC.getPollingPlace.call(function(err, res){
+      	// 방금 생성한 투표장의 번호를 반환합니다.
         if(!err) {
           console.log(res);
           var jsonString = {
@@ -55,6 +93,40 @@ function setPollingPlace(json){
   })
 }
 
+// 후보자 등록하는 메소드입니다.
+function setCandidate(placeid, json) {
+	// getCandidate로 등록한 후보자 ID 반환
+}
+
+// 등록된 투표장 보는 메소드입니다.
+function setAllplace() {
+	// getAllplace로 등록된 투표장을 볼 수 있습니다.
+}
+
+// 투표하는 메소드입니다.
+function setVote(placeid, candidateid, phone) {
+
+}
+
+// 투표를 했는지 확인하는 메소드입니다.
+function getCheckVoted(phone, placeid) {
+
+}
+
+// 투표를 시작합니다.
+function setVoteStart(placeid) {
+
+}
+
+// 투표를 종료합니다.
+function setVoteEnd(placeid) {
+
+}
+
+// 개표합니다.
+function getCounting(candidateid) {
+
+}
 
 
 app.listen(4210, function () {

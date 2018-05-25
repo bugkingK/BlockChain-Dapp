@@ -88,7 +88,8 @@ contract BVC {
       return placeNow;
     }
 
-    function setAllCandidate(uint _placeID) returns(string) {
+    // returns(string)은 없어야해서 수정했습니당.
+    function setAllCandidate(uint _placeID) {
         // 등록된 후보 보기
       for (uint i = 0; i < candidateList.length; i++) {
           if (candidateList[i].placeID == _placeID) {
@@ -102,6 +103,7 @@ contract BVC {
       return candidateNow;
     }
 
+    // set인데 returns 가능한가여?
     function setVote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
         // 투표하기 실패 성공 여부 확인해야할까?
         // 전화번호 중복여부
@@ -115,8 +117,6 @@ contract BVC {
         } else {
             return false;
         }
-
-
     }
 
     function getCheckVoted(uint _phone, uint _votedPlace) constant returns(bool) {
