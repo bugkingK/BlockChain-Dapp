@@ -33,7 +33,7 @@ class ReportViewController: UIViewController {
     
     // 서버와 통신여부 확인함.
     func networkTest() {
-        Alamofire.request("http://bug.lasel.kr:4210", method: .get, parameters: nil).responseJSON { response in
+        Alamofire.request("http://yangarch.iptime.org:4210/setPollingPlace", method: .get, parameters: nil).responseJSON { response in
             print(response)
             
         }

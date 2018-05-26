@@ -13,6 +13,7 @@ class WhyViewController: UIViewController {
         return view
     }()
     
+    
     private let titleLabel: UILabel = {
         let lb = UILabel()
         lb.text = "개인정보 동의서"
