@@ -11,6 +11,7 @@ import Alamofire
 
 class ReportViewController: UIViewController {
 
+    @IBOutlet weak var votedNumber: UILabel!
     @IBOutlet weak var currentDate: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ReportViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         getCurrentDate()
-        networkTest()
+        getVotedNumber()
     }
 
     func getCurrentDate() {
@@ -30,12 +31,10 @@ class ReportViewController: UIViewController {
         currentDate.text = dateFormatter.string(from: now as Date)
     }
     
-    
-    // 서버와 통신여부 확인함.
-    func networkTest() {
-        Alamofire.request("http://yangarch.iptime.org:4210/setPollingPlace", method: .get, parameters: nil).responseJSON { response in
-            print(response)
-            
-        }
+    func getVotedNumber() {
+        let api = APIClient()
+        api.setPollingPlace()
     }
+    
+    
 }
