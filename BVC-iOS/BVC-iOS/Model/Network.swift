@@ -13,7 +13,7 @@ import Alamofire
 private enum siteURL: String {
     case server             = "http://yangarch.iptime.org:4210/"
     case setPollingPlace    = "setPollingPlace"
-    
+    case getCheckVoted      = "getCheckVoted"
 }
 
 class Network{
@@ -78,5 +78,30 @@ class APIClient {
         }
     }
    
+    func getCheckVoted() {
+        let parameters: Parameters = ["placeid" : 1, "phone" : 01077277673]
+        
+        let network = Network(siteURL.getCheckVoted.rawValue, method: .get, parameters : parameters)
+        network.connetion(){ response in
+            print(response)
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [String: String] {
+                switch resultCode {
+                case 200:
+                    print(resultData)
+                    //                    for index in resultData {
+                    //                        if let placeid = index["placeid"] {
+                    //                            self.appDelegate.showAlert(String(placeid))
+                    //                        }
+                    //                    }
+                    break
+                default:
+                    self.appDelegate.showAlert(resultMessage)
+                    break
+                }
+            } else {
+                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+            }
+        }
+    }
 }
 

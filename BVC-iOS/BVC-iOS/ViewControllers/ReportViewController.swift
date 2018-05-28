@@ -21,6 +21,7 @@ class ReportViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         getCurrentDate()
         getVotedNumber()
+        getCheckVoted()
     }
 
     func getCurrentDate() {
@@ -34,6 +35,11 @@ class ReportViewController: UIViewController {
     func getVotedNumber() {
         let api = APIClient()
         api.setPollingPlace()
+    }
+    
+    func getCheckVoted() {
+        let api = APIClient()
+        api.getCheckVoted()
     }
     
     

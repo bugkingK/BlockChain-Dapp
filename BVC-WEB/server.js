@@ -19,6 +19,7 @@ var contract = web3.eth.contract(interface);
 var BVC = contract.at(contractAddress);
 // eth를 지불할 eth지갑을 선택합니다.
 web3.eth.defaultAccount = web3.eth.accounts[0];
+
 // ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
 
 // 투표장을 생성합니다.
@@ -29,8 +30,8 @@ app.get('/setPollingPlace', function (req, res) {
 });
 
 // 후보자를 등록합니다.
-app.get('/setCandidate', function (req, res) {  
-  
+app.get('/setCandidate', function (req, res) {
+
 });
 
 // 등록된 투표장을 볼 수 있습니다.
@@ -44,8 +45,16 @@ app.get('/setVote', function (req, res) {
 });
 
 // 투표했는지 여부를 확인합니다.
-app.get('/getCheckVoted', function (req, res) {  
-  
+app.get('/getCheckVoted', function (req, res) {
+    // paramter를 받아서 출력하는 방법 기재합니당.
+    var data = { "placeid" : req.param('placeid'), "phone" : req.param('phone') };
+    var jsonString = {
+        "code"     : "200",
+        "message"  : "success",
+        "data"     : data
+    }
+
+    res.json(jsonString)
 });
 
 // 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
