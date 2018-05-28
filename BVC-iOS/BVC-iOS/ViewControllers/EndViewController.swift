@@ -18,7 +18,9 @@ class EndViewController: UIViewController {
         setupViews()
         view.backgroundColor = UIColor.CSviewBackgroundColor
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.tabBarController?.selectedIndex = 2
+            let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+            self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
+            //self.tabBarController?.selectedIndex = 2
         }
         
         

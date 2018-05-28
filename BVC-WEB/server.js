@@ -11,9 +11,9 @@ var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:8545'));
 
 // sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0xa038677892f437beb685a78e57a7495e9276774f';
+var contractAddress = '0x0d476cfa37f17a5f840174e7702c4a0f404ee1a8';
 // sol파일의 abi 값입니다.
-var interface = [{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"getCandidate","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"getAllPlace","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voterList","outputs":[{"name":"phone","type":"uint256"},{"name":"votedPlace","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_phone","type":"uint256"},{"name":"_votedPlace","type":"uint256"}],"name":"checkVoted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_votedPlace","type":"uint256"},{"name":"_candidateID","type":"uint256"},{"name":"_phone","type":"uint256"}],"name":"vote","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getPollingPlace","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"setPollingPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"placeID","type":"uint256"},{"name":"voteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteEnd","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"placeList","outputs":[{"name":"voting","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setCandidate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"voteStart","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"v","type":"uint256"}],"name":"uintToString","outputs":[{"name":"str","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_candidateID","type":"uint256"}],"name":"counting","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
+var interface = [{"constant":false,"inputs":[],"name":"setAllPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voterList","outputs":[{"name":"phone","type":"uint256"},{"name":"votedPlace","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setVoteStart","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getCandidate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setAllCandidate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getAllplace","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_phone","type":"uint256"},{"name":"_votedPlace","type":"uint256"}],"name":"getCheckVoted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPollingPlace","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_votedPlace","type":"uint256"},{"name":"_candidateID","type":"uint256"},{"name":"_phone","type":"uint256"}],"name":"setVote","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"setPollingPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"placeID","type":"uint256"},{"name":"voteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_candidateID","type":"uint256"}],"name":"getCounting","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setVoteEnd","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"placeList","outputs":[{"name":"voting","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setCandidate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"v","type":"uint256"}],"name":"uintToString","outputs":[{"name":"str","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCandidate","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}]
 // 컨트랙트를 연결합니다.
 var contract = web3.eth.contract(interface);
 var BVC = contract.at(contractAddress);
@@ -35,8 +35,10 @@ app.get('/setCandidate', function (req, res) {
 });
 
 // 등록된 투표장을 볼 수 있습니다.
-app.get('/setAllplace', function (req, res) {  
-  
+app.get('/getAllplace', function (req, res) {
+    getAllplace(function(jsonData){
+        res.json(jsonData);
+    });
 });
 
 // 투표권을 행사합니다.
@@ -58,8 +60,11 @@ app.get('/getCheckVoted', function (req, res) {
 });
 
 // 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
-app.get('/setVoteStart', function (req, res) {  
-  
+app.get('/setVoteStart', function (req, res) {
+
+    setVoteStart(0, function(jsonData){
+        res.json(jsonData);
+    });
 });
 
 // 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
@@ -75,10 +80,15 @@ app.get('/getCounting', function (req, res) {
 
 // ------------------------- 메소드입니다 -----------------------------
 
-var jsonString = {
-  		"code"     : "",
-        "message"  : "",
-    	"data"     : ""
+
+
+function jsonParsing(code, message, data, json) {
+    var jsonString = {
+        "code"     : code,
+        "message"  : message,
+        "data"     : data
+    }
+    json(jsonString);
 }
 
 // 1. 투표장을 생성하는 메소드입니다.
@@ -90,23 +100,15 @@ function setPollingPlace(json){
       	// 방금 생성한 투표장의 번호를 반환합니다.
         if(!err) {
         	var placeid = { "placeid" : res };
-			jsonString["code"] = 200;
-			jsonString["message"] = "success";
-			jsonString["data"] = placeid;
 
-			json(jsonString);
-          
+        	jsonParsing(200, "success", placeid, json);
         } else {
-			jsonString["code"] = 400;
-			jsonString["message"] = err;
-			json(jsonString);
+            jsonParsing(400, err, "", json);
         }
       })
 
     } else {
-      jsonString["code"] = 400;
-      jsonString["message"] = err;
-      json(jsonString);
+        jsonParsing(400, err, "", json);
     }
   })
 }
@@ -117,17 +119,23 @@ function setCandidate(placeid, json) {
 }
 
 // 3. 등록된 투표장 보는 메소드입니다.
-function getAllplace() {
-	var placeid = 1;
+function getAllplace(json) {
 	// set에서 get으로 
-	BVC.setAllCandidate.sendTransaction(placeid, function(err, res){
+	BVC.setAllPlace.sendTransaction(function(err, res){
 		if(!err) {
+            BVC.getAllplace.call(function(err, res){
+                if(!err) {
+                    var placeid = { "placeid" : res };
 
+                    jsonParsing(200, "success", placeid, json);
+                } else {
+                    jsonParsing(400, err, "", json);
+                }
+            })
 		} else {
-			console.log(err);
+            jsonParsing(400, err, "", json);
 		}
 	});
-	
 }
 
 // 4. 등록된 후보자보기
@@ -151,8 +159,15 @@ function getCheckVoted(phone, placeid) {
 }
 
 // 8. 투표를 시작합니다.
-function setVoteStart(placeid) {
+function setVoteStart(placeid, json) {
 
+    BVC.setVoteStart(1, function(err, res){
+        if(!err) {
+            jsonParsing(200, "success", "", json);
+        } else {
+            jsonParsing(400, err, "", json);
+        }
+    })
 }
 
 // 9. 투표를 종료합니다.

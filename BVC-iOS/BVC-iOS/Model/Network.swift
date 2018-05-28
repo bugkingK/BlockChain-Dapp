@@ -79,7 +79,7 @@ class APIClient {
     }
    
     func getCheckVoted() {
-        let parameters: Parameters = ["placeid" : 1, "phone" : 01077277673]
+        let parameters: Parameters = ["placeid" : 1, "phone" : "01077277673"]
         
         let network = Network(siteURL.getCheckVoted.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
