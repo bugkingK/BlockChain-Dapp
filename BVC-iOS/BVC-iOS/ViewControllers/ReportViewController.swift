@@ -13,15 +13,16 @@ class ReportViewController: UIViewController {
 
     @IBOutlet weak var votedNumber: UILabel!
     @IBOutlet weak var currentDate: UILabel!
+    
+    var placeid: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     override func viewDidAppear(_ animated: Bool) {
+        print("report: \(placeid)")
         getCurrentDate()
-        getVotedNumber()
-        getCheckVoted()
+        getCounting(placeid: placeid)
     }
 
     func getCurrentDate() {
@@ -32,15 +33,10 @@ class ReportViewController: UIViewController {
         currentDate.text = dateFormatter.string(from: now as Date)
     }
     
-    func getVotedNumber() {
+    //// 개표하기 APIClient - getCounting을 불러옵니다.
+    
+    func getCounting(placeid: String) {
         let api = APIClient()
-        api.setPollingPlace()
+        api.getCounting(placeid: placeid)
     }
-    
-    func getCheckVoted() {
-        let api = APIClient()
-        api.getCheckVoted()
-    }
-    
-    
 }

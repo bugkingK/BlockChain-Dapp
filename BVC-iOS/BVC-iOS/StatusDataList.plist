@@ -3,6 +3,8 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>placeid</key>
+		<string>0</string>
 		<key>image</key>
 		<string>list1</string>
 		<key>title</key>
@@ -11,6 +13,8 @@
 		<string>0000년 00월 00일</string>
 	</dict>
 	<dict>
+		<key>placeid</key>
+		<string>1</string>
 		<key>image</key>
 		<string>list2</string>
 		<key>title</key>
@@ -19,6 +23,8 @@
 		<string>0000년 00월 00일</string>
 	</dict>
 	<dict>
+		<key>placeid</key>
+		<string>2</string>
 		<key>image</key>
 		<string>list1</string>
 		<key>title</key>
@@ -27,6 +33,8 @@
 		<string>0000년 00월 00일</string>
 	</dict>
 	<dict>
+		<key>placeid</key>
+		<string>3</string>
 		<key>image</key>
 		<string>list2</string>
 		<key>title</key>
@@ -35,6 +43,8 @@
 		<string>0000년 00월 00일</string>
 	</dict>
 	<dict>
+		<key>placeid</key>
+		<string>4</string>
 		<key>image</key>
 		<string>list1</string>
 		<key>title</key>
