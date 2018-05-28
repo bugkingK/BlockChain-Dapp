@@ -4,9 +4,6 @@
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/BVC-WEB/server.js" afterPath="$PROJECT_DIR$/BVC-WEB/server.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Model/Network.swift" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Model/Network.swift" />
-      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/ViewControllers/EndViewController.swift" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/ViewControllers/EndViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,8 +70,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="62" column="22" lean-forward="false" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="22" />
+            <state relative-caret-position="272">
+              <caret line="126" column="26" lean-forward="false" selection-start-line="126" selection-start-column="26" selection-end-line="126" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -266,12 +263,12 @@
       <workItem from="1527081487899" duration="3000" />
       <workItem from="1527131280830" duration="320000" />
       <workItem from="1527131705012" duration="13414000" />
-      <workItem from="1527478743738" duration="6928000" />
+      <workItem from="1527478743738" duration="8920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21915000" />
+    <option name="totallyTimeSpent" value="23907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1664" height="972" extended-state="0" />
@@ -629,8 +626,8 @@
     <entry file="file://$PROJECT_DIR$/BVC-WEB/setpollingplace.html" />
     <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="62" column="22" lean-forward="false" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="22" />
+        <state relative-caret-position="272">
+          <caret line="126" column="26" lean-forward="false" selection-start-line="126" selection-start-column="26" selection-end-line="126" selection-end-column="26" />
           <folding />
         </state>
       </provider>
