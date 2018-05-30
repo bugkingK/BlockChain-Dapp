@@ -52,7 +52,13 @@ app.get('/getAllplace', function (req, res) {
 
 // 투표권을 행사합니다.
 app.get('/setVote', function (req, res) {  
-  
+    var placeid = req.param('placeid');
+    var candidateid = req.param('candidateid');
+    var phone = req.param('phone');
+
+    setVote(placeid, candidateid, phone, function(jsonData) {
+        res.json(jsonData);
+    });
 });
 
 // 투표했는지 여부를 확인합니다.
@@ -176,8 +182,17 @@ function getAllCandidate(placeid, json){
 }
 
 // 5. 투표하는 메소드입니다.
-function setVote(placeid, candidateid, phone) {
-
+function setVote(placeid, candidateid, phone, json) {
+    BVC.setVote(placeid, candidateid, phone, function(err, res) {
+        // 트랜젝션 주소가 err로 갈지 res로 갈지 체크해봐야함. 이 구문이 제대로 돌지 못할 수 있음을 유의하셈.
+        if(!err) {
+            console.log(res);
+            jsonParsing(200, "success", "", json);
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
 }
 
 // 6. 개표합니다.
