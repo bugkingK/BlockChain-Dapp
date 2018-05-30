@@ -8,31 +8,31 @@
 		<key>title</key>
 		<string>무슨 앱인가요?</string>
 		<key>contents</key>
-		<string>내용이 필요필요</string>
+		<string>블록체인 기술을 사용하여 온라인 투표시스템을 구축하였습니다.</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>bg_page2</string>
 		<key>title</key>
-		<string>어떤 기술이 사용되었나요?</string>
+		<string>인증 절차</string>
 		<key>contents</key>
-		<string>내용이 필요함</string>
+		<string>문자 인증으로 인증절차를 거치게 됩니다.</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>bg_page3</string>
 		<key>title</key>
-		<string>기대효과</string>
+		<string>투표 현황</string>
 		<key>contents</key>
-		<string>Great!</string>
+		<string>빠르고 정확한 투표 현황을 볼 수 있습니다.</string>
 	</dict>
 	<dict>
 		<key>image</key>
-		<string>bg_page3</string>
+		<string>bg_page4</string>
 		<key>title</key>
-		<string>지금바로!</string>
-		<key>contents</key>
 		<string>Vote Vote!!</string>
+		<key>contents</key>
+		<string></string>
 	</dict>
 </array>
 </plist>

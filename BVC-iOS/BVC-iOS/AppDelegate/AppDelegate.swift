@@ -11,6 +11,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupYALTabBarController()
         
+        // 인증 초기화합니다.
+        UserDefaults.standard.setIsAutu(value: false)
+        print(UserDefaults.standard.getisAutu())
+        
         return true
     }
     
@@ -53,6 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return view
     }()
+    
+    // Alert 보여주기
+    func showAlert(_ message:String){
+        let alert = UIAlertController(title: "Information", message: "\n\(message)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        
+        DispatchQueue.main.async {
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 private extension AppDelegate {

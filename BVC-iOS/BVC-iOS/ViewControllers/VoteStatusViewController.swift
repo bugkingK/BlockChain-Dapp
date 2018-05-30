@@ -22,9 +22,14 @@ class VoteStatusViewController: UIViewController {
     
     messages = NSArray(contentsOfFile: Bundle.main.path(forResource: "StatusDataList", ofType: "plist")!) as! [Message]
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-        self.showHowToVC()
+    // 앱 처음 설치 후 한 번만 실행됩니다.
+    if !UserDefaults.standard.isFirstExcuteIn() {
+        UserDefaults.standard.setisFirstExcuteIn(value: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.showHowToVC()
+        }
     }
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {

@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import Alamofire
 
 class ReportViewController: UIViewController {
 
+    @IBOutlet weak var votedNumber: UILabel!
     @IBOutlet weak var currentDate: UILabel!
+    
+    var placeid: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     override func viewDidAppear(_ animated: Bool) {
+        print("report: \(placeid)")
         getCurrentDate()
+        //getCounting(placeid: placeid)
+        testing()
     }
 
     func getCurrentDate() {
@@ -26,5 +32,17 @@ class ReportViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale?
         currentDate.text = dateFormatter.string(from: now as Date)
+    }
+    
+    //// 개표하기 APIClient - getCounting을 불러옵니다.
+    
+    func getCounting(placeid: String) {
+        let api = APIClient()
+        api.getCounting(placeid: placeid)
+    }
+    
+    func testing() {
+        let api = APIClient()
+        api.setPollingPlace()
     }
 }
