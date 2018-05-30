@@ -63,15 +63,12 @@ app.get('/setVote', function (req, res) {
 
 // 투표했는지 여부를 확인합니다.
 app.get('/getCheckVoted', function (req, res) {
-    // paramter를 받아서 출력하는 방법 기재합니당.
-    var data = { "placeid" : req.param('placeid'), "phone" : req.param('phone') };
-    var jsonString = {
-        "code"     : "200",
-        "message"  : "success",
-        "data"     : data
-    }
+    var placeid = req.param('placeid');
+    var phone = req.param('phone');
 
-    res.json(jsonString)
+    getCheckVoted(placeid, phone, function(jsonData) {
+        res.json(jsonData);
+    });
 });
 
 // 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
@@ -200,11 +197,17 @@ function getCounting(candidateid) {
 
 }
 
-
-
 // 7. 투표를 했는지 확인하는 메소드입니다.
-function getCheckVoted(phone, placeid) {
-
+function getCheckVoted(placeid, phone, json) {
+    BVC.getCheckVoted(phone, placeid, function(err, res) {
+        if(!err) {
+            console.log(res);
+            jsonParsing(200, "success", "", json);
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    });
 }
 
 // 8. 투표를 시작합니다.
