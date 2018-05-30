@@ -153,6 +153,8 @@ function getCounting(candidateid) {
 
 }
 
+
+
 // 7. 투표를 했는지 확인하는 메소드입니다.
 function getCheckVoted(phone, placeid) {
 

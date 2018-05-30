@@ -11,6 +11,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupYALTabBarController()
         
+        // 인증 초기화합니다.
+        UserDefaults.standard.setIsAutu(value: false)
+        print(UserDefaults.standard.getisAutu())
+        
         return true
     }
     

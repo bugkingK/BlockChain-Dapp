@@ -16,6 +16,7 @@ private enum siteURL: String {
     case getAllCandidate    = "getAllCandidate"
     case setVote            = "setVote"
     case getCounting        = "getCounting"
+    case setPollingPlace    = "setPollingPlace"
 }
 
 class Network{
@@ -124,6 +125,25 @@ class APIClient {
     func getCounting(placeid: String) {
         
     }
+    
+    func setPollingPlace() {
+        let network = Network(siteURL.setPollingPlace.rawValue, method: .get)
+        network.connetion(){ response in
+            print(response)
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String {
+                switch resultCode {
+                case 200:
+                    
+                    break
+                default:
+                    self.appDelegate.showAlert(resultMessage)
+                    break
+                }
+            }
+            self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+        }
+    }
+    
     
 }
 
