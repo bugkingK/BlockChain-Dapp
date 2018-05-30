@@ -2,10 +2,19 @@
 // 필요한 npm 설치
 var Web3 = require('web3');
 var express = require('express');
+var mysql = require('mysql');
 
 // web3와 express 변수를 선언합니다.
 var app = express();
 var web3 = new Web3();
+var conn = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'arch0115',
+  database : 'vote'
+});
+
+conn.connect();
 
 // web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
 web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:8545'));
@@ -77,10 +86,24 @@ app.get('/getCounting', function (req, res) {
   
 });
 
+app.get('/dbtest', function (req, res) {
+    dbTest();
+});
+
 
 // ------------------------- 메소드입니다 -----------------------------
 
-
+// db 연결 예제
+function dbTest(){
+    var sql_ID = 'SELECT * from placeinfo';
+    conn.query(sql_ID, function(err, res){
+      if(!err) {
+        console.log(res);
+      } else {
+        console.log(err);
+      }
+    })
+  }
 
 function jsonParsing(code, message, data, json) {
     var jsonString = {
