@@ -22,6 +22,7 @@
 
 블록체인이 무엇인가요? blockChain
 
+
 # What is this Application?
 
 이 앱과 웹사이트는 어떤 기능을 하나요?
