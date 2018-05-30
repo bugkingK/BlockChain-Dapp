@@ -90,6 +90,10 @@ app.get('/dbtest', function (req, res) {
     dbTest();
 });
 
+app.get('/timeout', function (req, res) {
+    setTimeout(timeout, 5000, '원하는 값 입력');
+});
+
 
 // ------------------------- 메소드입니다 -----------------------------
 
@@ -103,6 +107,11 @@ function dbTest(){
         console.log(err);
       }
     })
+  }
+
+  // timeout 테스트
+  function timeout(arg) {
+    console.log('5초 후 작동합니다. 원하는 값도 넣을 수 있습니다. ${arg}');
   }
 
 function jsonParsing(code, message, data, json) {
