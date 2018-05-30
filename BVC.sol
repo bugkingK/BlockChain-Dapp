@@ -49,12 +49,11 @@ contract BVC {
     Candidate[] public candidateList;
     PollingPlace[] public placeList;
 
-<<<<<<< HEAD
+
     string placeNow;
     string candidateNow;
 
-=======
->>>>>>> master
+
     function setPollingPlace() {
         // 투표장 구조체 생성
         placeList.length += 1;
@@ -63,18 +62,18 @@ contract BVC {
 
     }
     function getPollingPlace() constant returns(uint){
-<<<<<<< HEAD
+
       // 투표장 번호 반환
       return placeList.length - 1;
     }
 
     function setCandidate(uint _placeID) {
-=======
+
       return placeList.length - 1;
     }
 
     function setCandidate(uint _placeID) returns(uint) {
->>>>>>> master
+
         // 후보자구조체 등록
         candidateList.length += 1;
         uint candidateID = candidateList.length - 1;
@@ -87,7 +86,7 @@ contract BVC {
 
     function setAllPlace() {
         // 등록된 투표장 보기
-<<<<<<< HEAD
+
       for (uint i =0; i < placeList.length; i++) {
           if (placeList[i].voting = true) {
               placeNow.concat(uintToString(i));
@@ -97,7 +96,7 @@ contract BVC {
     }
     function getAllplace() constant returns (string){
       return placeNow;
-=======
+
         // return placeCode 필요
         string tmpPlace;
         for (uint i =0; i < placeList.length; i++) {
@@ -107,19 +106,19 @@ contract BVC {
             }
         }
         return tmpPlace;
->>>>>>> master
+
     }
 
     function setAllCandidate(uint _placeID) returns(string) {
         // 등록된 후보 보기
-<<<<<<< HEAD
+
       for (uint i = 0; i < candidateList.length; i++) {
           if (candidateList[i].placeID == _placeID) {
               candidateNow.concat(uintToString(i));
               candidateNow.concat("/");
             }
         }
-=======
+
         // return candidateCode 필요
         string tmpCandidate;
         for (uint i = 0; i < candidateList.length; i++) {
@@ -130,7 +129,7 @@ contract BVC {
             }
         }
         return tmpCandidate;
->>>>>>> master
+
     }
 
     function getAllCandidate() constant returns(string) {
@@ -140,11 +139,11 @@ contract BVC {
     function setVote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
         // 투표하기 실패 성공 여부 확인해야할까?
         // 전화번호 중복여부
-<<<<<<< HEAD
+
         if (getCheckVoted(_phone, _votedPlace) == false) {
-=======
+
         if (checkVoted(_phone, _votedPlace) == false) {
->>>>>>> master
+
             voterList.length += 1;
             uint voterID = voterList.length - 1;
             voterList[voterID].phone = _phone;
@@ -171,19 +170,19 @@ contract BVC {
 
     }
 
-<<<<<<< HEAD
+
     function setVoteStart(uint _placeID) {
         placeList[_placeID].voting = true;
     }
 
     function setVoteEnd(uint _placeID) {
-=======
+
     function voteStart(uint _placeID) {
         placeList[_placeID].voting = true;
     }
 
     function voteEnd(uint _placeID) {
->>>>>>> master
+
         placeList[_placeID].voting = false;
     }
 
