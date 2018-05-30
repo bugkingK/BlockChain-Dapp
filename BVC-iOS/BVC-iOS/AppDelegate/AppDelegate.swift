@@ -53,6 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return view
     }()
+    
+    // Alert 보여주기
+    func showAlert(_ message:String){
+        let alert = UIAlertController(title: "Information", message: "\n\(message)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        
+        DispatchQueue.main.async {
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 private extension AppDelegate {

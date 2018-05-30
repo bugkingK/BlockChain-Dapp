@@ -24,25 +24,81 @@
     //eth의 기본 지갑은 0번째 지갑입니다.
     web3.eth.defaultAccount = web3.eth.accounts[0];
     // contract로 abi를 정의해 줍니다. 해당 abi는 sol파일을 컴파일 했을 때 추출됩니다.
-    var CoursetroContract = web3.eth.contract([{"constant": false,"inputs": [{"name": "_fName","type": "string"},{"name": "_age","type": "uint256"}],"name": "setInstructor","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "getInstructor","outputs": [{"name": "","type": "string"},{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"anonymous": false,"inputs": [{"indexed": false,"name": "name","type": "string"},{"indexed": false,"name": "age","type": "uint256"}],"name": "Instructor","type": "event"}]);
+    var CoursetroContract = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_age",
+				"type": "uint256"
+			}
+		],
+		"name": "setInstructor",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "age",
+				"type": "uint256"
+			}
+		],
+		"name": "Instructor",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getInstructor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]);
 
     // eth의 컨트렉트 주소를 작성해줍니다. 블록체인에 많은 스마트 컨트렉트들 중에 자신의 컨트렉트를 찾기 위함입니다.
     // 여기까지 설정이 완료된다면 블록체인과 연결된 것입니다. 따라서 solidity파일에 작성한 함수와 변수를 사용할 수 있습니다.
-    var Coursetro = CoursetroContract.at('0x6051a376e26d2fce3354561701c19941a1cc0dfe');
-    console.log(Coursetro);
+    var BVC = CoursetroContract.at('0xf02018655f54b90fd876486c1d8c350b2c85812b');
+    console.log(BVC);
 
     // 현재 블록에 담겨있는 값을 가져와 json 형태로 변경한 후 출력합니다.
     var json = new Object();
-    Coursetro.getInstructor(function(error, result){
+    BVC.getInstructor(function(error, result){
             if(!error)
                 {
                     json.result = "success";
-                    json.name = result[0];
-                    json.age = result[1];
+                    json.placeID = result[0];
+                    json.nn = result[1];
+                    json.fefe = result;
                     
                     console.log(JSON.stringify(json));
                 }
             else {
+            	console.log(error);
                 json.result = "fail"
 
                 console.log(JSON.stringify(json));

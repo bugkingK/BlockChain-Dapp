@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class ReportViewController: UIViewController {
 
+    @IBOutlet weak var votedNumber: UILabel!
     @IBOutlet weak var currentDate: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,8 @@ class ReportViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         getCurrentDate()
+        getVotedNumber()
+        getCheckVoted()
     }
 
     func getCurrentDate() {
@@ -27,4 +31,16 @@ class ReportViewController: UIViewController {
         dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale?
         currentDate.text = dateFormatter.string(from: now as Date)
     }
+    
+    func getVotedNumber() {
+        let api = APIClient()
+        api.setPollingPlace()
+    }
+    
+    func getCheckVoted() {
+        let api = APIClient()
+        api.getCheckVoted()
+    }
+    
+    
 }
