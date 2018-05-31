@@ -50,10 +50,10 @@ contract BVC {
 //-- 요청한 투표장이 현재 투표가 진행중인 투표장인지 확인함. 두 함수를 연달아 사용해서 해당 함수가 투표가 진행중인지 알수 있음.
     function setIsPlace(uint _placeID) {
       if(placeList[_placeID].voting == true){
-        placeIsVoting == true;
+        placeIsVoting = true;
       }
       else{
-        placeIsVoting == false;
+        placeIsVoting = false;
       }
     }
     function getIsPlace() constant returns(bool){
