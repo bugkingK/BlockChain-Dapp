@@ -9,9 +9,9 @@ var app = express();
 var web3 = new Web3();
 var conn = mysql.createConnection({
   host     : 'localhost',
-  user     : 'root',
-  password : 'arch0115',
-  database : 'vote'
+  user     : '유저',
+  password : '암호',
+  database : 'db이름'
 });
 
 conn.connect();
