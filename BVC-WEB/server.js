@@ -9,9 +9,9 @@ var app = express();
 var web3 = new Web3();
 var conn = mysql.createConnection({
   host     : 'localhost',
-  user     : '유저',
-  password : '암호',
-  database : 'db이름'
+  user     : 'root',
+  password : 'arch0115',
+  database : 'vote'
 });
 
 conn.connect();
@@ -20,7 +20,7 @@ conn.connect();
 web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:8545'));
 
 // sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0x574a0765cd177b3fbb6b3bc00f471bc183c2f793';
+var contractAddress = '0x20e1eb827df09979aa79a99ec5fa4226d36a3444';
 // sol파일의 abi 값입니다.
 var interface = [{"constant":false,"inputs":[],"name":"setAllPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"voterList","outputs":[{"name":"phone","type":"uint256"},{"name":"votedPlace","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setVoteStart","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getCandidate","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setAllCandidate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getAllplace","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_phone","type":"uint256"},{"name":"_votedPlace","type":"uint256"}],"name":"getCheckVoted","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPollingPlace","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_votedPlace","type":"uint256"},{"name":"_candidateID","type":"uint256"},{"name":"_phone","type":"uint256"}],"name":"setVote","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"setPollingPlace","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidateList","outputs":[{"name":"placeID","type":"uint256"},{"name":"voteCount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_candidateID","type":"uint256"}],"name":"getCounting","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setVoteEnd","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"placeList","outputs":[{"name":"voting","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_placeID","type":"uint256"}],"name":"setCandidate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"v","type":"uint256"}],"name":"uintToString","outputs":[{"name":"str","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getAllCandidate","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}];
 // 컨트랙트를 연결합니다.
@@ -30,17 +30,36 @@ var BVC = contract.at(contractAddress);
 web3.eth.defaultAccount = web3.eth.accounts[0];
 
 // ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
+//등록 페이지를 실행합니다.
+app.get('/set', function(req, res){
+    res.sendFile(__dirname + '/public/setpolling.html');
+});
 
 // 투표장을 생성합니다.
-app.get('/setPollingPlace', function (req, res) {  
-  setPollingPlace(function(jsonData){
-    res.json(jsonData);
-  });
+app.post('/public/finishset', function(req, res){
+    res.sendFile(__dirname + '/public/finishset.html');
+    
+    var name=req.body.name;
+    var start_regist_period=req.body.start_regist_period;
+    var end_regist_period=req.body.end_regist_period;
+    var votedate=req.body.votedate;
+    var start_vote_time=req.body.start_vote_time;
+    var end_vote_time=req.body.end_vote_time;
+    
+    setPollingPlace(function(placeID){
+        var sql= 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time,placeid) VALUES(?,?,?,?,?,?,?)' ;
+        conn.query(sql, [name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time,placeID], function(err, result, fields){
+            if(!err){
+                res.sendFile(__dirname + '/public/finishset.html');
+            }else{
+                console.log(err);
+            }
+        });
+    });
 });
 
 // 후보자를 등록합니다.
 app.get('/setCandidate', function (req, res) {
-
 });
 
 // 등록된 투표장을 볼 수 있습니다.
@@ -127,23 +146,19 @@ function jsonParsing(code, message, data, json) {
 }
 
 // 1. 투표장을 생성하는 메소드입니다.
-function setPollingPlace(json){
+function setPollingPlace(placeID){
   BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
-      
       BVC.getPollingPlace.call(function(err, res){
       	// 방금 생성한 투표장의 번호를 반환합니다.
         if(!err) {
-        	var placeid = { "placeid" : res };
-
-        	jsonParsing(200, "success", placeid, json);
+        	placeID = res;
         } else {
-            jsonParsing(400, err, "", json);
+            console.log(err);
         }
       })
-
     } else {
-        jsonParsing(400, err, "", json);
+        console.log(err);
     }
   })
 }
