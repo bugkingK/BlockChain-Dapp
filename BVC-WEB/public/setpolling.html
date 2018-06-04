@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title> 투표장 열기</title>
+    
+    </head>
+    <body>
+        <h1>투표장을 엽니다.</h1>
+        <br>
+        <form method="post" action="/public/finishset">
+            <table>
+                <tr>
+                    <td><label>투표이름</label></td>
+                    <td><input type = "text" name = "user_name"></td>
+                </tr>
+                <tr>
+                    <td><label>후보자 등록 기간</label></td>
+                    <td><input type="date"  value="2018-05-30" name="start_regist_period" /></td>
+                    <td><label>~</label></td>
+                    <td><input type="date"  value="2018-05-31" name="end_regist_period" /></td>
+                </tr>
+                 <tr>
+                    <td><label>투표날짜</label></td>
+                    <td><input type="date"  value="2018-06-13" name="votedate" /></td>
+                </tr>
+                 <tr>
+                    <td><label>투표 기간</label></td>
+                    <td><input type = "time" value="09:00" name = "start_vote_time"></td>
+                    <td><label>~</label></td>
+                    <td><input type = "time" value="18:00" name = "end_vote_time"></td>
+                </tr>
+            </table>
+        <input type = "submit" value="등록" name=""> 
+        </form>
+        
+    </body>
+</html>
