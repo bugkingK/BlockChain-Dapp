@@ -116,6 +116,7 @@ function setPollingPlace(json){
 // 2. 후보자 등록하는 메소드입니다.
 function setCandidate(placeid, json) {
     // getCandidate로 등록한 후보자 ID 반환
+    // 수정수정
 }
 
 // 3. 등록된 투표장 보는 메소드입니다.

@@ -3,6 +3,7 @@
 var Web3 = require('web3');
 var express = require('express');
 var mysql = require('mysql');
+require('date-utils');
 
 // web3와 express 변수를 선언합니다.
 var app = express();
@@ -94,7 +95,22 @@ app.get('/dbtest', function (req, res) {
 });
 
 app.get('/timeout', function (req, res) {
-    setTimeout(timeout, 5000, '원하는 값 입력');
+    setTimeout(function() {
+        // 현재 날짜 갖고오기
+        // var st_date = new Date().toISOString().substr(0, 10).replace('T', ' ');
+        // console.log(st_date);
+        var dt = new Date();
+        var month = dt.getMonth()+1;
+        var day = dt.getDate();
+        var year = dt.getFullYear();
+        var hours = dt.getHours();
+        var minutes = dt.getMinutes();
+        var seconds = dt.getSeconds();
+        console.log(month + '-' + day + '-' + year + '-' + hours + ':' + minutes + ':' + seconds);
+        var afterHours = dt.getHours() -1 ;
+        console.log(month + '-' + day + '-' + year + '-' + afterHours + ':' + minutes + ':' + seconds);
+    }, 3000);
+
 });
 
 
@@ -114,7 +130,7 @@ function dbTest(){
 
   // timeout 테스트
   function timeout(arg) {
-    console.log('5초 후 작동합니다. 원하는 값도 넣을 수 있습니다. ${arg}');
+
   }
 
 function jsonParsing(code, message, data, json) {
