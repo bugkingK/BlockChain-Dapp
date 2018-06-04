@@ -15,6 +15,7 @@ var conn = mysql.createConnection({
   database : 'vote'
 });
 
+
 conn.connect();
 
 // web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
