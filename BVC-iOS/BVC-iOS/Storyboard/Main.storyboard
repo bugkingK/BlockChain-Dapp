@@ -154,6 +154,7 @@
                     <navigationItem key="navigationItem" title="제목" id="HC6-c2-HAr"/>
                     <connections>
                         <outlet property="currentDate" destination="bXp-Hv-hCt" id="1ea-OV-60J"/>
+                        <outlet property="votedNumber" destination="eQw-j1-AM6" id="0QY-ra-BvF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FY6-6u-JKw" userLabel="First Responder" sceneMemberID="firstResponder"/>

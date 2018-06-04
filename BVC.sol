@@ -1,35 +1,8 @@
 pragma solidity ^0.4.0;
 
 
-library Strings {
-
-    function concat(string _base, string _value) internal returns (string) {
-        bytes memory _baseBytes = bytes(_base);
-        bytes memory _valueBytes = bytes(_value);
-
-        string memory _tmpValue = new string(_baseBytes.length + _valueBytes.length);
-        bytes memory _newValue = bytes(_tmpValue);
-
-        uint i;
-        uint j;
-
-        for (i = 0; i < _baseBytes.length; i++) {
-            _newValue[j++] = _baseBytes[i];
-        }
-
-        for (i = 0; i < _valueBytes.length; i++) {
-            _newValue[j++] = _valueBytes[i++];
-        }
-
-        return string(_newValue);
-    }
-
-}
-
-
 contract BVC {
 
-    using Strings for string;
 
     struct Voter {
         uint phone;
@@ -38,7 +11,7 @@ contract BVC {
 
     struct Candidate {
         uint placeID;
-        uint voteCount; 
+        uint voteCount;
     }
 
     struct PollingPlace {
@@ -49,106 +22,105 @@ contract BVC {
     Candidate[] public candidateList;
     PollingPlace[] public placeList;
 
-    function setPollingPlace() returns(uint) {
-        // 투표장 구조체 생성
+    bool placeIsVoting = false;
+    bool isCandidate = false;
+//-- 투표장 구조체 생성. set 함수와 get 함수를 연달아 사용해야 투표장을 하나 생성하고 해당 투표장의 ID를 가져올 수 있음.
+    function setPollingPlace() {
         placeList.length += 1;
         uint placeID = placeList.length - 1;
-        return placeID;
-    }
+        placeList[placeID].voting = false;
 
-    function setCandidate(uint _placeID) returns(uint) {
-        // 후보자구조체 등록 
+    }
+    function getPollingPlace() constant returns(uint){ // return으로 uint 형식의 방금 만든 투표장 번호를 줌
+      return placeList.length - 1;
+    }
+//-- 투표장 구조체 생성
+
+//-- 후보자 구조체 생성 set과 get을 연달아 사용해서 후보자를 등록하고 후보자 ID를 반환받음.
+    function setCandidate(uint _placeID) {
         candidateList.length += 1;
         uint candidateID = candidateList.length - 1;
         candidateList[candidateID].placeID = _placeID;
-        return candidateID;
     }
-
-    function getAllPlace() returns(string) {
-        // 등록된 투표장 보기
-        // return placeCode 필요
-        string tmpPlace;
-        for (uint i =0; i < placelist.length; i++) {
-            if (placeList[i].voting = true) {
-                tmpPlace.concat(uintToString(i));
-                tmpPlace.concat("/");
-            }
-        }
-        return tmpPlace;
+    function getCandidate() constant returns(uint) { //return으로 후보자 ID
+      return candidateList.length - 1;
     }
+//-- 후보자 구조체 생성
 
-    function getCandidate(uint _placeID) returns(string) {
+//-- 요청한 투표장이 현재 투표가 진행중인 투표장인지 확인함. 두 함수를 연달아 사용해서 해당 함수가 투표가 진행중인지 알수 있음.
+    function setIsPlace(uint _placeID) {
+      if(placeList[_placeID].voting == true){
+        placeIsVoting = true;
+      }
+      else{
+        placeIsVoting = false;
+      }
+    }
+    function getIsPlace() constant returns(bool){
+      return placeIsVoting;
+    }
+//-- 투표장이 투표가 진행중인지 확인
+
+//-- 해당 후보자가 해당 투표장에 등록된 후보자가 맞는지 검출. 연달아 사용해서 해당 후보자가 해당 투표장에 존재하면 true를 리턴
+    function setIsCandidate (uint _placeID, uint _candidateID) {
         // 등록된 후보 보기
-        // return candidateCode 필요
-        string tmpCandidate;
-        for (uint i = 0; i < candidateList.length; i++) {
-            if (candidateList[i].placeID == _placeID) {
-                tmpCandidate.concat(uintToString(i));
-                tmpCandidate.concat("/");
-                
-            }
+        if(candidateList[_candidateID].placeID == _placeID){
+          isCandidate = true;
         }
-        return tmpCandidate;        
+        else{
+          isCandidate = false;
+        }
     }
 
-    function vote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
-        // 투표하기 실패 성공 여부 확인해야할까?
-        // 전화번호 중복여부
-        if (checkVoted() == false) {
-            voterList.length += 1;
-            uint voterID = voterList.length - 1;
-            voterList[voterID].phone = _phone;
-            voterList[voterID].votedPlace = _votedPlace;
-            candidateList[_candidateID].voteCount += 1;
-            return true;
-        } else {
-            return false;
-        }
-        
+    function getIsCandidate() constant returns(bool) {
+      return isCandidate;
+    }
+//-- 해당 후보자가 해당 투표장에 등록된 후보자가 맞는지 검출
 
+//js에서 반복문 사용을 위해 배열 길이를 알아내는 함수
+    function getPlaceLength() constant returns(uint){
+      return placeList.length;
     }
 
-    function checkVoted(uint _phone, uint _votedPlace) returns(bool) {
+    function getCandidateLength() constant returns (uint){
+      return candidateList.length;
+    }
+
+
+    // set 함수지만 return이 bool 이고
+    function setVote(uint _placeID, uint _candidateID, uint _phone) {
+      // 투표를 진행. getCheckVoted에서 true를 반환받았을 때에만 실행할 수 있어야 함.
+      voterList.length += 1;
+      uint voterID = voterList.length - 1;
+      voterList[voterID].phone = _phone;
+      voterList[voterID].votedPlace = _placeID;
+      candidateList[_candidateID].voteCount += 1;
+
+    }
+    // 전화번호가 중복인지 체크하는 함수
+    function getCheckVoted(uint _placeID, uint _phone) constant returns(bool) {
         for (uint i = 0; i < voterList.length; i++) {
             if (voterList[i].phone == _phone) {
-                if (voterList[i].votedPlace == _votedPlace) {
+                if (voterList[i].votedPlace == _placeID) {
                     return true;
                 }
             }
         }
-
         return false;
-
     }
 
-    function voteStart(uint _placeID) {
-        placeList[_placeID].voting = 1;
+// 투표를 시작하도록 하는 함수
+    function setVoteStart(uint _placeID) {
+        placeList[_placeID].voting = true;
     }
-
-    function voteEnd(uint _placeID) {
-        placeList[_placeID].voting = 0;
+// 투표를 중지하는 함수
+    function setVoteEnd(uint _placeID) {
+        placeList[_placeID].voting = false;
     }
-
-    function counting(uint _candidateID) returns(uint) {
+// 해당 후보자의 득표수를 리턴하는 get 함수
+    function getCounting(uint _candidateID) constant returns(uint, bool) {
         // 개표하기
         return candidateList[_candidateID].voteCount;
     }
-       
-        //uintToString 함수
-    function uintToString(uint v) constant returns (string str) {
-        uint maxlength = 100;
-        bytes memory reversed = new bytes(maxlength);
-        uint i = 0;
-        while (v != 0) {
-            uint remainder = v % 10;
-            v = v / 10;
-            reversed[i++] = byte(48 + remainder);
-        }
-        bytes memory s = new bytes(i + 1);
-        for (uint j = 0; j <= i; j++) {
-            s[j] = reversed[i - j];
-        }
-        str = string(s);
-    }
-}
 
+}

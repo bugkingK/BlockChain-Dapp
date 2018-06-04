@@ -20,6 +20,14 @@ class VoteListViewController: UIViewController{
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.isHidden = true
         
+        if UserDefaults.standard.getisAutu() == false {
+            let alert = UIAlertController(title: "인증이 필요합니다.", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
+                self.tabBarController?.selectedIndex = 3
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: true)
+        }
     }
     
     deinit {
