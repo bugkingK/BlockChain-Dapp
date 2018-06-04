@@ -10,25 +10,25 @@ contract BVC {
     }
 
     struct Candidate {
+        uint candidateID;
         uint placeID;
         uint voteCount;
     }
 
     struct PollingPlace {
-        bool voting;
+        uint placeID;
+        bool isStarted;
     }
 
     Voter[] public voterList;
     Candidate[] public candidateList;
     PollingPlace[] public placeList;
 
-    bool placeIsVoting = false;
-    bool isCandidate = false;
 //-- 투표장 구조체 생성. set 함수와 get 함수를 연달아 사용해야 투표장을 하나 생성하고 해당 투표장의 ID를 가져올 수 있음.
     function setPollingPlace() {
         placeList.length += 1;
         uint placeID = placeList.length - 1;
-        placeList[placeID].voting = false;
+        placeList[placeID].isStarted = false;
 
     }
     function getPollingPlace() constant returns(uint){ // return으로 uint 형식의 방금 만든 투표장 번호를 줌
@@ -48,13 +48,8 @@ contract BVC {
 //-- 후보자 구조체 생성
 
 //-- 요청한 투표장이 현재 투표가 진행중인 투표장인지 확인함. 두 함수를 연달아 사용해서 해당 함수가 투표가 진행중인지 알수 있음.
-    function setIsPlace(uint _placeID) {
-      if(placeList[_placeID].voting == true){
-        placeIsVoting = true;
-      }
-      else{
-        placeIsVoting = false;
-      }
+    function setIsPlace(uint _placeID) constant returns(bool){
+      returns(placeList[_placdID].isStarted);
     }
     function getIsPlace() constant returns(bool){
       return placeIsVoting;
@@ -62,7 +57,7 @@ contract BVC {
 //-- 투표장이 투표가 진행중인지 확인
 
 //-- 해당 후보자가 해당 투표장에 등록된 후보자가 맞는지 검출. 연달아 사용해서 해당 후보자가 해당 투표장에 존재하면 true를 리턴
-    function setIsCandidate (uint _placeID, uint _candidateID) {
+    function setIsCandidate (uint _placeID, uint _candidateID) returns(bool) {
         // 등록된 후보 보기
         if(candidateList[_candidateID].placeID == _placeID){
           isCandidate = true;
@@ -111,11 +106,11 @@ contract BVC {
 
 // 투표를 시작하도록 하는 함수
     function setVoteStart(uint _placeID) {
-        placeList[_placeID].voting = true;
+        placeList[_placeID].isStarted = true;
     }
 // 투표를 중지하는 함수
     function setVoteEnd(uint _placeID) {
-        placeList[_placeID].voting = false;
+        placeList[_placeID].isStarted = false;
     }
 // 해당 후보자의 득표수를 리턴하는 get 함수
     function getCounting(uint _candidateID) constant returns(uint, bool) {
