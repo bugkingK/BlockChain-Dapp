@@ -50,10 +50,10 @@ contract BVC {
 //-- 요청한 투표장이 현재 투표가 진행중인 투표장인지 확인함. 두 함수를 연달아 사용해서 해당 함수가 투표가 진행중인지 알수 있음.
     function setIsPlace(uint _placeID) {
       if(placeList[_placeID].voting == true){
-        placeIsVoting == true;
+        placeIsVoting = true;
       }
       else{
-        placeIsVoting == false;
+        placeIsVoting = false;
       }
     }
     function getIsPlace() constant returns(bool){
@@ -87,25 +87,21 @@ contract BVC {
     }
 
 
-    // set 함수지만 return이 bool 이고 해당 bool을 사용하지 않기 때문에 명시적으로 그냥 놔두었음.
-    function setVote(uint _votedPlace, uint _candidateID, uint _phone) returns(bool) {
-          // 전화번호가 중복인지 확인하는 함수를 통해 중복이 아니면 투표
-        if (getCheckVoted(_phone, _votedPlace) == false) {
-            voterList.length += 1;
-            uint voterID = voterList.length - 1;
-            voterList[voterID].phone = _phone;
-            voterList[voterID].votedPlace = _votedPlace;
-            candidateList[_candidateID].voteCount += 1;
-            return true;
-        } else {
-            return false;
-        }
+    // set 함수지만 return이 bool 이고
+    function setVote(uint _placeID, uint _candidateID, uint _phone) {
+      // 투표를 진행. getCheckVoted에서 true를 반환받았을 때에만 실행할 수 있어야 함.
+      voterList.length += 1;
+      uint voterID = voterList.length - 1;
+      voterList[voterID].phone = _phone;
+      voterList[voterID].votedPlace = _placeID;
+      candidateList[_candidateID].voteCount += 1;
+
     }
     // 전화번호가 중복인지 체크하는 함수
-    function getCheckVoted(uint _phone, uint _votedPlace) constant returns(bool) {
+    function getCheckVoted(uint _placeID, uint _phone) constant returns(bool) {
         for (uint i = 0; i < voterList.length; i++) {
             if (voterList[i].phone == _phone) {
-                if (voterList[i].votedPlace == _votedPlace) {
+                if (voterList[i].votedPlace == _placeID) {
                     return true;
                 }
             }
@@ -122,7 +118,7 @@ contract BVC {
         placeList[_placeID].voting = false;
     }
 // 해당 후보자의 득표수를 리턴하는 get 함수
-    function getCounting(uint _candidateID) constant returns(uint) {
+    function getCounting(uint _candidateID) constant returns(uint, bool) {
         // 개표하기
         return candidateList[_candidateID].voteCount;
     }
