@@ -4,6 +4,7 @@ var express = require('express');
 var mysql = require('mysql');
 var solc = require('solc');
 var fs = require('fs');
+var bodyParser = require('body-parser');
 
 // web3와 express 변수를 선언합니다.
 var app = express();
@@ -16,6 +17,8 @@ var conn = mysql.createConnection({
 });
 
 conn.connect();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
 
 // web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
 web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:4211'));
@@ -46,30 +49,34 @@ app.get('/set', function(req, res){
 
 // 투표장을 생성합니다.
 app.post('/public/finishset', function(req, res){
-    res.sendFile(__dirname + '/public/setpolling.html');
-    
     var name=req.body.user_name;
     var start_regist_period=req.body.start_regist_period;
     var end_regist_period=req.body.end_regist_period;
     var votedate=req.body.votedate;
     var start_vote_time=req.body.start_vote_time;
     var end_vote_time=req.body.end_vote_time;
-    
-    setPollingPlace(function(placeID){
-        var sql= 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time,placeid) VALUES(?,?,?,?,?,?,?)' ;
-        conn.query(sql, [name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time,placeID], function(err, result, fields){
+
+    setPollingPlace(function(jsonData){
+        var placeID = jsonData["data"];
+
+        var sql= 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time, placeid) VALUES(?,?,?,?,?,?,?)' ;
+        conn.query(sql, [name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time, placeID], function(err, result, fields){
             if(!err){
+                console.log("insert success");
                 res.sendFile(__dirname + '/public/finishset.html');
             }else{
+                console.log("오류남");
                 console.log(err);
             }
         });
     });
+    // res.sendFile(__dirname + '/public/finishset.html');
 });
 
 // 후보자를 등록합니다.
 app.get('/setCandidate', function (req, res) {
 });
+
 
 // 등록된 투표장을 볼 수 있습니다.
 app.get('/getAllplace', function (req, res) {
@@ -77,6 +84,7 @@ app.get('/getAllplace', function (req, res) {
         res.json(jsonData);
     });
 });
+
 
 // 투표권을 행사합니다.
 app.get('/setVote', function (req, res) {  
@@ -117,33 +125,8 @@ app.get('/getCounting', function (req, res) {
   
 });
 
-app.get('/dbtest', function (req, res) {
-    dbTest();
-});
-
-app.get('/timeout', function (req, res) {
-    setTimeout(timeout, 5000, '원하는 값 입력');
-});
-
 
 // ------------------------- 메소드입니다 -----------------------------
-
-// db 연결 예제
-function dbTest(){
-    var sql_ID = 'SELECT * from placeinfo';
-    conn.query(sql_ID, function(err, res){
-      if(!err) {
-        console.log(res);
-      } else {
-        console.log(err);
-      }
-    })
-  }
-
-  // timeout 테스트
-  function timeout(arg) {
-    console.log('5초 후 작동합니다. 원하는 값도 넣을 수 있습니다. ${arg}');
-  }
 
 function jsonParsing(code, message, data, json) {
     var jsonString = {
@@ -155,13 +138,13 @@ function jsonParsing(code, message, data, json) {
 }
 
 // 1. 투표장을 생성하는 메소드입니다.
-function setPollingPlace(placeID){
+function setPollingPlace(json){
   BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
       BVC.getPollingPlace.call(function(err, res){
         // 방금 생성한 투표장의 번호를 반환합니다.
         if(!err) {
-            placeID = res;
+            jsonParsing(200, "success", res, json);
         } else {
             console.log(err);
         }
@@ -179,22 +162,33 @@ function setCandidate(placeid, json) {
 
 // 3. 등록된 투표장 보는 메소드입니다.
 function getAllplace(json) {
-    // set에서 get으로 
-    BVC.setAllPlace.sendTransaction(function(err, res){
+    BVC.getPlaceLength(function(err, length){
         if(!err) {
-            BVC.getAllplace.call(function(err, res){
-                if(!err) {
-                    var placeid = { "placeid" : res };
+            if(length > 0){
 
-                    jsonParsing(200, "success", placeid, json);
-                } else {
-                    jsonParsing(400, err, "", json);
+                var result = [];
+
+                for(var i=0; i<length; i++){
+                    BVC.getPlaceId(i, function(err, res){
+                        if(!err) {
+                            var contents = { "placeid" : res[0], "isStarted" : res[1]}
+                            result.push(contents)
+                        } else {
+                            console.log(err);
+                        }
+                    })
                 }
-            })
+
+                //for문 종료 후 파시앟면 되는데 콜백이 안대...
+
+            } else {
+                jsonParsing(201, "등록된 투표장이 없습니다.", length, json);
+            }
         } else {
+            console.log(err);
             jsonParsing(400, err, "", json);
         }
-    });
+    })
 }
 
 // 4. 등록된 후보자보기
