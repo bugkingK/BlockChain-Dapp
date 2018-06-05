@@ -57,20 +57,24 @@ app.post('/public/finishset', function(req, res){
     var end_vote_time=req.body.end_vote_time;
 
     setPollingPlace(function(jsonData){
-        var placeID = jsonData["data"];
+        var placeID = jsonData['data'].toLocaleString();
+        console.log(placeID);
 
-        var sql= 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time, placeid) VALUES(?,?,?,?,?,?,?)' ;
-        conn.query(sql, [name, start_regist_period, end_regist_period, votedate, start_vote_time, end_vote_time, placeID], function(err, result, fields){
-            if(!err){
+        var sql_ID = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        var params = [name, start_regist_period, end_regist_period, votedate, 'contents_test', start_vote_time, end_vote_time, placeID];
+        conn.query(sql_ID, params, function(err, res){
+            if(!err) {
                 console.log("insert success");
-                res.sendFile(__dirname + '/public/finishset.html');
-            }else{
-                console.log("오류남");
+
+            } else {
                 console.log(err);
             }
-        });
+        })
+
     });
-    // res.sendFile(__dirname + '/public/finishset.html');
+
+    res.send("투표장이 등록되었습니다.");
+
 });
 
 // 후보자를 등록합니다.
