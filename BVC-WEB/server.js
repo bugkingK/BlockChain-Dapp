@@ -1,15 +1,17 @@
 // 필요한 npm 설치
-var Web3 = require('web3');
+var async = require('async');
 var express = require('express');
 var mysql = require('mysql');
-var solc = require('solc');
-var fs = require('fs');
 var bodyParser = require('body-parser');
-var async = require('async');
+var path = process.cwd();
+var func = require( path + '/function/func' );
+var view = require( path + '/function/view' );
 
 // web3와 express 변수를 선언합니다.
 var app = express();
-var web3 = new Web3();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
+
 var conn = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -18,36 +20,15 @@ var conn = mysql.createConnection({
 });
 
 conn.connect();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
 
-// web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
-web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:4211'));
+// <--------------------- server Start ----------------------->
 
-var code = fs.readFileSync('BVC.sol').toString();
-var compiledCode = solc.compile(code);
-
-// sol파일의 abi 값입니다.
-var abiDefinition = JSON.parse(compiledCode.contracts[':BVC'].interface);
-
-// eth를 지불할 eth지갑을 선택합니다.
-web3.eth.defaultAccount = web3.eth.accounts[0];
-
-// sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0xce519da8449172cf285dc3410f261637c848787f';
-
-// 컨트랙트를 연결합니다.
-var contract = web3.eth.contract(abiDefinition);
-var BVC = contract.at(contractAddress);
-
-
-// ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
 //등록 페이지를 실행합니다.
 app.get('/set', function(req, res){
     res.sendFile(__dirname + '/public/setpolling.html');
 });
 
-// 투표장을 생성합니다.
+// 1. 투표장을 생성합니다.
 app.post('/public/finishset', function(req, res){
     var name=req.body.user_name;
     var start_regist_period=req.body.start_regist_period;
@@ -57,7 +38,7 @@ app.post('/public/finishset', function(req, res){
     var end_vote_time=req.body.end_vote_time;
     var contents=req.body.place_contents;
 
-    setPollingPlace(function(placeid){
+    func.setPollingPlace(function(placeid){
         var placeID = parseInt(placeid);
 
         var sql_ID = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -75,30 +56,33 @@ app.post('/public/finishset', function(req, res){
     res.send("투표장이 등록되었습니다.");
 });
 
-// 후보자를 등록합니다.
+// 2. 후보자를 등록합니다.
 app.get('/setCandidate', function (req, res) {
+    func.setCandidate(1, function(json){
+        console.log(json)
+    })
 });
 
 
-// 등록된 투표장을 볼 수 있습니다.
+// 3. 등록된 투표장을 볼 수 있습니다.
 app.get('/getAllplace', function (req, res) {
-    placeLength(function(length){
+    func.placeLength(function(length){
         var result = []
 
         Array.apply(null, Array(parseInt(length))).map(function (item, index) {
-            result.push(closureTest(index));
+            result.push(closureAdd(index));
         })
 
         async.series(result, function(err, resEnd){
             //console.log(resEnd)
-            jsonParsing(200, "success", resEnd, function(jsonData){
+            view.jsonParsing(200, "success", resEnd, function(jsonData){
                 res.json(jsonData)
             })
         })
 
-        function closureTest(index){
+        function closureAdd(index){
             return function(callback){
-                getPlaceId(index, function(placeInfo){
+                func.getPlaceId(index, function(placeInfo){
                     callback(null, placeInfo)
                 })
             }
@@ -106,170 +90,56 @@ app.get('/getAllplace', function (req, res) {
     })
 });
 
+// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
+app.get('getAllCandidate', function (req, res){
+    func.getAllCandidate(1,1);
+})
 
-// 투표권을 행사합니다.
+
+// 5. 투표권을 행사합니다.
 app.get('/setVote', function (req, res) {  
     var placeid = req.param('placeid');
     var candidateid = req.param('candidateid');
     var phone = req.param('phone');
 
-    setVote(placeid, candidateid, phone, function(jsonData) {
+    func.setVote(placeid, candidateid, phone, function(jsonData) {
         res.json(jsonData);
     });
 });
 
-// 투표했는지 여부를 확인합니다.
+// 6. 개표합니다.
+app.get('/getCounting', function (req, res) {
+    func.getCounting('testestestes');
+});
+
+// 7. 투표했는지 여부를 확인합니다.
 app.get('/getCheckVoted', function (req, res) {
     var placeid = req.param('placeid');
     var phone = req.param('phone');
 
-    getCheckVoted(placeid, phone, function(jsonData) {
+    func.getCheckVoted(placeid, phone, function(jsonData) {
         res.json(jsonData);
     });
 });
 
-// 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
+// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
 app.get('/setVoteStart', function (req, res) {
     //var placeid = req.param('placeid');
 
-    setVoteStart(0, function(jsonData){
+    func.setVoteStart(0, function(jsonData){
         res.json(jsonData);
     });
 });
 
-// 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
+// 9. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
 app.get('/setVoteEnd', function (req, res) {
     //var placeid = req.param('placeid');
 
-    setVoteEnd(0, function(jsonData){
+    func.setVoteEnd(0, function(jsonData){
         res.json(jsonData);
     });
 });
 
-// 개표합니다.
-app.get('/getCounting', function (req, res) {
-
-});
-
-// ------------------------- 메소드입니다 -----------------------------
-
-function jsonParsing(code, message, data, json) {
-    var jsonString = {
-        "code"     : code,
-        "message"  : message,
-        "data"     : data
-    }
-
-    json(jsonString);
-}
-
-// 1. 투표장을 생성하는 메소드입니다.
-function setPollingPlace(result){
-  BVC.setPollingPlace.sendTransaction(function(err, res){
-    if(!err) {
-      BVC.getPollingPlace.call(function(err, res){
-        // 방금 생성한 투표장의 번호를 반환합니다.
-        if(!err) {
-            result(res.toLocaleString());
-        } else {
-            console.log(err);
-        }
-      })
-    } else {
-        console.log(err);
-    }
-  })
-}
-
-// 2. 후보자 등록하는 메소드입니다.
-function setCandidate(placeid, json) {
-    // getCandidate로 등록한 후보자 ID 반환
-}
-
-// 3. 등록된 투표장 보는 메소드입니다.
-// 등록된 투표장 길이 반환
-function placeLength(length){
-    BVC.getPlaceLength(function(err, res){
-        if(!err) {
-            length(res.toLocaleString());
-        } else {
-            console.log(err);
-            jsonParsing(400, err, "", json);
-        }
-    })
-}
-
-// 등록된 투표장의 정보를 반환
-function getPlaceId(index, placeInfo){
-    BVC.getPlaceId(index, function(err, res){
-        if(!err) {
-            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
-            placeInfo(contents)
-        } else {
-            console.log(err);
-            jsonParsing(400, err, "", json);
-        }
-    })
-}
-
-// 4. 등록된 후보자보기
-function getAllCandidate(placeid, json){
-
-}
-
-// 5. 투표하는 메소드입니다.
-function setVote(placeid, candidateid, phone, json) {
-    BVC.setVote(placeid, candidateid, phone, function(err, res) {
-        // 트랜젝션 주소가 err로 갈지 res로 갈지 체크해봐야함. 이 구문이 제대로 돌지 못할 수 있음을 유의하셈.
-        if(!err) {
-            console.log(res);
-            jsonParsing(200, "success", "", json);
-        } else {
-            console.log(err);
-            jsonParsing(400, err, "", json);
-        }
-    })
-}
-
-// 6. 개표합니다.
-function getCounting(candidateid) {
-
-}
-
-// 7. 투표를 했는지 확인하는 메소드입니다.
-function getCheckVoted(placeid, phone, json) {
-    BVC.getCheckVoted(phone, placeid, function(err, res) {
-        if(!err) {
-            console.log(res);
-            jsonParsing(200, "success", "", json);
-        } else {
-            console.log(err);
-            jsonParsing(400, err, "", json);
-        }
-    });
-}
-
-// 8. 투표를 시작합니다.
-function setVoteStart(placeid, json) {
-    BVC.setVoteStart(placeid, function(err, res){
-        if(!err) {
-            jsonParsing(200, "success", "", json);
-        } else {
-            jsonParsing(400, err, "", json);
-        }
-    })
-}
-
-// 9. 투표를 종료합니다.
-function setVoteEnd(placeid, json) {
-    BVC.setVoteEnd(placeid, function(err, res){
-        if(!err) {
-            jsonParsing(200, "success", "", json);
-        } else {
-            jsonParsing(400, err, "", json);
-        }
-    })
-}
 
 
 
