@@ -57,9 +57,8 @@ app.post('/public/finishset', function(req, res){
     var end_vote_time=req.body.end_vote_time;
     var contents=req.body.place_contents;
 
-    setPollingPlace(function(jsonData){
-        // 데이터가 [s:1,e:2,~] 이런식으로 나오는 걸 String으로 변경해서 내용을 출력합니다.
-        var placeID = jsonData['data'].toLocaleString();
+    setPollingPlace(function(placeid){
+        var placeID = parseInt(placeid);
 
         var sql_ID = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         var params = [name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeID];
@@ -74,7 +73,6 @@ app.post('/public/finishset', function(req, res){
 
     });
     res.send("투표장이 등록되었습니다.");
-
 });
 
 // 후보자를 등록합니다.
@@ -88,23 +86,20 @@ app.get('/getAllplace', function (req, res) {
         var result = []
 
         Array.apply(null, Array(parseInt(length))).map(function (item, index) {
-            result.push(closureTest(index, item));
+            result.push(closureTest(index));
         })
 
         async.series(result, function(err, resEnd){
-            console.log(resEnd)
-            var jsonString = {
-                "code"     : 200,
-                "message"  : "success",
-                "data"     : resEnd
-            }
-            res.json(jsonString)
+            //console.log(resEnd)
+            jsonParsing(200, "success", resEnd, function(jsonData){
+                res.json(jsonData)
+            })
         })
 
-        function closureTest(index, item){
+        function closureTest(index){
             return function(callback){
-                getPlaceId(index, function(id){
-                    callback(null, id)
+                getPlaceId(index, function(placeInfo){
+                    callback(null, placeInfo)
                 })
             }
         }
@@ -135,6 +130,8 @@ app.get('/getCheckVoted', function (req, res) {
 
 // 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
 app.get('/setVoteStart', function (req, res) {
+    //var placeid = req.param('placeid');
+
     setVoteStart(0, function(jsonData){
         res.json(jsonData);
     });
@@ -142,7 +139,11 @@ app.get('/setVoteStart', function (req, res) {
 
 // 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
 app.get('/setVoteEnd', function (req, res) {
+    //var placeid = req.param('placeid');
 
+    setVoteEnd(0, function(jsonData){
+        res.json(jsonData);
+    });
 });
 
 // 개표합니다.
@@ -158,17 +159,18 @@ function jsonParsing(code, message, data, json) {
         "message"  : message,
         "data"     : data
     }
+
     json(jsonString);
 }
 
 // 1. 투표장을 생성하는 메소드입니다.
-function setPollingPlace(json){
+function setPollingPlace(result){
   BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
       BVC.getPollingPlace.call(function(err, res){
         // 방금 생성한 투표장의 번호를 반환합니다.
         if(!err) {
-            jsonParsing(200, "success", res, json);
+            result(res.toLocaleString());
         } else {
             console.log(err);
         }
@@ -198,11 +200,11 @@ function placeLength(length){
 }
 
 // 등록된 투표장의 정보를 반환
-function getPlaceId(index, id){
+function getPlaceId(index, placeInfo){
     BVC.getPlaceId(index, function(err, res){
         if(!err) {
             var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
-            id(contents)
+            placeInfo(contents)
         } else {
             console.log(err);
             jsonParsing(400, err, "", json);
@@ -249,8 +251,7 @@ function getCheckVoted(placeid, phone, json) {
 
 // 8. 투표를 시작합니다.
 function setVoteStart(placeid, json) {
-
-    BVC.setVoteStart(1, function(err, res){
+    BVC.setVoteStart(placeid, function(err, res){
         if(!err) {
             jsonParsing(200, "success", "", json);
         } else {
@@ -260,8 +261,14 @@ function setVoteStart(placeid, json) {
 }
 
 // 9. 투표를 종료합니다.
-function setVoteEnd(placeid) {
-
+function setVoteEnd(placeid, json) {
+    BVC.setVoteEnd(placeid, function(err, res){
+        if(!err) {
+            jsonParsing(200, "success", "", json);
+        } else {
+            jsonParsing(400, err, "", json);
+        }
+    })
 }
 
 
