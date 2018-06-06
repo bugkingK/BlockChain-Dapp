@@ -84,9 +84,31 @@ app.get('/setCandidate', function (req, res) {
 
 // 등록된 투표장을 볼 수 있습니다.
 app.get('/getAllplace', function (req, res) {
-    getAllplace(function(jsonData){
-        res.json(jsonData);
-    });
+    placeLength(function(length){
+        var result = []
+
+        Array.apply(null, Array(parseInt(length))).map(function (item, index) {
+            result.push(closureTest(index, item));
+        })
+
+        async.series(result, function(err, resEnd){
+            console.log(resEnd)
+            var jsonString = {
+                "code"     : 200,
+                "message"  : "success",
+                "data"     : resEnd
+            }
+            res.json(jsonString)
+        })
+
+        function closureTest(index, item){
+            return function(callback){
+                getPlaceId(index, function(id){
+                    callback(null, id)
+                })
+            }
+        }
+    })
 });
 
 
@@ -113,62 +135,20 @@ app.get('/getCheckVoted', function (req, res) {
 
 // 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
 app.get('/setVoteStart', function (req, res) {
-
     setVoteStart(0, function(jsonData){
         res.json(jsonData);
     });
 });
 
 // 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
-app.get('/setVoteEnd', function (req, res) {  
-  
+app.get('/setVoteEnd', function (req, res) {
+
 });
 
 // 개표합니다.
 app.get('/getCounting', function (req, res) {
 
-    gg(5, function(jsonData){
-        res.json(jsonData)
-    });
-
 });
-
-function gg(index, json) {
-    BVC.getPlaceId(index, function(err, res){
-        var contents = [];
-        function someAsyncApiCall(callback) {
-            process.nextTick(callback);
-        }
-
-        someAsyncApiCall(function(callback){
-            console.log(contents)
-            jsonParsing(200, "success", contents, json);
-        });
-
-        if(!err) {
-            contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()};
-            // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
-
-        } else {
-            console.log(err);
-            return err;
-        }
-    })
-
-    // var contents = "";
-    // BVC.getPlaceId(index, function(err, res){
-    //     if(!err) {
-    //         contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
-    //         // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
-    //
-    //     } else {
-    //         console.log(err);
-    //         return err;
-    //     }
-    // })
-    // return contents;
-}
-
 
 // ------------------------- 메소드입니다 -----------------------------
 
@@ -205,31 +185,24 @@ function setCandidate(placeid, json) {
 }
 
 // 3. 등록된 투표장 보는 메소드입니다.
-function getAllplace(json) {
-    BVC.getPlaceLength(function(err, length){
+// 등록된 투표장 길이 반환
+function placeLength(length){
+    BVC.getPlaceLength(function(err, res){
         if(!err) {
-            if(length > 0){
+            length(res.toLocaleString());
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
+}
 
-                var result = [];
-
-                for(var i=0; i<length; i++){
-                    BVC.getPlaceId(i, function(err, res){
-                        if(!err) {
-                            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
-                            result[i] = contents
-                            // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
-                        } else {
-                            console.log(err);
-                        }
-                    })
-                }
-
-
-                console.log(result)
-
-            } else {
-                jsonParsing(201, "등록된 투표장이 없습니다.", length, json);
-            }
+// 등록된 투표장의 정보를 반환
+function getPlaceId(index, id){
+    BVC.getPlaceId(index, function(err, res){
+        if(!err) {
+            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+            id(contents)
         } else {
             console.log(err);
             jsonParsing(400, err, "", json);
