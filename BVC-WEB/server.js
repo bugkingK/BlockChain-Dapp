@@ -5,6 +5,7 @@ var mysql = require('mysql');
 var solc = require('solc');
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var async = require('async');
 
 // web3와 express 변수를 선언합니다.
 var app = express();
@@ -40,7 +41,6 @@ var contract = web3.eth.contract(abiDefinition);
 var BVC = contract.at(contractAddress);
 
 
-
 // ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
 //등록 페이지를 실행합니다.
 app.get('/set', function(req, res){
@@ -55,13 +55,14 @@ app.post('/public/finishset', function(req, res){
     var votedate=req.body.votedate;
     var start_vote_time=req.body.start_vote_time;
     var end_vote_time=req.body.end_vote_time;
+    var contents=req.body.place_contents;
 
     setPollingPlace(function(jsonData){
+        // 데이터가 [s:1,e:2,~] 이런식으로 나오는 걸 String으로 변경해서 내용을 출력합니다.
         var placeID = jsonData['data'].toLocaleString();
-        console.log(placeID);
 
         var sql_ID = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        var params = [name, start_regist_period, end_regist_period, votedate, 'contents_test', start_vote_time, end_vote_time, placeID];
+        var params = [name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeID];
         conn.query(sql_ID, params, function(err, res){
             if(!err) {
                 console.log("insert success");
@@ -72,7 +73,6 @@ app.post('/public/finishset', function(req, res){
         })
 
     });
-
     res.send("투표장이 등록되었습니다.");
 
 });
@@ -125,9 +125,49 @@ app.get('/setVoteEnd', function (req, res) {
 });
 
 // 개표합니다.
-app.get('/getCounting', function (req, res) {  
-  
+app.get('/getCounting', function (req, res) {
+
+    gg(5, function(jsonData){
+        res.json(jsonData)
+    });
+
 });
+
+function gg(index, json) {
+    BVC.getPlaceId(index, function(err, res){
+        var contents = [];
+        function someAsyncApiCall(callback) {
+            process.nextTick(callback);
+        }
+
+        someAsyncApiCall(function(callback){
+            console.log(contents)
+            jsonParsing(200, "success", contents, json);
+        });
+
+        if(!err) {
+            contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()};
+            // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
+
+        } else {
+            console.log(err);
+            return err;
+        }
+    })
+
+    // var contents = "";
+    // BVC.getPlaceId(index, function(err, res){
+    //     if(!err) {
+    //         contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+    //         // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
+    //
+    //     } else {
+    //         console.log(err);
+    //         return err;
+    //     }
+    // })
+    // return contents;
+}
 
 
 // ------------------------- 메소드입니다 -----------------------------
@@ -175,15 +215,17 @@ function getAllplace(json) {
                 for(var i=0; i<length; i++){
                     BVC.getPlaceId(i, function(err, res){
                         if(!err) {
-                            var contents = { "placeid" : res[0], "isStarted" : res[1]}
-                            result.push(contents)
+                            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+                            result[i] = contents
+                            // result에 값을 저장하고 싶은데 저장이 되지만 출력이 저장되기 전에 출력이 돼...
                         } else {
                             console.log(err);
                         }
                     })
                 }
 
-                //for문 종료 후 파시앟면 되는데 콜백이 안대...
+
+                console.log(result)
 
             } else {
                 jsonParsing(201, "등록된 투표장이 없습니다.", length, json);
