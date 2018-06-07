@@ -1,9 +1,10 @@
-var Web3 = require('web3');
-var solc = require('solc');
-var fs = require('fs');
+var async = require('async');
 var path = process.cwd();
 var view = require( path + '/function/view' );
 
+var Web3 = require('web3');
+var solc = require('solc');
+var fs = require('fs');
 var web3 = new Web3();
 // web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
 web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:4211'));
@@ -18,7 +19,7 @@ var abiDefinition = JSON.parse(compiledCode.contracts[':BVC'].interface);
 web3.eth.defaultAccount = web3.eth.accounts[0];
 
 // sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0xce519da8449172cf285dc3410f261637c848787f';
+var contractAddress = '0xd69f8e8523981441671cc93abc4ff596115aed7b';
 
 // 컨트랙트를 연결합니다.
 var contract = web3.eth.contract(abiDefinition);
@@ -27,6 +28,12 @@ var BVC = contract.at(contractAddress);
 module.exports.example = function(req, res) { 
     console.log(" This is an example " + req); 
 };
+
+
+
+
+
+
 
 
 // 1. 투표장 등록하는 메소드입니다.
@@ -138,6 +145,39 @@ module.exports.setVoteEnd = function(placeid, json) {
         }
     })
 };
+
+
+module.exports.searchList = function(length, res) { 
+    var result = []
+
+    Array.apply(null, Array(parseInt(length))).map(function (item, index) {
+        result.push(closureAdd(0, index));
+    })
+
+    async.series(result, function(err, resEnd){
+        view.jsonParsing(200, "success", resEnd, function(jsonData){
+            res.json(jsonData)
+        })
+    })
+};
+
+function closureAdd(number, index){
+    switch(number) {
+        case 0:
+            return function(callback){
+                exports.getPlaceId(index, function(placeInfo){
+                    callback(null, placeInfo)
+                })
+            }
+            break;
+        case 1:
+            console.log("test")
+            break;
+        default:
+            console.log("why?")
+
+    }
+}
 
 
 
