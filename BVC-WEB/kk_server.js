@@ -106,6 +106,29 @@ app.get('/getAllplace', function (req, res) {
     })
 });
 
+app.get('/getAllCandidate', function (req, res){
+    candidateLength(function(length){
+      var result = []
+
+      Array.apply(null, Array(parsInt(length))).map(function (item,index) {
+        result.push(closureCandidate(index));
+      })
+
+      async.series(result, function(err, resEnd){
+        jsonParsing(200, "success", resEnd, function(jsonData){
+          res.json(jsonData)
+        })
+      })
+
+      function closureCandidate(index){
+        return function(callback){
+          getAllCandidate(index, function(placeInfo){
+            callback(null, placeInfo)
+          })
+        }
+      }
+    })
+});
 
 // 투표권을 행사합니다.
 app.get('/setVote', function (req, res) {
@@ -207,8 +230,27 @@ function getPlaceId(index, placeInfo){
 }
 
 // 4. 등록된 후보자보기
-function getAllCandidate(placeid, json){
+function candidateLength(length){
+  BVC.getCandidateLength(function(err, res){
+    if(!err) {
+      length(res.toLocaleString());
+    } else {
+      console.log(err);
+      jsonParsing(400, err, "", json);
+    }
+  })
+}
 
+function getAllCandidate(placeid, CandidateInfo){
+    BVC.getPlaceId(index, function(err, res){
+        if(!err) {
+            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+            candidateInfo(contents)
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
 }
 
 // 5. 투표하는 메소드입니다.
