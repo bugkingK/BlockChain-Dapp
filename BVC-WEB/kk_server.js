@@ -110,20 +110,20 @@ app.get('/getAllCandidate', function (req, res){
     candidateLength(function(length){
       var result = []
 
-      Array.apply(null, Array(parsInt(length))).map(function (item,index) {
+      Array.apply(null, Array(parseInt(length))).map(function (item, index) {
         result.push(closureCandidate(index));
       })
 
       async.series(result, function(err, resEnd){
-        jsonParsing(200, "success", resEnd, function(jsonData){
+        jsonParsing(200, "candtest", resEnd, function(jsonData){
           res.json(jsonData)
         })
       })
 
       function closureCandidate(index){
         return function(callback){
-          getAllCandidate(index, function(placeInfo){
-            callback(null, placeInfo)
+          getAllCandidate(index, function(candidateInfo){
+            callback(null, candidateInfo)
           })
         }
       }
@@ -241,14 +241,14 @@ function candidateLength(length){
   })
 }
 
-function getAllCandidate(placeid, CandidateInfo){
-    BVC.getPlaceId(index, function(err, res){
+function getAllCandidate(index, candidateInfo){
+    BVC.getCandidateID(index, function(err, res){
         if(!err) {
-            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+            var contents = { "placeID" : res[0].toLocaleString(), "CandidateID" : res[1].toLocaleString()}
             candidateInfo(contents)
         } else {
             console.log(err);
-            jsonParsing(400, err, "", json);
+            jsonParsing(400, err, "function error", json);
         }
     })
 }
