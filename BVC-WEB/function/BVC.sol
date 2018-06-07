@@ -60,7 +60,7 @@ contract BVC {
     //-- 투표장이 투표가 진행중인지 확인
 
     //-- 해당 후보자가 해당 투표장에 등록된 후보자가 맞는지 검출. 연달아 사용해서 해당 후보자가 해당 투표장에 존재하면 true를 리턴
-    function getCandidateId(uint index) constant returns(uint) {
+    function getCandidateId(uint index) constant returns(uint, uint) {
         return (candidateList[index].placeID, candidateList[index].candidateID);
     }
 

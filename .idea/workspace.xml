@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/BVC.sol" afterPath="$PROJECT_DIR$/BVC-WEB/function/BVC.sol" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/func.js" afterPath="$PROJECT_DIR$/BVC-WEB/function/func.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/server.js" afterPath="$PROJECT_DIR$/BVC-WEB/server.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,12 +17,12 @@
     <window id="2">
       <content type="file-editors">
         <state>
-          <leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
             <file leaf-file-name="BVC.sol" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/BVC.sol">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="338">
-                    <caret line="61" column="63" lean-forward="true" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
+                  <state relative-caret-position="15">
+                    <caret line="67" column="36" lean-forward="true" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
                     <folding />
                   </state>
                 </provider>
@@ -40,38 +41,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/test_server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="231" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="kk_server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/kk_server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="250" column="50" lean-forward="false" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="finishset.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/finishset.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-1145">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,8 +101,9 @@
         <option value="$PROJECT_DIR$/BVC-WEB/test.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/test_server.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/kk_server.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/server.js" />
         <option value="$PROJECT_DIR$/BVC.sol" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/test.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/server.js" />
       </list>
     </option>
   </component>
@@ -142,7 +114,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="122" />
     <option name="y" value="27" />
     <option name="width" value="1740" />
@@ -166,8 +138,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,6 +151,12 @@
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="function" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
@@ -238,18 +216,19 @@
       <workItem from="1527503131071" duration="390000" />
       <workItem from="1527726126902" duration="4214000" />
       <workItem from="1528159362619" duration="359000" />
-      <workItem from="1528159737226" duration="27997000" />
+      <workItem from="1528159737226" duration="28334000" />
+      <workItem from="1528271467384" duration="2532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57143000" />
+    <option name="totallyTimeSpent" value="60012000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="122" y="27" width="1740" height="972" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="972" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16034482" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16607143" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -280,8 +259,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/server/server.js" />
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/shared/router.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/collections/collections.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/index.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/package-init.js" />
@@ -336,10 +313,27 @@
     <entry file="file://$PROJECT_DIR$/BVC-WEB/setcandidate.html" />
     <entry file="file://$PROJECT_DIR$/BVC-WEB/getallplace.html" />
     <entry file="file://$PROJECT_DIR$/BVC-WEB/setpollingplace.html" />
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/test.js">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/test.js" />
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/finishset.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/kk_server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3750">
+          <caret line="250" column="50" lean-forward="false" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="67" column="36" lean-forward="true" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -352,42 +346,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/finishset.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/test_server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="231" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
+        <state relative-caret-position="595">
+          <caret line="257" column="16" lean-forward="true" selection-start-line="257" selection-start-column="16" selection-end-line="257" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/kk_server.js">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/function/func.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="250" column="50" lean-forward="false" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
+        <state relative-caret-position="530">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="61" column="63" lean-forward="true" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
+        <state relative-caret-position="-1145">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
