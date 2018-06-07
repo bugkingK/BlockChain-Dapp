@@ -25,8 +25,8 @@ var contractAddress = '0xd69f8e8523981441671cc93abc4ff596115aed7b';
 var contract = web3.eth.contract(abiDefinition);
 var BVC = contract.at(contractAddress);
 
-module.exports.example = function(req, res) { 
-    console.log(" This is an example " + req); 
+module.exports.example = function(req, res) {
+    console.log(" This is an example " + req);
 };
 
 
@@ -37,7 +37,7 @@ module.exports.example = function(req, res) {
 
 
 // 1. 투표장 등록하는 메소드입니다.
-module.exports.setPollingPlace = function(result) { 
+module.exports.setPollingPlace = function(result) {
     BVC.setPollingPlace.sendTransaction(function(err, res){
     if(!err) {
       BVC.getPollingPlace.call(function(err, res){
@@ -55,14 +55,14 @@ module.exports.setPollingPlace = function(result) {
 };
 
 // 2. 후보자 등록하는 메소드입니다.
-module.exports.setCandidate = function(placeid, json) { 
+module.exports.setCandidate = function(placeid, json) {
     // getCandidate로 등록한 후보자 ID 반환
-    console.log(" This is a setCandidate "); 
+    console.log(" This is a setCandidate ");
 };
 
 // 3. 등록된 투표장 보는 메소드입니다.
 // 등록된 투표장 길이 반환
-module.exports.placeLength = function(length) { 
+module.exports.placeLength = function(length) {
     BVC.getPlaceLength(function(err, res){
         if(!err) {
             length(res.toLocaleString());
@@ -74,7 +74,7 @@ module.exports.placeLength = function(length) {
 };
 
 // 등록된 투표장의 정보를 반환
-module.exports.getPlaceId = function(index, placeInfo) { 
+module.exports.getPlaceId = function(index, placeInfo) {
     BVC.getPlaceId(index, function(err, res){
         if(!err) {
             var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
@@ -87,12 +87,31 @@ module.exports.getPlaceId = function(index, placeInfo) {
 };
 
 // 4. 등록된 후보자보기
-module.exports.getAllCandidate = function(placeid, json) { 
-    console.log(" getAllCandidate example "); 
+module.exports.candidateLength = function(length) {
+    BVC.getCandidateLength(function(err, res){
+        if(!err) {
+            length(res.toLocaleString());
+        } else {
+            console.log(err);
+            view.jsonParsing(400, err, "", json);
+        }
+    })
+};
+
+module.exports.getCandidateId = function(index, candidateInfo) {
+    BVC.getCandidateId(index, function(err, res){
+        if(!err) {
+            var contents = { "placeID" : res[0].toLocaleString(), "CandidateID" : res[1].toLocaleString()}
+            candidateInfo(contents)
+        } else {
+            console.log(err);
+            view.jsonParsing(400, err, "", json);
+        }
+    })
 };
 
 // 5. 투표하는 메소드입니다.
-module.exports.setVote = function(placeid, candidateid, phone, json) { 
+module.exports.setVote = function(placeid, candidateid, phone, json) {
     BVC.setVote(placeid, candidateid, phone, function(err, res) {
         // 트랜젝션 주소가 err로 갈지 res로 갈지 체크해봐야함. 이 구문이 제대로 돌지 못할 수 있음을 유의하셈.
         if(!err) {
@@ -106,13 +125,13 @@ module.exports.setVote = function(placeid, candidateid, phone, json) {
 };
 
 // 6. 개표합니다.
-module.exports.getCounting = function(candidateid, res) { 
-    console.log(" counting test "); 
+module.exports.getCounting = function(candidateid, res) {
+    console.log(" counting test ");
 };
 
 
 // 7. 투표를 했는지 확인하는 메소드입니다.
-module.exports.getCheckVoted = function(placeid, phone, json) { 
+module.exports.getCheckVoted = function(placeid, phone, json) {
     BVC.getCheckVoted(phone, placeid, function(err, res) {
         if(!err) {
             console.log(res);
@@ -125,7 +144,7 @@ module.exports.getCheckVoted = function(placeid, phone, json) {
 };
 
 // 8. 투표를 시작합니다.
-module.exports.setVoteStart = function(placeid, json) { 
+module.exports.setVoteStart = function(placeid, json) {
     BVC.setVoteStart(placeid, function(err, res){
         if(!err) {
             view.jsonParsing(200, "success", "", json);
@@ -136,7 +155,7 @@ module.exports.setVoteStart = function(placeid, json) {
 };
 
 // 9. 투표를 종료합니다.
-module.exports.setVoteEnd = function(placeid, json) { 
+module.exports.setVoteEnd = function(placeid, json) {
     BVC.setVoteEnd(placeid, function(err, res){
         if(!err) {
             view.jsonParsing(200, "success", "", json);
@@ -147,11 +166,11 @@ module.exports.setVoteEnd = function(placeid, json) {
 };
 
 
-module.exports.searchList = function(length, res) { 
+module.exports.searchList = function(selecter, length, res) {
     var result = []
 
     Array.apply(null, Array(parseInt(length))).map(function (item, index) {
-        result.push(closureAdd(0, index));
+        result.push(closureAdd(selecter, index));
     })
 
     async.series(result, function(err, resEnd){
@@ -171,23 +190,14 @@ function closureAdd(number, index){
             }
             break;
         case 1:
-            console.log("test")
+            return function(callback){
+                exports.getCandidateId(index, function(CandidateInfo){
+                    callback(null, CandidateInfo)
+                })
+            }
             break;
         default:
             console.log("why?")
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
