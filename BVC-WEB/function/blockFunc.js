@@ -57,7 +57,20 @@ module.exports.setPollingPlace = function(result) {
 // 2. 후보자 등록하는 메소드입니다.
 module.exports.setCandidate = function(placeid, json) { 
     // getCandidate로 등록한 후보자 ID 반환
-    console.log(" This is a setCandidate "); 
+     BVC.setCandidate.sendTransaction(placeid,function(err, res){
+        if(!err) {
+            BVC.getCandidate.call(function(err, res){
+                // 방금 생성한 투표장의 번호를 반환합니다.
+                if(!err) {
+                    result(res.toLocaleString());
+                } else {
+                    console.log(err);
+                }
+            })
+        } else {
+            console.log(err);
+        }
+    })
 };
 
 // 3. 등록된 투표장 보는 메소드입니다.

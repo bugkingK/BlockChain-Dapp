@@ -15,7 +15,7 @@ var view = require( path + '/function/view' );
 
 // <--------------------- server Start ----------------------->
 
-//등록 페이지를 실행합니다.
+//1.등록 페이지를 실행합니다.
 app.get('/set', function(req, res){
     res.sendFile(__dirname + '/public/setpolling.html');
 });
@@ -40,8 +40,13 @@ app.post('/public/finishset', function(req, res){
 
 // 2. 후보자를 등록합니다.
 app.get('/setCandidate', function (req, res) {
-    blockFunc.setCandidate(1, function(json){
-        console.log(json)
+    var info = [req.body.placeid, req.body.candidatename];
+    
+    blockFunc.setCandidate(info[0], function(candidateid){
+        console.log(candidateid)
+        dbFunc.InsertCandidateInfo(candidateid, info, function(result){
+            res.send(result);
+        })
     })
 });
 

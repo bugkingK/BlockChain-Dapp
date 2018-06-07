@@ -34,3 +34,20 @@ module.exports.InsertPlaceInfo = function(placeid, info, result) {
         }
     })
 };
+
+module.exports.InsertCandidateInfo = function(candidateid, info, result){
+    var candidateID = parseInt(candidateid);
+    var sql = 'INSERT INTO candidateinfo (placeid, candidatename, candidateid) VALUES (?, ?, ?)';
+    var params = [info[0], info[1], candidateID];
+    conn.query(sql, params, function(err, res){
+        if(!err){
+          console.log("insert candidate success");
+            result("<h1>후보자가 등록되었습니다.....</h1>");
+
+        } else {
+            console.log(err);
+            result("후보자 등록이 실패했습니다. 잠시 후 다시 시도해주세요.");
+        }
+    })
+}
+
