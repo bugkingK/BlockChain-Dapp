@@ -20,7 +20,7 @@ app.get('/set', function(req, res){
     res.sendFile(__dirname + '/public/setpolling.html');
 });
 
-// 1. 투표장을 생성합니다.
+// 1. 투표장을 생성합니다. 웹페이지
 app.post('/public/finishset', function(req, res){
     var info = [req.body.user_name, 
                 req.body.start_regist_period,
@@ -38,28 +38,34 @@ app.post('/public/finishset', function(req, res){
     });
 });
 
-// 2. 후보자를 등록합니다.
+// 2. 후보자를 등록합니다. 웹페이지
 app.get('/setCandidate', function (req, res) {
     blockFunc.setCandidate(1, function(json){
         console.log(json)
     })
 });
 
+app.get('/searchCandidateInfo', function (req, res) {
+    dbFunc.searchCandidateInfo(function(result) {
+        res.send(result);
+    })
+})
 
-// 3. 등록된 투표장을 볼 수 있습니다.
+
+// 3. 등록된 투표장을 볼 수 있습니다. 2가지 형태, 웹페이지 형태와 json형태가 필요합니다.
 app.get('/getAllplace', function (req, res) {
     blockFunc.placeLength(function(length){
         blockFunc.searchList(length, res)
     })
 });
 
-// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
+// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다. 웹페이지 형태와 json형태가 필요합니다.
 app.get('getAllCandidate', function (req, res){
     blockFunc.getAllCandidate(1,1);
 })
 
 
-// 5. 투표권을 행사합니다.
+// 5. 투표권을 행사합니다. - json
 app.get('/setVote', function (req, res) {  
     var placeid = req.param('placeid');
     var candidateid = req.param('candidateid');
@@ -70,12 +76,12 @@ app.get('/setVote', function (req, res) {
     });
 });
 
-// 6. 개표합니다.
+// 6. 개표합니다. - 웹페이지 형태와 json 형태가 필요합니다.
 app.get('/getCounting', function (req, res) {
     blockFunc.getCounting('testestestes');
 });
 
-// 7. 투표했는지 여부를 확인합니다.
+// 7. 투표했는지 여부를 확인합니다. - json 형태가 필요합니다.
 app.get('/getCheckVoted', function (req, res) {
     var placeid = req.param('placeid');
     var phone = req.param('phone');
@@ -85,22 +91,20 @@ app.get('/getCheckVoted', function (req, res) {
     });
 });
 
-// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
-app.get('/setVoteStart', function (req, res) {
-    //var placeid = req.param('placeid');
 
-    blockFunc.setVoteStart(0, function(jsonData){
-        res.json(jsonData);
-    });
+
+// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
+app.get('/setVoteStart', function (req, res) {
+    var placeid = req.body.placeid;
+
+    blockFunc.setVoteStart(placeid, res);
 });
 
-// 9. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
+// 9. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.) 웹페이지
 app.get('/setVoteEnd', function (req, res) {
-    //var placeid = req.param('placeid');
+    var placeid = req.body.placeid;
 
-    blockFunc.setVoteEnd(0, function(jsonData){
-        res.json(jsonData);
-    });
+    blockFunc.setVoteEnd(placeid, res);
 });
 
 

@@ -29,13 +29,6 @@ module.exports.example = function(req, res) {
     console.log(" This is an example " + req); 
 };
 
-
-
-
-
-
-
-
 // 1. 투표장 등록하는 메소드입니다.
 module.exports.setPollingPlace = function(result) { 
     BVC.setPollingPlace.sendTransaction(function(err, res){
@@ -125,23 +118,27 @@ module.exports.getCheckVoted = function(placeid, phone, json) {
 };
 
 // 8. 투표를 시작합니다.
-module.exports.setVoteStart = function(placeid, json) { 
+module.exports.setVoteStart = function(placeid, result) { 
     BVC.setVoteStart(placeid, function(err, res){
         if(!err) {
-            view.jsonParsing(200, "success", "", json);
+            console.log('투표장 번호 : ' + placeid + ' 가 시작되었습니다.');
+            result('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....start</h1>');
         } else {
-            view.jsonParsing(400, err, "", json);
+            console.log(err);
+            result('<h1>투표를 시작하지 못했습니다.....err</h1>');
         }
     })
 };
 
 // 9. 투표를 종료합니다.
-module.exports.setVoteEnd = function(placeid, json) { 
-    BVC.setVoteEnd(placeid, function(err, res){
+module.exports.setVoteEnd = function(placeid, res) { 
+    BVC.setVoteEnd(placeid, function(err, result){
         if(!err) {
-            view.jsonParsing(200, "success", "", json);
+            console.log('투표장 번호 : ' + placeid + ' 가 종료되었습니다.');
+            result('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>');
         } else {
-            view.jsonParsing(400, err, "", json);
+            console.log(err);
+            result('<h1>투표를 끝내지 못했습니다.....err</h1>');
         }
     })
 };
