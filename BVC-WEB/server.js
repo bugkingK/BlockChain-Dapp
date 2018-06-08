@@ -22,7 +22,7 @@ app.get('/set', function(req, res){
 
 // 1. 투표장을 생성합니다. 웹페이지
 app.post('/public/finishset', function(req, res){
-    var info = [req.body.user_name, 
+    var info = [req.body.user_name,
                 req.body.start_regist_period,
                 req.body.end_regist_period,
                 req.body.votedate,
@@ -55,15 +55,16 @@ app.get('/searchCandidateInfo', function (req, res) {
 // 3. 등록된 투표장을 볼 수 있습니다. 2가지 형태, 웹페이지 형태와 json형태가 필요합니다.
 app.get('/getAllplace', function (req, res) {
     blockFunc.placeLength(function(length){
-        blockFunc.searchList(length, res)
+        blockFunc.searchList(0, length, res)
     })
 });
 
-// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다. 웹페이지 형태와 json형태가 필요합니다.
-app.get('getAllCandidate', function (req, res){
-    blockFunc.getAllCandidate(1,1);
-})
-
+// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
+app.get('/getAllCandidate', function (req, res){
+    blockFunc.candidateLength(function(length){
+        blockFunc.searchList(1, length, res);
+    })
+});
 
 // 5. 투표권을 행사합니다. - json
 app.get('/setVote', function (req, res) {  
