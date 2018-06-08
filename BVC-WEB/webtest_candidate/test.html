@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title> 후보자 등록하기 </title>
+    </head>
+    
+    <body>
+        <h1>후보자를 등록합니다.</h1>
+        <table width="50%" border="1">
+            <tr>
+                <th>투표이름</th>
+                <th>후보자 이름</th>
+                <th>핸드폰 번호</th>
+                <th>주소</th>
+                <th>학력</th>
+                <th>이메일</th>
+                <th>등록</th>
+            </tr>
+            <% prodList.forEach(function(item, index){ %>
+                <tr>
+                    <td><%= item.wantvote%></td>
+                    <td><%= item.name%></td>
+                    <td><%= item.phone%></td>
+                    <td><%= item.address%></td>
+                    <td><%= item.career%></td>
+                    <td><%= item.email%></td>  
+                    <td><a href='/register/<%= item.name%>'> <input type = "submit" value="등록" name=""> </td>
+                    </tr>
+                <%});%>
+        </table>
+    </body>
+</html>

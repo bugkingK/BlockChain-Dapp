@@ -1,0 +1,370 @@
+// 필요한 npm 설치
+var Web3 = require('web3');
+var express = require('express');
+var mysql = require('mysql');
+var solc = require('solc');
+var fs = require('fs');
+var bodyParser = require('body-parser');
+var async = require('async');
+var ejs = require('ejs')
+
+// web3와 express 변수를 선언합니다.
+var app = express();
+var web3 = new Web3();
+var conn = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'arch0115',
+    database : 'vote'
+});
+
+conn.connect();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
+app.set('view engine', 'ejs');
+// web3의 위치를 지정하는 함수입니다. web3의 위치는 http://yangarch.iptime.org:8545에 있습니다.
+web3.setProvider(new web3.providers.HttpProvider('http://yangarch.iptime.org:4211'));
+
+var code = fs.readFileSync('BVC.sol').toString();
+var compiledCode = solc.compile(code);
+
+// sol파일의 abi 값입니다.
+var abiDefinition = JSON.parse(compiledCode.contracts[':BVC'].interface);
+
+// eth를 지불할 eth지갑을 선택합니다.
+web3.eth.defaultAccount = web3.eth.accounts[0];
+
+// sol파일의 컨트랙트 주소입니다.
+var contractAddress = '0xd69f8e8523981441671cc93abc4ff596115aed7b';
+
+// 컨트랙트를 연결합니다.
+var contract = web3.eth.contract(abiDefinition);
+var BVC = contract.at(contractAddress);
+
+
+// ------------------------- 기본세팅 변경될 사항은 web3주소와 컨트랙트 주소, abi만 가변성이 있습니다. -----------------------------------
+
+//html test
+app.get('/test', function(req, res){
+  fs.readFile('test.html', 'utf8', function(err, data){
+      if(!err){
+          conn.query('SELECT * FROM placeinfo', function(err, result){
+              if(!err){
+                  res.send(ejs.render(data, {prodList : result}));
+              }else{
+                  console.log('err');
+              }
+          })
+      }
+  })
+});
+
+//등록 페이지를 실행합니다.
+app.get('/set', function(req, res){
+    res.sendFile(__dirname + '/public/setpolling.html');
+});
+
+// 투표장을 생성합니다.
+app.post('/public/finishset', function(req, res){
+    var name=req.body.user_name;
+    var start_regist_period=req.body.start_regist_period;
+    var end_regist_period=req.body.end_regist_period;
+    var votedate=req.body.votedate;
+    var start_vote_time=req.body.start_vote_time;
+    var end_vote_time=req.body.end_vote_time;
+    var contents=req.body.place_contents;
+
+    setPollingPlace(function(placeid){
+        var placeID = parseInt(placeid);
+
+        var sql_ID = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        var params = [name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeID];
+        conn.query(sql_ID, params, function(err, res){
+            if(!err) {
+                console.log("insert success");
+
+            } else {
+                console.log(err);
+            }
+        })
+
+    });
+    res.send("투표장이 등록되었습니다.");
+});
+
+
+// 후보자를 등록합니다.
+
+app.get('/setCandidate', function(req, res){
+    res.sendFile(__dirname + '/public/registerset.html');
+});
+app.post('/public/register', function(req, res){
+    var votename=req.body.votename;
+    var i;
+    var wantvote='wantVote';
+    var candidatename='first_name';
+    var nowcandidate = [];
+    var nowcandidatename = [];
+    var placeid;
+
+    
+    var sql_search_placeid ='SELECT placeid FROM vote.placeinfo WHERE name =?';
+    var sql_search_candidates = 'SELECT user_id FROM vote.wp_usermeta WHERE meta_key = ? AND meta_value = ?';
+    var sql_search_candidatename='SELECT meta_value FROM vote.wp_usermeta WHERE user_id=? AND meta_key=?';
+    var sql_push_candidatename='INSERT INTO candidateinfo (candidatename,candidateid,placeid_can) VALUES (? ,?,?)';
+    
+    var param_placeid = [votename];
+    var param=[wantvote, votename];
+    
+     conn.query(sql_search_placeid, param_placeid, function(err, row, res){
+       if(!err){
+           placeid=row[0].placeid;
+           conn.query(sql_search_candidates, param, function(err, row, res){
+               if(!err){
+                   for(var i=0; i<row.length; i++){
+                       nowcandidate[i]=row[i].user_id;
+                       var param_call=[nowcandidate[i], candidatename];
+                       console.log(nowcandidate[i]);
+
+                       conn.query(sql_search_candidatename, param_call, function(err, row, res){
+                           for(var j=0; j<row.length; j++){
+                               var name=row[j].meta_value
+                           }});//이름 검색
+                   }}});//아이디검색
+       }});//플레이스 아이디검색
+    
+});
+
+// db에 회원정보를 업데이트 하고 candidateid를 반환받습니다.
+function getCandidateID (placeid, name, candidateid) {
+    setCandidate(placeid, function(err, res){
+        if (!err){
+            var sql='INSERT INTO candidateinfo (placeid_can, candidatename, candidateid) VALUES (?, ?, ?)';
+            var param = [placeid, name, res];
+            
+            conn.query(sql, param, function(err, res){
+                if (!err) {
+                    console.log("candidate insert success");
+                    candidateid(res);
+                } else {
+                    console.log(err);
+                }
+            }) 
+        } else {
+            console.log(err);
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+// 등록된 투표장을 볼 수 있습니다.
+app.get('/getAllplace', function (req, res) {
+    placeLength(function(length){
+        var result = []
+
+        Array.apply(null, Array(parseInt(length))).map(function (item, index) {
+            result.push(closureTest(index));
+        })
+
+        async.series(result, function(err, resEnd){
+            //console.log(resEnd)
+            jsonParsing(200, "success", resEnd, function(jsonData){
+                res.json(jsonData)
+            })
+        })
+
+        function closureTest(index){
+            return function(callback){
+                getPlaceId(index, function(placeInfo){
+                    callback(null, placeInfo)
+                })
+            }
+        }
+    })
+});
+
+
+
+
+
+
+// 투표권을 행사합니다.
+app.get('/setVote', function (req, res) {
+    var placeid = req.param('placeid');
+    var candidateid = req.param('candidateid');
+    var phone = req.param('phone');
+
+    setVote(placeid, candidateid, phone, function(jsonData) {
+        res.json(jsonData);
+    });
+});
+
+// 투표했는지 여부를 확인합니다.
+app.get('/getCheckVoted', function (req, res) {
+    var placeid = req.param('placeid');
+    var phone = req.param('phone');
+
+    getCheckVoted(placeid, phone, function(jsonData) {
+        res.json(jsonData);
+    });
+});
+
+// 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
+app.get('/setVoteStart', function (req, res) {
+    setVoteStart(0, function(jsonData){
+        res.json(jsonData);
+    });
+});
+
+// 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.)
+app.get('/setVoteEnd', function (req, res) {
+
+});
+
+// 개표합니다.
+app.get('/getCounting', function (req, res) {
+
+});
+
+// ------------------------- 메소드입니다 -----------------------------
+
+function jsonParsing(code, message, data, json) {
+    var jsonString = {
+        "code"     : code,
+        "message"  : message,
+        "data"     : data
+    }
+
+    json(jsonString);
+}
+
+// 1. 투표장을 생성하는 메소드입니다.
+function setPollingPlace(result){
+    BVC.setPollingPlace.sendTransaction(function(err, res){
+        if(!err) {
+            BVC.getPollingPlace.call(function(err, res){
+                // 방금 생성한 투표장의 번호를 반환합니다.
+                if(!err) {
+                    result(res.toLocaleString());
+                } else {
+                    console.log(err);
+                }
+            })
+        } else {
+            console.log(err);
+        }
+    })
+}
+
+// 2. 후보자 등록하는 메소드입니다.
+function setCandidate(placeid, result) {
+    // getCandidate로 등록한 후보자 ID 반환
+     BVC.setCandidate.sendTransaction(placeid,function(err, res){
+        if(!err) {
+            BVC.getCandidate.call(function(err, res){
+                // 방금 생성한 투표장의 번호를 반환합니다.
+                if(!err) {
+                    result(res.toLocaleString());
+                } else {
+                    console.log(err);
+                }
+            })
+        } else {
+            console.log(err);
+        }
+    })
+}
+
+// 3. 등록된 투표장 보는 메소드입니다.
+// 등록된 투표장 길이 반환
+function placeLength(length){
+    BVC.getPlaceLength(function(err, res){
+        if(!err) {
+            length(res.toLocaleString());
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
+}
+
+// 등록된 투표장의 정보를 반환
+function getPlaceId(index, placeInfo){
+    BVC.getPlaceId(index, function(err, res){
+        if(!err) {
+            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+            placeInfo(contents)
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
+}
+
+// 4. 등록된 후보자보기
+function getAllCandidate(placeid, json){
+
+}
+
+// 5. 투표하는 메소드입니다.
+function setVote(placeid, candidateid, phone, json) {
+    BVC.setVote(placeid, candidateid, phone, function(err, res) {
+        // 트랜젝션 주소가 err로 갈지 res로 갈지 체크해봐야함. 이 구문이 제대로 돌지 못할 수 있음을 유의하셈.
+        if(!err) {
+            console.log(res);
+            jsonParsing(200, "success", "", json);
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    })
+}
+
+// 6. 개표합니다.
+function getCounting(candidateid) {
+
+}
+
+// 7. 투표를 했는지 확인하는 메소드입니다.
+function getCheckVoted(placeid, phone, json) {
+    BVC.getCheckVoted(phone, placeid, function(err, res) {
+        if(!err) {
+            console.log(res);
+            jsonParsing(200, "success", "", json);
+        } else {
+            console.log(err);
+            jsonParsing(400, err, "", json);
+        }
+    });
+}
+
+// 8. 투표를 시작합니다.
+function setVoteStart(placeid, json) {
+
+    BVC.setVoteStart(1, function(err, res){
+        if(!err) {
+            jsonParsing(200, "success", "", json);
+        } else {
+            jsonParsing(400, err, "", json);
+        }
+    })
+}
+
+// 9. 투표를 종료합니다.
+function setVoteEnd(placeid) {
+
+}
+
+
+
+
+app.listen(6111, function () {
+    console.log('node Test Server: 6111');
+});
