@@ -34,3 +34,22 @@ module.exports.InsertPlaceInfo = function(placeid, info, result) {
         }
     })
 };
+
+
+// db에서 후보자의 정보를 가져옵니다.
+module.exports.searchCandidateInfo = function(result) {
+    var sql = 'SELECT * FROM candidateinfo';
+    
+    conn.query(sql, function(err, res) {
+        if(!err) {
+            console.log("candidateinfo search success");
+            result(res)
+        } else {
+            console.log(err);
+            result("정보를 가져오지 못했습니다.");
+        }
+    })
+}
+
+
+
