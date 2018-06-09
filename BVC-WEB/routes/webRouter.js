@@ -27,10 +27,10 @@ router.post('/setPollingPlace', function(req, res){
                 req.body.start_vote_time,
                 req.body.end_vote_time];
 
-    blockFunc.setPollingPlace(function(err, placeid){
+    blockFunc.setPollingPlace(function(err, placeid, isStarted){
         if (!err) {
             if (placeid != null){
-                dbFunc.InsertPlaceInfo(placeid, info,function(result){
+                dbFunc.InsertPlaceInfo(placeid, isStarted, info, function(result){
                     res.send(result);
                 });
             } else {
@@ -89,9 +89,8 @@ router.get('/setVoteStart', function(req, res){
 });
 
 // 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
-router.post('/setVoteStart', function (req, res) {
-    var placeid = req.body.placeid;
-    console.log(placeid)
+router.get('/setVoteStart/:placeid', function (req, res) {
+    var placeid = req.params.placeid;
 
     blockFunc.setVoteStart(placeid, function(err, result) {
         if (!err) {

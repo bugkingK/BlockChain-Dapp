@@ -7,7 +7,6 @@
 </head>
     <body>
         <h1> 선거 시작하기 </h1>
-        <form method="post" action="/web/setVoteStart">
             <table border="1">
                    <tr align="center">
                        <th>투표장</th>
@@ -20,6 +19,7 @@
                        <th>투표장 번호</th>
                        <th>시작하기</th>
                    </tr>
+
                    <% placeInfoList.forEach(function(item, index){ %>
                        <tr align="center">
                            <td><%=item.name%></td>
@@ -29,12 +29,10 @@
                            <td><%=item.contents%></td>
                            <td><%=item.start_vote_time%></td>
                            <td><%=item.end_vote_time%></td>
-                           <td name="placeid"><%= item.placeid%></td>
-                           <td><input type = "submit" value="투표시작" name=""></td>
-                           <!--<td><a href='/register/<%= item.name%>'> <input type = "submit" value="등록" name=""> </td>-->
+                           <td name="placeid" type = "text"><%=item.placeid%></td>
+                           <td><a href='setVoteStart/<%= item.placeid%>'> <input type = "submit" value="등록" name=""></a></td>
                        </tr>
                    <%});%>
             </table>
-        </form>
     </body>
 </html>

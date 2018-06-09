@@ -11,7 +11,7 @@ module.exports.setPollingPlace = function(result) {
         if(!_err) {
             BVC.getPollingPlace.call(function(err, res){
                 if(!err) {
-                    result(null, res.toLocaleString());
+                    result(null, res[0].toLocaleString(), res[1].toLocaleString());
                 } else {
                     result(err, null);
                 }
