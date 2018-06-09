@@ -12,24 +12,13 @@ var path = process.cwd();
 var blockFunc = require( path + '/model/blockFunc' );
 var dbFunc = require( path + '/model/dbFunc' );
 
-router.get('/test', function(req, res){
-    fs.readFile( path + '/public/test.html', 'utf8', function(err, data){
-        if(!err){
-            dbFunc.test(function(result){
-                res.send(ejs.render(data, {prodList : result}));
-            })
-        }
-    })
-});
-
-
 //등록 페이지를 실행합니다. ok
-router.get('/set', function(req, res){
-    res.sendFile( path + '/public/setpolling.html');
+router.get('/setPollingPlace', function(req, res){
+    res.sendFile( path + '/public/setPollingPlace.html');
 });
 
 // 1. 투표장을 생성합니다. 웹페이지 ok
-router.post('/setResult', function(req, res){
+router.post('/setPollingPlace', function(req, res){
     var info = [req.body.user_name,
                 req.body.start_regist_period,
                 req.body.end_regist_period,
@@ -66,7 +55,6 @@ router.get('/getAllplace', function (req, res) {
     blockFunc.placeLength(function(length){
         blockFunc.searchList(0, false, length, res)
     })
-    // 결과를 html로 보는 구문이 필요합니다.
 });
 
 // 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
@@ -74,8 +62,6 @@ router.get('/getAllCandidate', function (req, res){
     blockFunc.candidateLength(function(length){
         blockFunc.searchList(1, false, length, res);
     })
-
-    // 결과를 html로 보는 구문이 필요합니다.
 });
 
 
@@ -85,11 +71,36 @@ router.get('/getCounting', function (req, res) {
 });
 
 
-// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
-router.get('/setVoteStart', function (req, res) {
-    var placeid = req.body.placeid;
+// 투표 시작 페이지입니다.
+router.get('/setVoteStart', function(req, res){
+    fs.readFile( path + '/public/setVoteStart.html', 'utf8', function(err, data){
+        if(!err){
+            dbFunc.searchPlaceInfo(function(err, result){
+                if(!err) {
+                    res.send(ejs.render(data, {placeInfoList : result}));
+                } else {
+                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+                }
+            })
+        } else {
+            res.send("투표 시작 페이지를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.");
+        }
+    })
+});
 
-    blockFunc.setVoteStart(placeid, res);
+// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
+router.post('/setVoteStart', function (req, res) {
+    var placeid = req.body.placeid;
+    console.log(placeid)
+
+    blockFunc.setVoteStart(placeid, function(err, result) {
+        if (!err) {
+            res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
+        } else {
+            result('<h1>투표를 시작하지 못했습니다.....err</h1>');
+            console.log('투표 시작 실패 : ' + err);
+        }
+    });
 });
 
 // 9. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.) 웹페이지
@@ -105,6 +116,5 @@ router.get('/searchCandidateInfo', function (req, res) {
 
     })
 })
-
 
 module.exports = router;

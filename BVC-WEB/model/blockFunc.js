@@ -64,7 +64,8 @@ module.exports.getPlaceId = function(index, placeInfo) {
 };
 
 
-// 4. 등록된 후보자보기
+// 4. 등록된 후보자를 보는 메소드입니다.
+// 등록된 후보자 길이 반환
 module.exports.candidateLength = function(length) {
     BVC.getCandidateLength(function(err, res){
         if(!err) {
@@ -75,6 +76,7 @@ module.exports.candidateLength = function(length) {
     })
 };
 
+// 등록된 후보자의 정보를 반환
 module.exports.getCandidateId = function(index, candidateInfo) {
     BVC.getCandidateId(index, function(err, res){
         if(!err) {
@@ -109,10 +111,8 @@ module.exports.getCheckVoted = function(placeid, phone, result) {
     BVC.getCheckVoted(phone, placeid, function(err, res) {
         if(!err) {
             result(null, res);
-            console.log(res);
         } else {
             result(err, null);
-            console.log(err);
         }
     });
 };
@@ -121,11 +121,9 @@ module.exports.getCheckVoted = function(placeid, phone, result) {
 module.exports.setVoteStart = function(placeid, result) { 
     BVC.setVoteStart(placeid, function(err, res){
         if(!err) {
-            console.log('투표장 번호 : ' + placeid + ' 가 시작되었습니다.');
-            result('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....start</h1>');
+            result(null, res)
         } else {
-            console.log(err);
-            result('<h1>투표를 시작하지 못했습니다.....err</h1>');
+            result(err, null);
         }
     })
 };

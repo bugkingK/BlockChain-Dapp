@@ -38,12 +38,12 @@ module.exports.searchCandidateInfo = function(result) {
     })
 }
 
-module.exports.test = function(result) {
+module.exports.searchPlaceInfo = function(result) {
     db.query('SELECT * FROM placeinfo', function(err, res){
         if(!err) {
-            result(res);
+            result(null, res);
         } else {
-            console.log(err);
+            result(err, null);
         }
     })
 }

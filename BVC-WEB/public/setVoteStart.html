@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> 선거 시작하기 </title>
+
+</head>
+    <body>
+        <h1> 선거 시작하기 </h1>
+        <form method="post" action="/web/setVoteStart">
+            <table border="1">
+                   <tr align="center">
+                       <th>투표장</th>
+                       <th>등록시작날짜</th>
+                       <th>등록종료날짜</th>
+                       <th>VOTEDATE</th>
+                       <th>투표내용</th>
+                       <th>투표시작</th>
+                       <th>투표종료</th>
+                       <th>투표장 번호</th>
+                       <th>시작하기</th>
+                   </tr>
+                   <% placeInfoList.forEach(function(item, index){ %>
+                       <tr align="center">
+                           <td><%=item.name%></td>
+                           <td><%=item.start_regist_period%></td>
+                           <td><%=item.end_regist_period%></td>
+                           <td><%=item.votedate%></td>
+                           <td><%=item.contents%></td>
+                           <td><%=item.start_vote_time%></td>
+                           <td><%=item.end_vote_time%></td>
+                           <td name="placeid"><%= item.placeid%></td>
+                           <td><input type = "submit" value="투표시작" name=""></td>
+                           <!--<td><a href='/register/<%= item.name%>'> <input type = "submit" value="등록" name=""> </td>-->
+                       </tr>
+                   <%});%>
+            </table>
+        </form>
+    </body>
+</html>

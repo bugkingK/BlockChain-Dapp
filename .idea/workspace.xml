@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-WEB/config/database.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/BVC.sol" afterPath="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/blockFunc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/dbFunc.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/function/view.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/kk_server.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/setpolling.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/setpolling.html" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/server.js" afterPath="$PROJECT_DIR$/BVC-WEB/server.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/test_server.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/finishset.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/setpolling.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/test.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webRouter.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="webRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="84" column="3" lean-forward="true" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
+            <state relative-caret-position="420">
+              <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setVoteStart.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="33" column="57" lean-forward="false" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -97,21 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setpolling.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setpolling.html">
+      <file leaf-file-name="setPollingPlace.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+            <state relative-caret-position="670">
+              <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -122,8 +121,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -177,8 +176,11 @@
         <option value="$PROJECT_DIR$/BVC-WEB/server.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/config/database.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/voteStart.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
       </list>
     </option>
   </component>
@@ -192,7 +194,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1083" />
-    <option name="height" value="1002" />
+    <option name="height" value="972" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -320,15 +322,15 @@
       <workItem from="1528159737226" duration="28334000" />
       <workItem from="1528271467384" duration="2532000" />
       <workItem from="1528440293149" duration="2143000" />
-      <workItem from="1528446898808" duration="10256000" />
+      <workItem from="1528446898808" duration="15856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72411000" />
+    <option name="totallyTimeSpent" value="78011000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1083" height="1002" extended-state="0" />
+    <frame x="0" y="23" width="1083" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26869807" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
@@ -362,7 +364,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/server/published.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/home/main.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/ethprovider.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/polls.js" />
@@ -482,22 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setpolling.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/config/database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -556,10 +541,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="84" column="3" lean-forward="true" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
+        <state relative-caret-position="420">
+          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="33" column="57" lean-forward="false" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
           <folding />
         </state>
       </provider>
