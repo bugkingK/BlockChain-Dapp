@@ -21,6 +21,7 @@
                    </tr>
 
                    <% placeInfoList.forEach(function(item, index){ %>
+                    <% if(!item.isStarted){ %>
                        <tr align="center">
                            <td><%=item.name%></td>
                            <td><%=item.start_regist_period%></td>
@@ -32,6 +33,7 @@
                            <td name="placeid" type = "text"><%=item.placeid%></td>
                            <td><a href='setVoteStart/<%= item.placeid%>'> <input type = "submit" value="등록" name=""></a></td>
                        </tr>
+                    <% } %>
                    <%});%>
             </table>
     </body>

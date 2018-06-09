@@ -71,7 +71,7 @@ router.get('/getCounting', function (req, res) {
 });
 
 
-// 투표 시작 페이지입니다.
+// 8-1. 투표 시작 페이지입니다.
 router.get('/setVoteStart', function(req, res){
     fs.readFile( path + '/public/setVoteStart.html', 'utf8', function(err, data){
         if(!err){
@@ -88,26 +88,61 @@ router.get('/setVoteStart', function(req, res){
     })
 });
 
-// 8. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
+// 8-2. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.) 웹페이지
 router.get('/setVoteStart/:placeid', function (req, res) {
     var placeid = req.params.placeid;
 
     blockFunc.setVoteStart(placeid, function(err, result) {
         if (!err) {
-            res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
+            dbFunc.updateIsStarted(placeid, true, function(_err, _res) {
+                if (!_err) {
+                    res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
+                } else {
+                    result('<h1>투표를 시작하지 못했습니다.....db err</h1>');
+                }
+            })
         } else {
             result('<h1>투표를 시작하지 못했습니다.....err</h1>');
-            console.log('투표 시작 실패 : ' + err);
         }
     });
 });
 
-// 9. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.) 웹페이지
+// 9-1. 투표 종료 페이지입니다.
 router.get('/setVoteEnd', function (req, res) {
-    var placeid = req.body.placeid;
-
-    blockFunc.setVoteEnd(placeid, res);
+    fs.readFile( path + '/public/setVoteEnd.html', 'utf8', function(err, data){
+        if(!err){
+            dbFunc.searchPlaceInfo(function(err, result){
+                if(!err) {
+                    res.send(ejs.render(data, {placeInfoList : result}));
+                } else {
+                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+                }
+            })
+        } else {
+            res.send("투표 시작 페이지를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.");
+        }
+    })
 });
+
+// 9-2. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.) 웹페이지
+router.get('/setVoteEnd/:placeid', function (req, res) {
+    var placeid = req.params.placeid;
+
+    blockFunc.setVoteEnd(placeid, function(err, result) {
+        if (!err) {
+            dbFunc.updateIsStarted(placeid, false, function(_err, _res) {
+                if (!_err) {
+                    res.send('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>')
+                } else {
+                    result('<h1>투표를 종료하지 못했습니다.....db err</h1>');
+                }
+            })
+        } else {
+            result('<h1>투표를 종료하지 못했습니다.....err</h1>');
+        }
+    });
+});
+
 
 // 후보자 정보를 가져옵니다.
 router.get('/searchCandidateInfo', function (req, res) {

@@ -39,7 +39,9 @@ module.exports.searchCandidateInfo = function(result) {
 }
 
 module.exports.searchPlaceInfo = function(result) {
-    db.query('SELECT * FROM placeinfo', function(err, res){
+    var sql = 'SELECT * FROM placeinfo';
+
+    db.query(sql, function(err, res){
         if(!err) {
             result(null, res);
         } else {
@@ -48,5 +50,16 @@ module.exports.searchPlaceInfo = function(result) {
     })
 }
 
+module.exports.updateIsStarted = function(placeid, isStarted, result) {
+    var sql = 'UPDATE placeinfo SET isStarted=? WHERE placeid=?;';
 
+    var params = [isStarted, placeid];
+    db.query(sql, params, function(err, res){
+        if(!err) {
+            result(null, res);
+        } else {
+            result(err, null);
+        }
+    })
+}
 

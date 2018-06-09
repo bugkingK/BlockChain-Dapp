@@ -132,11 +132,9 @@ module.exports.setVoteStart = function(placeid, result) {
 module.exports.setVoteEnd = function(placeid, result) { 
     BVC.setVoteEnd(placeid, function(err, res){
         if(!err) {
-            console.log('투표장 번호 : ' + placeid + ' 가 종료되었습니다.');
-            result('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>');
+            result(null, res)
         } else {
-            console.log(err);
-            result('<h1>투표를 끝내지 못했습니다.....err</h1>');
+            result(err, null);
         }
     })
 };
