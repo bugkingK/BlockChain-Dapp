@@ -31,8 +31,8 @@ contract BVC {
         placeList[extensionPlaceID].isStarted = false;
     }
 
-    function getPollingPlace() constant returns(uint){ // return으로 uint 형식의 방금 만든 투표장 번호를 줌
-        return placeList[placeList.length - 1].placeID;
+    function getPollingPlace() constant returns(uint, bool){ // return으로 uint 형식의 방금 만든 투표장 번호를 줌
+        return (placeList[placeList.length - 1].placeID, placeList[placeList.length -1].isStarted);
     }
     //-- 투표장 구조체 생성
 

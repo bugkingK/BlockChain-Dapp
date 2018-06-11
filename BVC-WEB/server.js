@@ -1,13 +1,8 @@
-// 필요한 npm 설치
-
+// 메인 서버
 var express = require('express');
-// web3와 express 변수를 선언합니다.
 var app = express();
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
-
 var path = process.cwd();
+<<<<<<< HEAD
 var blockFunc = require( path + '/function/blockFunc' );
 var dbFunc = require( path + '/function/dbFunc' );
 var view = require( path + '/function/view' );
@@ -108,8 +103,16 @@ app.get('/setVoteEnd', function (req, res) {
     });
 });
 
+=======
+>>>>>>> upstream/master
 
+// app과 연동되는 라우터
+var appRouter = require( path + '/routes/appRouter');
+app.use('/app', appRouter);
 
+// web과 연동되는 라우터
+var webRouter = require( path + '/routes/webRouter');
+app.use('/web', webRouter);
 
 app.listen(4210, function () {
   console.log('eth server start: 4210');

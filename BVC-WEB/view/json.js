@@ -1,3 +1,4 @@
+// View
 
 module.exports.jsonParsing = function(code, message, data, json) { 
     var jsonString = {
