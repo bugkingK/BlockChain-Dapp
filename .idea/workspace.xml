@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" afterPath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" />
       <change beforePath="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +22,8 @@
       <file leaf-file-name="webRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -35,8 +32,8 @@
       <file leaf-file-name="setVoteStart.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+            <state relative-caret-position="369">
+              <caret line="80" column="27" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="80" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -45,8 +42,8 @@
       <file leaf-file-name="blockFunc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/model/blockFunc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="133" column="18" lean-forward="true" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
+            <state relative-caret-position="2793">
+              <caret line="133" column="18" lean-forward="false" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -55,8 +52,8 @@
       <file leaf-file-name="setVoteEnd.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="567">
+              <caret line="27" column="79" lean-forward="true" selection-start-line="27" selection-start-column="79" selection-end-line="27" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -65,7 +62,7 @@
       <file leaf-file-name="dbFunc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/model/dbFunc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="1155">
               <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
               <folding />
             </state>
@@ -75,8 +72,8 @@
       <file leaf-file-name="appRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="55">
+              <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -107,8 +104,8 @@
       <file leaf-file-name="setPollingPlace.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+            <state relative-caret-position="325">
+              <caret line="128" column="10" lean-forward="false" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -173,13 +170,14 @@
         <option value="$PROJECT_DIR$/BVC-WEB/config/database.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/voteStart.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
         <option value="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/tttt.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" />
       </list>
     </option>
@@ -191,9 +189,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1083" />
+    <option name="width" value="1406" />
     <option name="height" value="972" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -214,6 +212,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,18 +225,6 @@
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
@@ -260,8 +248,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,8 +260,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/BVC-WEB/public" />
+      <recent name="$PROJECT_DIR$/BVC-WEB/web" />
+      <recent name="$PROJECT_DIR$/BVC-WEB/public/js" />
+      <recent name="$PROJECT_DIR$/BVC-WEB/public/css" />
       <recent name="$PROJECT_DIR$/BVC-WEB" />
-      <recent name="$PROJECT_DIR$/BVC-WEB/config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -323,28 +312,31 @@
       <workItem from="1528271467384" duration="2532000" />
       <workItem from="1528440293149" duration="2143000" />
       <workItem from="1528446898808" duration="17156000" />
-      <workItem from="1528538112790" duration="3388000" />
+      <workItem from="1528538112790" duration="3523000" />
+      <workItem from="1528677556685" duration="1841000" />
+      <workItem from="1528679701461" duration="32000" />
+      <workItem from="1528679737419" duration="5475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82699000" />
+    <option name="totallyTimeSpent" value="90182000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="972" extended-state="6" />
+    <frame x="0" y="23" width="1406" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17321429" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21123755" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20301887" sideWeight="0.5043011" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20301887" sideWeight="0.5043011" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -365,7 +357,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/ethprovider.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/polls.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/vote.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/client/libraries/polls/voted.js" />
@@ -422,7 +413,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1723">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -447,7 +437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -456,31 +445,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/model/dbFunc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="1155">
           <caret line="55" column="36" lean-forward="false" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
           <folding />
         </state>
@@ -488,16 +458,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/model/blockFunc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="133" column="18" lean-forward="true" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="2793">
+          <caret line="133" column="18" lean-forward="false" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -510,18 +472,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/tttt.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="128" column="10" lean-forward="false" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        <state relative-caret-position="369">
+          <caret line="80" column="27" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="80" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="567">
+          <caret line="27" column="79" lean-forward="true" selection-start-line="27" selection-start-column="79" selection-end-line="27" selection-end-column="79" />
           <folding />
         </state>
       </provider>
