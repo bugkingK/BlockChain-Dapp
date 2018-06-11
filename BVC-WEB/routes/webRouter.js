@@ -58,7 +58,9 @@ router.get('/getAllplace', function (req, res) {
 });
 
 // 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
-router.get('/getAllCandidate', function (req, res){
+router.get('/getAllCandidate/:placeid', function (req, res){
+    var placeid = req.params.placeid;
+
     blockFunc.candidateLength(function(length){
         blockFunc.searchList(1, false, length, res);
     })

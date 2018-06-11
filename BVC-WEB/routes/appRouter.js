@@ -16,19 +16,19 @@ router.get('/getAllplace', function(req, res){
 
 // 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
 router.get('/getAllCandidate', function(req, res){
+    var placeid = req.param('placeid');
+
 	blockFunc.candidateLength(function(length){
         blockFunc.searchList(1, true, length, res);
     })		
 });
 
 // 5. 투표권을 행사합니다.
+// json 성공실패여부
 router.get('/setVote', function(req, res){
     var placeid = req.param('placeid');
     var candidateid = req.param('candidateid');
     var phone = req.param('phone');
-    // var placeid = 0;
-    // var candidateid = 0;
-    // var phone = 101;
 
     blockFunc.getCheckVoted(placeid, phone, function(err, res){
         if(!err){
@@ -51,6 +51,8 @@ router.get('/setVote', function(req, res){
 
 // 6. 개표합니다.
 router.get('/getCounting', function(req, res){
+    var placeid = req.param('placeid');
+
 	blockFunc.getCounting('testestestes');
 });
 
