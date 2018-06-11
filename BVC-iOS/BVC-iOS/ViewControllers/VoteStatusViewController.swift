@@ -73,7 +73,6 @@ extension VoteStatusViewController: UICollectionViewDataSource {
   }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let message = messages[(indexPath as NSIndexPath).row]
         
         print(message)
