@@ -133,7 +133,7 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
 
     blockFunc.setVoteEnd(placeid, function(err, result) {
         if (!err) {
-            dbFunc.updateIsStarted(placeid, false, function(_err, _res) {
+            dbFunc.updateIsStarted(placeid, 3, function(_err, _res) {
                 if (!_err) {
                     res.redirect('/web/getAllplace');
                     //res.send('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>')

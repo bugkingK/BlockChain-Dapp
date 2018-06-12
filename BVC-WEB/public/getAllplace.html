@@ -69,14 +69,13 @@
                 <th>no</th>
                 <th>시작</th>
             </tr>
-
             <% placeInfoList.forEach(function(item, index){ %>
             <% if(!item.isStarted){ %>
             <tr>
                 <td><%=item.name%></td>
-                <td><%=item.start_regist_period%></td>
-                <td><%=item.end_regist_period%></td>
-                <td><%=item.votedate%></td>
+                <td><%=item.start_regist_period.getFullYear() + '년 ' + item.start_regist_period.getMonth() + '월 ' + item.start_regist_period.getDate() + '일 ' + item.start_regist_period.getHours() + '시 ' + item.start_regist_period.getMinutes() + '분 ' + item.start_regist_period.getSeconds() + '초'%></td>
+                <td><%=item.end_regist_period.getFullYear() + '년 ' + item.end_regist_period.getMonth() + '월 ' + item.end_regist_period.getDate() + '일 ' + item.end_regist_period.getHours() + '시 ' + item.end_regist_period.getMinutes() + '분 ' + item.end_regist_period.getSeconds() + '초'%></td>
+                <td><%=item.votedate.getFullYear() + '년 ' + item.votedate.getMonth() + '월 ' + item.votedate.getDate() + '일 ' + item.votedate.getHours() + '시 ' + item.votedate.getMinutes() + '분 ' + item.votedate.getSeconds() + '초'%></td>
                 <td><%=item.contents%></td>
                 <td><%=item.start_vote_time%></td>
                 <td><%=item.end_vote_time%></td>
@@ -109,12 +108,12 @@
                 <th>종료</th>
             </tr>
             <% placeInfoList.forEach(function(item, index){ %>
-            <% if(item.isStarted){ %>
+            <% if(item.isStarted==1){ %>
             <tr>
                 <td><%=item.name%></td>
-                <td><%=item.start_regist_period%></td>
-                <td><%=item.end_regist_period%></td>
-                <td><%=item.votedate%></td>
+                <td><%=item.start_regist_period.getFullYear() + '년 ' + item.start_regist_period.getMonth() + '월 ' + item.start_regist_period.getDate() + '일 ' + item.start_regist_period.getHours() + '시 ' + item.start_regist_period.getMinutes() + '분 ' + item.start_regist_period.getSeconds() + '초'%></td>
+                <td><%=item.end_regist_period.getFullYear() + '년 ' + item.end_regist_period.getMonth() + '월 ' + item.end_regist_period.getDate() + '일 ' + item.end_regist_period.getHours() + '시 ' + item.end_regist_period.getMinutes() + '분 ' + item.end_regist_period.getSeconds() + '초'%></td>
+                <td><%=item.votedate.getFullYear() + '년 ' + item.votedate.getMonth() + '월 ' + item.votedate.getDate() + '일 ' + item.votedate.getHours() + '시 ' + item.votedate.getMinutes() + '분 ' + item.votedate.getSeconds() + '초'%></td>
                 <td><%=item.contents%></td>
                 <td><%=item.start_vote_time%></td>
                 <td><%=item.end_vote_time%></td>
@@ -132,9 +131,6 @@
         </center>
     </div>
 </div><!-- /.container -->
-
-<!--<button type="button" onClick="window.location.reload()">reload </button>-->
-
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
