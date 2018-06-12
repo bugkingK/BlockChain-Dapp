@@ -30,8 +30,8 @@ router.post('/setPollingPlace', function(req, res){
     blockFunc.setPollingPlace(function(err, placeid, isStarted){
         if (!err) {
             if (placeid != null){
-                dbFunc.InsertPlaceInfo(placeid, isStarted, info, function(result){
-                    res.send(result);
+                dbFunc.insertPlaceInfo(placeid, isStarted, info, function(result){
+                    res.redirect('/web/getAllplace');
                 });
             } else {
                 res.send('block Chain err!')
@@ -50,12 +50,12 @@ router.get('/setCandidate', function (req, res) {
     })
 });
 
-// 3. 등록된 투표장을 볼 수 있습니다.
-router.get('/getAllplace', function (req, res) {
-    blockFunc.placeLength(function(length){
-        blockFunc.searchList(0, false, length, res)
-    })
-});
+// // 3. 등록된 투표장을 볼 수 있습니다.
+// router.get('/getAllplace', function (req, res) {
+//     blockFunc.placeLength(function(length){
+//         blockFunc.searchList(0, false, length, res)
+//     })
+// });
 
 // 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
 router.get('/getAllCandidate/:placeid', function (req, res){
@@ -74,8 +74,8 @@ router.get('/getCounting', function (req, res) {
 
 
 // 8-1. 투표 시작 페이지입니다.
-router.get('/setVoteStart', function(req, res){
-    fs.readFile( path + '/public/setVoteStart.html', 'utf8', function(err, data){
+router.get('/getAllplace', function(req, res){
+    fs.readFile( path + '/public/getAllplace.html', 'utf8', function(err, data){
         if(!err){
             dbFunc.searchPlaceInfo(function(err, result){
                 if(!err) {
@@ -98,7 +98,8 @@ router.get('/setVoteStart/:placeid', function (req, res) {
         if (!err) {
             dbFunc.updateIsStarted(placeid, true, function(_err, _res) {
                 if (!_err) {
-                    res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
+                    res.redirect('/web/getAllplace');
+                    //res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
                 } else {
                     result('<h1>투표를 시작하지 못했습니다.....db err</h1>');
                 }
@@ -109,22 +110,22 @@ router.get('/setVoteStart/:placeid', function (req, res) {
     });
 });
 
-// 9-1. 투표 종료 페이지입니다.
-router.get('/setVoteEnd', function (req, res) {
-    fs.readFile( path + '/public/setVoteEnd.html', 'utf8', function(err, data){
-        if(!err){
-            dbFunc.searchPlaceInfo(function(err, result){
-                if(!err) {
-                    res.send(ejs.render(data, {placeInfoList : result}));
-                } else {
-                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
-                }
-            })
-        } else {
-            res.send("투표 시작 페이지를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.");
-        }
-    })
-});
+// // 9-1. 투표 종료 페이지입니다.
+// router.get('/setVoteEnd', function (req, res) {
+//     fs.readFile( path + '/public/setVoteEnd.html', 'utf8', function(err, data){
+//         if(!err){
+//             dbFunc.searchPlaceInfo(function(err, result){
+//                 if(!err) {
+//                     res.send(ejs.render(data, {placeInfoList : result}));
+//                 } else {
+//                     res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+//                 }
+//             })
+//         } else {
+//             res.send("투표 시작 페이지를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.");
+//         }
+//     })
+// });
 
 // 9-2. 투표를 종료합니다. (투표권을 더 이상 행사할 수 없습니다.) 웹페이지
 router.get('/setVoteEnd/:placeid', function (req, res) {
@@ -134,7 +135,8 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
         if (!err) {
             dbFunc.updateIsStarted(placeid, false, function(_err, _res) {
                 if (!_err) {
-                    res.send('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>')
+                    res.redirect('/web/getAllplace');
+                    //res.send('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>')
                 } else {
                     result('<h1>투표를 종료하지 못했습니다.....db err</h1>');
                 }
@@ -146,11 +148,11 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
 });
 
 
-// 후보자 정보를 가져옵니다.
-router.get('/searchCandidateInfo', function (req, res) {
-    dbFunc.searchCandidateInfo(function(result) {
-
-    })
-})
+// // 후보자 정보를 가져옵니다.
+// router.get('/searchCandidateInfo', function (req, res) {
+//     dbFunc.searchCandidateInfo(function(result) {
+//
+//     })
+// })
 
 module.exports = router;
