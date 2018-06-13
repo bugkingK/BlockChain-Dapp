@@ -43,7 +43,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="http://yangarch.iptime.org/web/setPollingPlace">선거장 생성</a></li>
+                <li><a href="http://yangarch.iptime.org:4210/web/setPollingPlace">선거장 생성</a></li>
                 <li class="active"><a href="#">선거장 관리</a></li>
                 <li><a href="http://yangarch.iptime.org:4210/web/getCounting">개표하기</a></li>
             </ul>
@@ -69,7 +69,7 @@
                 <tr>
                     <td><%=item.user_login%></td>
                     <td><%=item.user_email%></td>
-                    <td><%=item.result%></td> 
+                    <td><%=item.result%></td>
                     <td><a href='setCandidate/<%=item.result%>/<%=item.user_login%>'> <input type = "submit" value="등록" name=""> </td>
                     </tr>
                 <%});%>
@@ -99,10 +99,10 @@
                 <tr>
                     <td><%=item.candidateid%></td>
                     <td><%=item.name%></td>
-                    <td><%=item.hometown%></td> 
+                    <td><%=item.hometown%></td>
                     <td><%=item.phone%></td>
-                    <td><%=item.wantvote%></td> 
-                    <td><%=item.career%></td> 
+                    <td><%=item.wantvote%></td>
+                    <td><%=item.career%></td>
                     <td><a href='setCandidateResign/<%=item.wantvote%>/<%=item.candidateid%>'> <input type = "submit" value="사퇴" name=""> </td>
                     </tr>
                 <% } %>
