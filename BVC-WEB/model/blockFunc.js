@@ -139,7 +139,6 @@ module.exports.setVoteEnd = function(placeid, result) {
     })
 };
 
-
 module.exports.searchList = function(selecter, isjson, length, res) {
     var result = []
 

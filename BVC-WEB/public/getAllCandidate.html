@@ -57,27 +57,22 @@
             <h1>미등록 후보자 <small>미등록된 후보자 리스트입니다.</small></h1>
         </div>
 
-        <table class="table table-hover">
+         <table class="table table-hover">
             <tr>
-                <th>no</th>
-                <th>이름</th>
-                <th>국적</th>
-                <th>휴대폰</th>
-                <th>선거장</th>
-                <th>학력</th>
+                <th>아이디</th>
+                <th>이메일</th>
+                <th>내용</th>
                 <th>등록</th>
             </tr>
-            <% candidateInfoList.forEach(function(item, index){ %>
-            <tr>
-                <td name="candidateid" type="text"><%=item.candidateid%></td>
-                <td><%=item.name%></td>
-                <td><%=item.hometown%></td>
-                <td><%=item.phone%></td>
-                <td><%=item.wantvote%></td>
-                <td><%=item.career%></td>
-                <td><a href='setCandidate/<%= item.candidateid%>'> <input type="submit" class="btn btn-info" value="등록" ></a></td>
-            </tr>
-            <%});%>
+
+            <% candidateList.forEach(function(item, index){ %>
+                <tr>
+                    <td><%=item.user_login%></td>
+                    <td><%=item.user_email%></td>
+                    <td><%=item.result%></td> 
+                    <td><a href='setCandidate/<%=item.result%>/<%=item.user_login%>'> <input type = "submit" value="등록" name=""> </td>
+                    </tr>
+                <%});%>
         </table>
     </div>
 
@@ -89,30 +84,30 @@
             <h1>등록된 후보자 <small>등록된 후보자 리스트입니다.</small></h1>
         </div>
 
-        <table class="table table-hover">
+         <table class="table table-hover">
             <tr>
                 <th>no</th>
                 <th>이름</th>
-                <th>국적</th>
-                <th>휴대폰</th>
+                <th>거주지</th>
+                <th>연락처</th>
                 <th>선거장</th>
                 <th>학력</th>
-                <th>삭제</th>
+                <th>사퇴</th>
             </tr>
-            <% candidateInfoList.forEach(function(item, index){ %>
-            <tr>
-                <td name="candidateid" type="text"><%=item.candidateid%></td>
-                <td><%=item.name%></td>
-                <td><%=item.hometown%></td>
-                <td><%=item.phone%></td>
-                <td><%=item.wantvote%></td>
-                <td><%=item.career%></td>
-                <td><a href='setCandidate/<%= item.candidateid%>'> <input type="submit" class="btn btn-info" value="삭제" ></a></td>
-            </tr>
-            <%});%>
+            <% bookedCandidateList.forEach(function(item, index){ %>
+                <% if(item.state) { %>
+                <tr>
+                    <td><%=item.candidateid%></td>
+                    <td><%=item.name%></td>
+                    <td><%=item.hometown%></td> 
+                    <td><%=item.phone%></td>
+                    <td><%=item.wantvote%></td> 
+                    <td><%=item.career%></td> 
+                    <td><a href='setCandidateResign/<%=item.wantvote%>/<%=item.candidateid%>'> <input type = "submit" value="사퇴" name=""> </td>
+                    </tr>
+                <% } %>
+                <%});%>
         </table>
-    </div>
-
     <div class="container">
         <center>
             <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | 온라인 투표 시스템</p>
