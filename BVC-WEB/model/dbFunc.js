@@ -23,6 +23,74 @@ module.exports.insertPlaceInfo = function(placeid, isStarted, info, result) {
     })
 };
 
+//후보자를 등록합니다 블록체인 까지
+module.exports.insertCandidateInfo = function(placeid, candidateid, candidateinfo, user_login, result){
+    var candidateID = parseInt(candidateid);
+    var placeID=parseInt(placeid);
+    var sql='INSERT INTO candidateinfo (name,hometown,phone,wantvote,career,candidateid, placeid, state) VALUES (?,?,?,?,?,?,?, 1)';
+    var params = [candidateinfo[0], candidateinfo[1], candidateinfo[2], candidateinfo[3], candidateinfo[4], candidateID, placeID];
+        
+    db.query(sql, params, function(err, res){
+        if(!err) {
+            console.log("insert success");
+            
+            var sql1='UPDATE wp_users SET state=1 WHERE user_login=?';
+            var params1=[user_login]
+            db.query(sql1, params1, function(err, res){
+                if(!err){
+                    console.log("the end")
+                    result(null, res);
+                } else {
+                    console.log("not end")
+                    result(err, null);
+                }
+            })
+
+        } else {
+            console.log(err);
+        }
+    })
+}
+
+module.exports.updateCandidateState = function(candidateid, result){
+    var sql = 'UPDATE candidateinfo SET state=0 WHERE candidateid=?'
+    var params = [candidateid]
+    db.query(sql, params, function(err, res){
+        if(!err){
+            result(null, res);
+        } else {
+            result(err, null);
+        }
+    })
+}
+
+module.exports.selectBookedCandidateList = function(placename, result) {
+    var sql = 'SELECT * FROM candidateinfo WHERE wantVote=?'
+    var params = [placename];
+    db.query(sql, params, function(err, res){
+        if(!err) {
+            result(null, res);
+        } else {
+            result(err, null);
+        }
+    })
+}
+
+//투표장 아이디를 가져옵니다.
+module.exports.searchPlaceId = function(placename, result) {
+    var sql = 'SELECT placeid FROM vote.placeinfo WHERE name=?';
+    var name=placename;
+    var param =[name];
+    db.query(sql, param, function(err, res){
+        if(!err) {
+            result(null, res);
+        } else {
+            result(err, null);
+        }
+    })
+}
+
+
 // db에서 후보자의 정보를 가져옵니다.
 module.exports.searchCandidateInfo = function(result) {
     var sql = 'SELECT * FROM candidateinfo';
@@ -37,6 +105,8 @@ module.exports.searchCandidateInfo = function(result) {
         }
     })
 }
+
+
 
 module.exports.searchPlaceInfo = function(result) {
     var sql = 'SELECT * FROM placeinfo';
@@ -62,4 +132,19 @@ module.exports.updateIsStarted = function(placeid, isStarted, result) {
         }
     })
 }
+
+// db의 후보자 정보를 불러옵니다.
+module.exports.selectCandidateList = function(placename, result){
+    var wantVote = placename;
+   
+    var sql = 'SELECT u.user_login, u.user_email, u.user_registered, group_concat(m.meta_value) AS "result", u.state FROM wp_users u JOIN wp_usermeta m ON u.ID = m.user_id WHERE m.meta_key= "wantVote" OR m.meta_key= "first_name" OR m.meta_key= "addr1" OR m.meta_key= "phone1" OR m.meta_key= "career" GROUP BY user_login';
+    db.query(sql, function(err, res){
+        if(!err){
+            result(null, res);
+        }else{
+            result(err, null);    
+        }
+    })
+}
+
 

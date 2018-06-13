@@ -72,7 +72,7 @@
             <% placeInfoList.forEach(function(item, index){ %>
             <% if(!item.isStarted){ %>
             <tr>
-                <td><a href='getAllCandidate/<%= item.placeid%>'><%=item.name%></a></td>
+                <td><a href='getAllCandidate/<%= item.name%>'><%=item.name%></a></td>
                 <td><%=item.start_regist_period.getFullYear() + '년 ' + item.start_regist_period.getMonth() + '월 ' + item.start_regist_period.getDate() + '일 ' + item.start_regist_period.getHours() + '시 ' + item.start_regist_period.getMinutes() + '분 ' + item.start_regist_period.getSeconds() + '초'%></td>
                 <td><%=item.end_regist_period.getFullYear() + '년 ' + item.end_regist_period.getMonth() + '월 ' + item.end_regist_period.getDate() + '일 ' + item.end_regist_period.getHours() + '시 ' + item.end_regist_period.getMinutes() + '분 ' + item.end_regist_period.getSeconds() + '초'%></td>
                 <td><%=item.votedate.getFullYear() + '년 ' + item.votedate.getMonth() + '월 ' + item.votedate.getDate() + '일 ' + item.votedate.getHours() + '시 ' + item.votedate.getMinutes() + '분 ' + item.votedate.getSeconds() + '초'%></td>

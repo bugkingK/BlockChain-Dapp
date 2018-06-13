@@ -100,14 +100,32 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
     });
 });
 
-// 3-1. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
-router.get('/getAllCandidate/:placeid', function (req, res){
-    var placeid = req.params.placeid;
 
-    fs.readFile( path + '/public/getAllCandidate.html', 'utf8', function(err, data) {
-        console.log('모든 후보자 : '+placeid)
-    });
-});
+//// 아직
+// 3-1. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
+router.get('/getAllCandidate/:placename', function(req, res){
+    var placeName = req.params.placename;
+    var nowcandidate = [];
+    
+    fs.readFile('public/getAllCandidate.html', 'utf8', function(err, data){
+        dbFunc.selectCandidateList(placeName, function(_err, _res) {
+            if(!_err){
+                _res.forEach(function(_item, _index){
+                    var candidateinfo = _item.result.split(",");
+                    
+                    if(candidateinfo[3] == placeName && !_item.state){
+                        nowcandidate.push(_item);
+                    }
+                })
+                dbFunc.selectBookedCandidateList(placeName, function(__err, __res){
+                    res.send(ejs.render(data, {candidateList : nowcandidate, bookedCandidateList : __res}));
+                })
+            } else {
+                res.send("err candidateList를 가져오지 못했습니다.")
+            }
+        })
+    })
+})
 
 // 3-2. 입력한 투표장의 등록된 후보자를 볼 수 있습니다.
 router.get('/getBookedCandidate/:placeid', function (req, res){
@@ -118,15 +136,46 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
     });
 });
 
-//// 아직
-
-
 // 3-3. 후보자를 등록합니다. 웹페이지
-router.get('/setCandidate', function (req, res) {
-    blockFunc.setCandidate(1, function(json){
-        console.log(json)
+router.get('/getAllCandidate/setCandidate/:result/:user_login', function (req, res) {
+    var candidate=req.params.result;
+    var user_login=req.params.user_login;
+    var candidateinfo=candidate.split(",");
+    var placeid;
+    
+    dbFunc.searchPlaceId(candidateinfo[3], function(err,result){
+        if(!err){
+            result.forEach(function(item, index){
+                blockFunc.setCandidate(item.placeid, function(_err, candidateid){
+                    if(!_err){
+                        dbFunc.insertCandidateInfo(item.placeid, candidateid, candidateinfo, user_login, function(result){
+                            if(!err){
+                                res.redirect('/web/getAllCandidate/' + candidateinfo[3]);
+                            }
+                        })
+                    }
+                })
+            })
+        } else {
+            
+        }
     })
 });
+
+// 3-4. 후보자를 사퇴시킵니다.
+router.get('/getAllCandidate/setCandidateResign/:placeName/:candidateid', function(req, res){
+    var candidateid = req.params.candidateid;
+    var placeName = req.params.placeName;
+    
+    dbFunc.updateCandidateState(candidateid, function(_err, _res){
+        if(!_err){
+            console.log('state update success');
+            res.redirect('/web/getAllCandidate/' + placeName)
+        } else {
+            console.log('state update err : ' + err);
+        }
+    })
+})
 
 // 6. 개표합니다. - 웹페이지 형태와 json 형태가 필요합니다.
 router.get('/getCounting', function(req, res){
