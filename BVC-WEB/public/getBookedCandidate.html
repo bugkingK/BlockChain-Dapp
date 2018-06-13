@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://bootstrapk.com/favicon.ico">
+
+    <title>Block Chain Voting System</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://bootstrapk.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://bootstrapk.com/examples/starter-template/starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://bootstrapk.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    </head>
+    <![endif]-->
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://bug.lasel.kr/bvc/blog/">Block Chain Voting System</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://bug.lasel.kr:4210/web/setPollingPlace">선거장 생성</a></li>
+                <li class="active"><a href="#">선거장 관리</a></li>
+                <li><a href="http://bug.lasel.kr:4210/web/getCounting">개표하기</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="contentwrap">
+        <div class="page-header">
+            <h1>등록된 후보자 <small>등록된 후보자 리스트입니다.</small></h1>
+        </div>
+
+        <table class="table table-hover">
+            <tr>
+                <th>no</th>
+                <th>이름</th>
+                <th>국적</th>
+                <th>휴대폰</th>
+                <th>선거장</th>
+                <th>학력</th>
+            </tr>
+            <% candidateInfoList.forEach(function(item, index){ %>
+            <tr>
+                <td name="candidateid" type="text"><%=item.candidateid%></td>
+                <td><%=item.name%></td>
+                <td><%=item.hometown%></td>
+                <td><%=item.phone%></td>
+                <td><%=item.wantvote%></td>
+                <td><%=item.career%></td>
+            </tr>
+            <%});%>
+        </table>
+    </div>
+
+    <div class="container">
+        <center>
+            <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | 온라인 투표 시스템</p>
+        </center>
+    </div>
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://bootstrapk.com/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://bootstrapk.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

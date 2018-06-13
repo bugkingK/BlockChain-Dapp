@@ -5,7 +5,7 @@ var db = require( path + '/config/database');
 db.connect();
 
 // db에 투표장 정보를 입력합니다.
-module.exports.InsertPlaceInfo = function(placeid, isStarted, info, result) {
+module.exports.insertPlaceInfo = function(placeid, isStarted, info, result) {
     var placeID = parseInt(placeid);
 
     var sql = 'INSERT INTO placeinfo (name, start_regist_period, end_regist_period, votedate, contents, start_vote_time, end_vote_time, placeid, isStarted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';

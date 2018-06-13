@@ -11,12 +11,11 @@ import UIKit
 import Alamofire
 
 private enum siteURL: String {
-    case server             = "http://yangarch.iptime.org:4210/"
+    case server             = "http://bug.lasel.kr:4210/app/"
     case getAllplace        = "getAllplace"
     case getAllCandidate    = "getAllCandidate"
     case setVote            = "setVote"
     case getCounting        = "getCounting"
-    case setPollingPlace    = "setPollingPlace"
 }
 
 class Network{
@@ -61,10 +60,10 @@ class APIClient {
     func getAllplace() {
         let network = Network(siteURL.getAllplace.rawValue, method: .get)
         network.connetion(){ response in
-            print(response)
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [String: String] {
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
                 switch resultCode {
                 case 200:
+                    self.appDelegate.showAlert(resultMessage)
                     print(resultData)
                     break
                 default:
@@ -84,7 +83,7 @@ class APIClient {
         let network = Network(siteURL.getAllCandidate.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             print(response)
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [String: String] {
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
                 switch resultCode {
                 case 200:
                     print(resultData)
@@ -106,10 +105,10 @@ class APIClient {
         let network = Network(siteURL.setVote.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             print(response)
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [String: String] {
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String {
                 switch resultCode {
                 case 200:
-                    print(resultData)
+                    self.appDelegate.showAlert(resultMessage)
                     break
                 default:
                     self.appDelegate.showAlert(resultMessage)
@@ -123,27 +122,24 @@ class APIClient {
     
     // 투표 결과 가져오기
     func getCounting(placeid: String) {
+        let parameters: Parameters = ["placeid" : placeid]
         
-    }
-    
-    func setPollingPlace() {
-        let network = Network(siteURL.setPollingPlace.rawValue, method: .get)
+        let network = Network(siteURL.setVote.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             print(response)
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String {
+            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
                 switch resultCode {
                 case 200:
-                    
+                    print(resultData)
                     break
                 default:
                     self.appDelegate.showAlert(resultMessage)
                     break
                 }
+            } else {
+                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
             }
-            self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
         }
     }
-    
-    
 }
 

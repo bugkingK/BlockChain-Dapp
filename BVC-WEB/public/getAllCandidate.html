@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,19 +27,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     </head>
     <![endif]-->
-    <style>
-        #page_footer {
-            position:absolute;
-            bottom:0;
-            width:100%;
-            height:70px;
-            background:#ccc;
-        }
-        .footer_text{
-            margin: 20px 0;
-            color: #777;
-        }
-    </style>
+
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -52,62 +39,86 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Block Chain Voting System</a>
+            <a class="navbar-brand" href="http://bug.lasel.kr/bvc/blog/">Block Chain Voting System</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="http://bug.lasel.kr:4210/web/setPollingPlace">선거장 생성</a></li>
+                <li class="active"><a href="#">선거장 관리</a></li>
+                <li><a href="http://bug.lasel.kr:4210/web/getCounting">개표하기</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-    <div class="starter-template">
-        <h1>선거 종료하기</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <div class="contentwrap">
+        <div class="page-header">
+            <h1>미등록 후보자 <small>미등록된 후보자 리스트입니다.</small></h1>
+        </div>
 
         <table class="table table-hover">
             <tr>
-                <th>투표장</th>
-                <th>등록시작</th>
-                <th>등록종료</th>
-                <th>투표날</th>
-                <th>투표내용</th>
-                <th>투표시작</th>
-                <th>투표종료</th>
                 <th>no</th>
-                <th>종료</th>
+                <th>이름</th>
+                <th>국적</th>
+                <th>휴대폰</th>
+                <th>선거장</th>
+                <th>학력</th>
+                <th>등록</th>
             </tr>
-            <% placeInfoList.forEach(function(item, index){ %>
-            <% if(item.isStarted){ %>
+            <% candidateInfoList.forEach(function(item, index){ %>
             <tr>
+                <td name="candidateid" type="text"><%=item.candidateid%></td>
                 <td><%=item.name%></td>
-                <td><%=item.start_regist_period%></td>
-                <td><%=item.end_regist_period%></td>
-                <td><%=item.votedate%></td>
-                <td><%=item.contents%></td>
-                <td><%=item.start_vote_time%></td>
-                <td><%=item.end_vote_time%></td>
-                <td name="placeid" type = "text"><%=item.placeid%></td>
-                <td><a href='setVoteEnd/<%= item.placeid%>'> <input type = "submit" class="btn btn-info" value="종료" name=""></a></td>
+                <td><%=item.hometown%></td>
+                <td><%=item.phone%></td>
+                <td><%=item.wantvote%></td>
+                <td><%=item.career%></td>
+                <td><a href='setCandidate/<%= item.candidateid%>'> <input type="submit" class="btn btn-info" value="등록" ></a></td>
             </tr>
-            <% } %>
             <%});%>
         </table>
     </div>
 
 </div><!-- /.container -->
 
-<footer class="footer" id="page_footer">
+<div class="container">
+    <div class="contentwrap">
+        <div class="page-header">
+            <h1>등록된 후보자 <small>등록된 후보자 리스트입니다.</small></h1>
+        </div>
+
+        <table class="table table-hover">
+            <tr>
+                <th>no</th>
+                <th>이름</th>
+                <th>국적</th>
+                <th>휴대폰</th>
+                <th>선거장</th>
+                <th>학력</th>
+                <th>삭제</th>
+            </tr>
+            <% candidateInfoList.forEach(function(item, index){ %>
+            <tr>
+                <td name="candidateid" type="text"><%=item.candidateid%></td>
+                <td><%=item.name%></td>
+                <td><%=item.hometown%></td>
+                <td><%=item.phone%></td>
+                <td><%=item.wantvote%></td>
+                <td><%=item.career%></td>
+                <td><a href='setCandidate/<%= item.candidateid%>'> <input type="submit" class="btn btn-info" value="삭제" ></a></td>
+            </tr>
+            <%});%>
+        </table>
+    </div>
+
     <div class="container">
         <center>
             <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | 온라인 투표 시스템</p>
         </center>
     </div>
-</footer>
+</div><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

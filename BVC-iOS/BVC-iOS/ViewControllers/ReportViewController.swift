@@ -21,7 +21,7 @@ class ReportViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         print("report: \(placeid)")
-        getCurrentDate()
+        //getCurrentDate()
         //getCounting(placeid: placeid)
         testing()
     }
@@ -43,6 +43,6 @@ class ReportViewController: UIViewController {
     
     func testing() {
         let api = APIClient()
-        api.setPollingPlace()
+        api.getAllplace()
     }
 }
