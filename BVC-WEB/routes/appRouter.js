@@ -10,7 +10,7 @@ var view = require( path + '/view/json' );
 // 3. 등록된 투표장을 볼 수 있습니다.
 router.get('/getAllplace', function(req, res){
 	blockFunc.placeLength(function(length){
-        blockFunc.searchList(0, true, length, res)
+        blockFunc.searchList(0, true,0, length, res)
     })
 });
 
@@ -19,8 +19,8 @@ router.get('/getAllCandidate', function(req, res){
     var placeid = req.param('placeid');
 
 	blockFunc.candidateLength(function(length){
-        blockFunc.searchList(1, true, length, res);
-    })		
+        blockFunc.searchList(1, true, 3, length, res);
+    })
 });
 
 // 5. 투표권을 행사합니다.

@@ -77,11 +77,14 @@ module.exports.candidateLength = function(length) {
 };
 
 // 등록된 후보자의 정보를 반환
-module.exports.getCandidateId = function(index, candidateInfo) {
+module.exports.getCandidateId = function(index, placeid, candidateInfo) {
     BVC.getCandidateId(index, function(err, res){
         if(!err) {
+          var contents;
+          //if(parseInt(placeid) == parseInt(res[0].toLocaleString())){
             var contents = { "placeID" : res[0].toLocaleString(), "CandidateID" : res[1].toLocaleString()}
-            candidateInfo(contents)
+        //  }
+          candidateInfo(contents)
         } else {
             console.log(err);
         }
@@ -102,7 +105,15 @@ module.exports.setVote = function(placeid, candidateid, phone, result) {
 
 // 6. 개표합니다.
 module.exports.getCounting = function(candidateid, res) {
-    console.log(" counting test ");
+  BVC.getCounting(candidateid, function(err, res){
+    if(!err){
+      var contents = {"candidateID" : candidateID, "voteCount" : res.toLocaleString()}
+      voteCount(contents)
+    } else {
+      console.log(err);
+      jsonPrsing(400, err, "", json)
+    }
+  })
 };
 
 
@@ -118,7 +129,7 @@ module.exports.getCheckVoted = function(placeid, phone, result) {
 };
 
 // 8. 투표를 시작합니다.
-module.exports.setVoteStart = function(placeid, result) { 
+module.exports.setVoteStart = function(placeid, result) {
     BVC.setVoteStart(placeid, function(err, res){
         if(!err) {
             result(null, res)
@@ -129,7 +140,7 @@ module.exports.setVoteStart = function(placeid, result) {
 };
 
 // 9. 투표를 종료합니다.
-module.exports.setVoteEnd = function(placeid, result) { 
+module.exports.setVoteEnd = function(placeid, result) {
     BVC.setVoteEnd(placeid, function(err, res){
         if(!err) {
             result(null, res)
@@ -139,11 +150,11 @@ module.exports.setVoteEnd = function(placeid, result) {
     })
 };
 
-module.exports.searchList = function(selecter, isjson, length, res) {
+module.exports.searchList = function(selecter, isjson, placeid, length, res) {
     var result = []
 
     Array.apply(null, Array(parseInt(length))).map(function (item, index) {
-        result.push(closureAdd(selecter, index));
+        result.push(closureAdd(selecter, placeid, index));
     })
 
     async.series(result, function(err, resEnd){
@@ -157,7 +168,7 @@ module.exports.searchList = function(selecter, isjson, length, res) {
     })
 };
 
-function closureAdd(number, index){
+function closureAdd(number, placeid, index){
     switch(number) {
         case 0:
             return function(callback){
@@ -168,7 +179,7 @@ function closureAdd(number, index){
             break;
         case 1:
             return function(callback){
-                exports.getCandidateId(index, function(CandidateInfo){
+                exports.getCandidateId(index, placeid, function(CandidateInfo){
                     callback(null, CandidateInfo)
                 })
             }
