@@ -5,7 +5,7 @@ var path = process.cwd();
 var view = require( path + '/view/json' );
 var BVC = require( path + '/config/blockChain')
 
-// 1. 투표장 등록하는 메소드입니다. 결과로 placeid를 반환합니다.
+// 1. 블록체인에 선거장을 생성합니다. placeid를 반환합니다.
 module.exports.setPollingPlace = function(result) {
     BVC.setPollingPlace.sendTransaction(function(_err, _res){
         if(!_err) {
@@ -22,7 +22,7 @@ module.exports.setPollingPlace = function(result) {
     });
 };
 
-// 2. 후보자 등록하는 메소드입니다. 결과로 candidateid를 반환합니다.
+// 2. 블록체인에 후보자를 생성합니다. candidateid를 반환합니다.
 module.exports.setCandidate = function(placeid, result) {
     BVC.setCandidate.sendTransaction(placeid, function(_err, _res){
         if(!_err) {
@@ -39,62 +39,9 @@ module.exports.setCandidate = function(placeid, result) {
     })
 };
 
-// 3. 등록된 투표장 보는 메소드입니다.
-// 등록된 투표장 길이 반환
-module.exports.placeLength = function(length) {
-    BVC.getPlaceLength(function(err, res){
-        if(!err) {
-            length(res.toLocaleString());
-        } else {
-            console.log(err);
-        }
-    })
-};
-
-// 등록된 투표장의 정보를 반환
-module.exports.getPlaceId = function(index, placeInfo) {
-    BVC.getPlaceId(index, function(err, res){
-        if(!err) {
-            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
-            placeInfo(contents)
-        } else {
-            console.log(err);
-        }
-    })
-};
-
-
-// 4. 등록된 후보자를 보는 메소드입니다.
-// 등록된 후보자 길이 반환
-module.exports.candidateLength = function(length) {
-    BVC.getCandidateLength(function(err, res){
-        if(!err) {
-            length(res.toLocaleString());
-        } else {
-            console.log(err);
-        }
-    })
-};
-
-// 등록된 후보자의 정보를 반환
-module.exports.getCandidateId = function(index, placeid, candidateInfo) {
-    BVC.getCandidateId(index, function(err, res){
-        if(!err) {
-          var contents;
-          //if(parseInt(placeid) == parseInt(res[0].toLocaleString())){
-            var contents = { "placeID" : res[0].toLocaleString(), "CandidateID" : res[1].toLocaleString()}
-        //  }
-          candidateInfo(contents)
-        } else {
-            console.log(err);
-        }
-    })
-};
-
 // 5. 투표하는 메소드입니다.
 module.exports.setVote = function(placeid, candidateid, phone, result) {
     BVC.setVote(placeid, candidateid, phone, function(err, res) {
-        // 트랜젝션 주소가 err로 갈지 res로 갈지 체크해봐야함. 이 구문이 제대로 돌지 못할 수 있음을 유의하셈.
         if(!err) {
             result(null, res);
         } else {
@@ -102,20 +49,6 @@ module.exports.setVote = function(placeid, candidateid, phone, result) {
         }
     })
 };
-
-// 6. 개표합니다.
-module.exports.getCounting = function(candidateid, res) {
-  BVC.getCounting(candidateid, function(err, res){
-    if(!err){
-      var contents = {"candidateID" : candidateID, "voteCount" : res.toLocaleString()}
-      voteCount(contents)
-    } else {
-      console.log(err);
-      jsonPrsing(400, err, "", json)
-    }
-  })
-};
-
 
 // 7. 투표를 했는지 확인하는 메소드입니다.
 module.exports.getCheckVoted = function(placeid, phone, result) {
@@ -150,25 +83,26 @@ module.exports.setVoteEnd = function(placeid, result) {
     })
 };
 
-module.exports.searchList = function(selecter, isjson, placeid, length, res) {
+// selector = 0인 경우 등록된 선거장을 추출합니다. extractArr(0, null, length, function(err, res))
+// selector = 1인 경우 등록된 후보자를 추출합니다. extractArr(1, placeid, length, function(err, res))
+// selector = 2인 경우 개표를 결과를 추출합니다. extractArr(2, placeid, length, function(err, res))
+module.exports.extractArr = function(selector, placeid, length, outcome) {
     var result = []
 
     Array.apply(null, Array(parseInt(length))).map(function (item, index) {
-        result.push(closureAdd(selecter, placeid, index));
+        result.push(closureAdd(selector, index, placeid));
     })
 
     async.series(result, function(err, resEnd){
-        if (isjson) {
-            view.jsonParsing(200, "success", resEnd, function(jsonData){
-                res.json(jsonData)
-            })
+        if (!err){
+            outcome(null, resEnd)
         } else {
-            res.send('html')
+            outcome(err, null)
         }
     })
 };
 
-function closureAdd(number, placeid, index){
+function closureAdd(number, index, placeid){
     switch(number) {
         case 0:
             return function(callback){
@@ -179,13 +113,87 @@ function closureAdd(number, placeid, index){
             break;
         case 1:
             return function(callback){
-                exports.getCandidateId(index, placeid, function(CandidateInfo){
-                    callback(null, CandidateInfo)
+                exports.getCandidateId(index, placeid, function(err, result){
+                    callback(null, result)
+                })
+            }
+            break;
+        case 2:
+            return function(callback){
+                exports.getCounting(index, placeid, function(err, result){
+                    if(!err){
+                        callback(null, result)
+                    }
                 })
             }
             break;
         default:
             console.log("why?")
-
     }
 }
+
+// 등록된 투표장 길이 반환
+module.exports.placeLength = function(result) {
+    BVC.getPlaceLength(function(err, res){
+        if(!err) {
+            result(null, res.toLocaleString());
+        } else {
+            result(err, null);
+        }
+    })
+};
+
+// 등록된 후보자 길이 반환
+module.exports.candidateLength = function(result) {
+    BVC.getCandidateLength(function(err, res){
+        if(!err) {
+            result(null, res.toLocaleString());
+        } else {
+            result(err, null);
+        }
+    })
+};
+
+// 등록된 투표장의 정보를 반환
+module.exports.getPlaceId = function(placeid, placeInfo) {
+    BVC.getPlaceId(placeid, function(err, res){
+        if(!err) {
+            var contents = { "placeid" : res[0].toLocaleString(), "isStarted" : res[1].toLocaleString()}
+            placeInfo(contents)
+        } else {
+            console.log(err);
+        }
+    })
+};
+
+// 등록된 후보자의 정보를 반환
+module.exports.getCandidateId = function(index, placeid, candidateInfo) {
+    BVC.getCandidateId(index, function(err, res){
+        if(!err) {
+            if(parseInt(placeid) == parseInt(res[0].toLocaleString())){
+                var contents = { "placeID" : res[0].toLocaleString(), "CandidateID" : res[1].toLocaleString()}
+                candidateInfo(null, contents)
+            } else {
+                candidateInfo(null, null)
+            }
+        } else {
+            console.log(err);
+        }
+    })
+};
+
+// 6. 개표합니다.
+module.exports.getCounting = function(index, placeid, candidateInfo) {
+    BVC.getCounting(placeid, function(err, res){
+        if(!err){
+            if(parseInt(placeid) == parseInt(res[0].toLocaleString())){
+                var contents = {"placeid" : res[0].toLocaleString(), "candidateid" : res[1].toLocaleString(), "voteCount" : res[2].toLocaleString()};
+                candidateInfo(contents)
+            } else {
+                candidateInfo(null)
+            }
+        } else {
+            console.log(err);
+        }
+    })
+};

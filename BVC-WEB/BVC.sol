@@ -42,6 +42,7 @@ contract BVC {
         uint extensionCandidateID = candidateList.length - 1;
         candidateList[extensionCandidateID].candidateID = extensionCandidateID;
         candidateList[extensionCandidateID].placeID = _placeID;
+        candidateList[extensionCandidateID].voteCount = 0;
     }
 
     function getCandidate() constant returns(uint) { //return으로 후보자 ID
@@ -109,11 +110,12 @@ contract BVC {
     }
 
     // 해당 후보자의 득표수를 리턴하는 get 함수
-    function getCounting(uint _placeID, uint _index) constant returns(uint, uint) {
-        for (uint i = 0; i < placeList.length; i++) {
-            if(candidateList[i].placeID == _placeID) {
-                return (candidateList[_index].candidateID, candidateList[_index].voteCount);
-            }
-        }
+    function getCounting(uint _placeID, uint _index) constant returns(uint, uint, uint) {
+        //for (uint i = 0; i < placeList.length; i++) {
+        //    if(candidateList[i].placeID == _placeID) {
+        //        return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
+        //    }
+        //}
+        return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
     }
 }
