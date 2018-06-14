@@ -220,14 +220,13 @@ router.get('/getAllCandidate/setCandidate/:placeid/:user_login/:name', function 
 });
 
 // 3-4. 후보자를 사퇴시킵니다.
-router.get('/getAllCandidate/setCandidateResign/:placeid/:candidateid', function(req, res){
+router.get('/getAllCandidate/setCandidateResign/:candidateid/:placeid', function(req, res){
     var candidateid = req.params.candidateid;
     var placeid = req.params.placeid;
-    
     dbFunc.updateCandidateState(candidateid, function(_err, _res){
         if(!_err){
             console.log('state update success');
-            res.redirect('/web/getAllCandidate/' + placeid)
+            res.redirect('/web/getAllCandidate/' + placeid);
         } else {
             console.log('state update err : ' + err);
         }
