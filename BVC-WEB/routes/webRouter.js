@@ -151,7 +151,15 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                                 var outcomeBooked = []
 
                                 _result.map(function (item, index) {
-                                    outcomeBooked.push(closureAd3d(placeid, item["CandidateID"]));
+
+                                    // console.log('item : ' + item["CandidateID"])
+                                    // console.log('index : ' + index)
+                                    if(item == null) {
+                                        outcomeBooked.push(closureAd3d(placeid, null));
+                                    } else {
+                                        outcomeBooked.push(closureAd3d(placeid, item["CandidateID"]));
+                                    }
+
                                 })
 
                                 async.series(outcomeBooked, function(err1, resEnd1){
