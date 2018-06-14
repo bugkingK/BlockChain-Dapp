@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/BVC.sol" afterPath="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" afterPath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/getAllCandidate.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/getAllCandidate.html" />
       <change beforePath="$PROJECT_DIR$/BVC-WEB/public/getAllplace.html" afterPath="$PROJECT_DIR$/BVC-WEB/public/getAllplace.html" />
+      <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
       <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,18 +27,8 @@
       <file leaf-file-name="webRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="81" column="60" lean-forward="false" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getAllplace.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getAllplace.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2604">
-              <caret line="124" column="16" lean-forward="true" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+            <state relative-caret-position="326">
+              <caret line="143" column="25" lean-forward="true" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -41,30 +37,8 @@
       <file leaf-file-name="setPollingPlace.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="56" column="49" lean-forward="false" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="157" column="12" lean-forward="true" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
-              <folding>
-                <element signature="e#6684#6690#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setVoteEnd.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2058">
-              <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+            <state relative-caret-position="830">
+              <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -73,9 +47,81 @@
       <file leaf-file-name="dbFunc.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/model/dbFunc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+            <state relative-caret-position="302">
+              <caret line="94" column="34" lean-forward="false" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getCounting.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getCounting.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="860">
+              <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getBookedCandidate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getBookedCandidate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="860">
+              <caret line="47" column="55" lean-forward="false" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blockFunc.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/model/blockFunc.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="482">
+              <caret line="124" column="46" lean-forward="false" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getAllCandidate.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getAllCandidate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3696">
+              <caret line="176" column="8" lean-forward="false" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getAllplace.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getAllplace.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="86" column="12" lean-forward="false" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appRouter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,9 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vote</find>
-      <find>container</find>
-      <find>setAllPlace</find>
       <find>setVoteStart</find>
       <find>getAllplace</find>
       <find>placeID</find>
@@ -104,7 +147,6 @@
       <find>fs</find>
       <find>view</find>
       <find>conn</find>
-      <find>getCandidateId</find>
       <find>contact</find>
       <find>device</find>
       <find>icon</find>
@@ -113,7 +155,19 @@
       <find>btn</find>
       <find>InsertPlaceInfo</find>
       <find>updateIsStarted</find>
+      <find>bug.lasel</find>
+      <find>setCandidate</find>
+      <find>getCounting</find>
+      <find>getPlaceId</find>
+      <find>getCandidateId</find>
+      <find>searchList</find>
+      <find>_index</find>
+      <find>selectCandidateList</find>
+      <find>candidateList</find>
+      <find>placeInfoList</find>
       <find>name</find>
+      <find>candidateinfo</find>
+      <find>searchCandidateInfo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,21 +200,25 @@
         <option value="$PROJECT_DIR$/BVC-WEB/config/databases.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/view/view.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/server.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/config/database.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/voteStart.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
-        <option value="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/tttt.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/blog/css/new-age.css" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/setVoteStart.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
-        <option value="$PROJECT_DIR$/BVC-WEB/blog/index.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/getRigisterCandidate.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/getBookedCandidate.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/getCounting.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/blog/index.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
+        <option value="$PROJECT_DIR$/BVC-WEB/config/database.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/getAllplace.html" />
+        <option value="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/model/dbFunc.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/public/getAllCandidate.html" />
       </list>
     </option>
   </component>
@@ -172,9 +230,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="x" value="-5" />
     <option name="y" value="23" />
-    <option name="width" value="1406" />
-    <option name="height" value="972" />
+    <option name="width" value="1421" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -210,7 +269,7 @@
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlockChain-Dapp" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="BVC-WEB" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="blog" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="BlockChain-Dapp" type="b2602c69:ProjectViewProjectNode" />
@@ -305,28 +364,33 @@
       <workItem from="1528679701461" duration="32000" />
       <workItem from="1528679737419" duration="7455000" />
       <workItem from="1528693451456" duration="9826000" />
-      <workItem from="1528782903630" duration="3495000" />
+      <workItem from="1528782903630" duration="3607000" />
+      <workItem from="1528862068603" duration="3356000" />
+      <workItem from="1528868692401" duration="7099000" />
+      <workItem from="1528936869161" duration="6000" />
+      <workItem from="1528937035237" duration="10675000" />
+      <workItem from="1528952604809" duration="18200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105483000" />
+    <option name="totallyTimeSpent" value="144931000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1406" height="972" extended-state="0" />
+    <frame x="-5" y="23" width="1421" height="1002" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21123755" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20900774" sideWeight="0.49569893" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20301887" sideWeight="0.5043011" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -347,23 +411,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/open.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-305">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/collections/collections.js" />
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/index.js" />
-    <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/package.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/package.json" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/packages/silentcicero:ethjs/package-init.js" />
     <entry file="file://$PROJECT_DIR$/example/publicvotes-master/app/shared/router.js" />
@@ -398,50 +445,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/function/blockFunc.js" />
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/finishset.html" />
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/view/json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/test.html" />
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/tttt.html" />
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/BVC.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1407">
-          <caret line="67" column="36" lean-forward="false" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/config/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/config/blockChain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/model/blockFunc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="90" column="18" lean-forward="false" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/img/demo-screen-11.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -477,13 +482,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/css/new-age.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -498,52 +496,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setVoteEnd.html" />
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2058">
-          <caret line="98" column="16" lean-forward="true" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+        <state relative-caret-position="-11787">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/view/json.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3696">
+          <caret line="176" column="8" lean-forward="false" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/config/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/config/blockChain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="65" lean-forward="false" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/BVC.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="56" column="49" lean-forward="false" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
+        <state relative-caret-position="830">
+          <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/blog/index.html">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getCounting.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="157" column="12" lean-forward="true" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
+        <state relative-caret-position="860">
+          <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getBookedCandidate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="47" column="55" lean-forward="false" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/model/blockFunc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="124" column="46" lean-forward="false" selection-start-line="124" selection-start-column="46" selection-end-line="124" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
           <folding>
-            <element signature="e#6684#6690#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/model/dbFunc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        <state relative-caret-position="302">
+          <caret line="94" column="34" lean-forward="false" selection-start-line="94" selection-start-column="15" selection-end-line="94" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="81" column="60" lean-forward="false" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="60" />
+        <state relative-caret-position="326">
+          <caret line="143" column="25" lean-forward="true" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getAllplace.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2604">
-          <caret line="124" column="16" lean-forward="true" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="16" />
+        <state relative-caret-position="576">
+          <caret line="86" column="12" lean-forward="false" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getAllCandidate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
           <folding />
         </state>
       </provider>
