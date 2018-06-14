@@ -53,7 +53,7 @@ module.exports.insertCandidateInfo = function(placeid, candidateid, name, user_l
 }
 
 module.exports.updateCandidateState = function(candidateid, result){
-    var sql = 'UPDATE candidateinfo SET state=0 WHERE candidateid=?'
+    var sql = 'UPDATE candidateinfo SET state=3 WHERE candidateid=?'
     var params = [candidateid]
     db.query(sql, params, function(err, res){
         if(!err){

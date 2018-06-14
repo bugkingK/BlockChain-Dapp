@@ -68,6 +68,7 @@
             </tr>
 
             <% candidateList.forEach(function(item, index){ %>
+             <% if(item.state==0){ %>
                 <tr>
                     <td><%=item.user_login%></td>
                     <td><%=item.user_email%></td>
@@ -76,6 +77,7 @@
                     <td><%=item.name%></td>
                     <td><a href='setCandidate/<%=item.wantVote%>/<%=item.user_login%>/<%=item.name%>'><input type = "submit" class="btn btn-info" value="등록" name=""></a></td>
                 </tr>
+             <% } %>
                 <%});%>
         </table>
     </div>
@@ -97,12 +99,12 @@
             </tr>
             <% bookedCandidateList.forEach(function(item, index){ %>
                 <% item.forEach(function(_item, _index){ %>
-                <% if(_item.state) { %>
+                <% if(_item.state==1) { %>
                 <tr>
                     <td><%=_item.candidateid%></td>
                     <td><%=_item.name%></td>
                     <td><%=_item.wantvote%></td>
-                    <td><a href='setCandidateResign/<%=item.wantvote%>/<%=item.candidateid%>'> <input type = "submit" value="사퇴" name=""> </td>
+                    <td><a href='setCandidateResign/<%=_item.candidateid%>/<%=_item.wantvote%>'> <input type = "submit" class="btn btn-info" value="사퇴" name=""> </td>
                 </tr>
                 <% } %>
                 <% }) %>
