@@ -121,7 +121,7 @@
                 <td><%=_item["contents"]%></td>
                 <td><%=_item.start_vote_time%></td>
                 <td><%=_item.end_vote_time%></td>
-                <td><a href='setVoteEnd/<%= item.placeid%>'> <input type = "submit" class="btn btn-info" value="종료" name=""></a></td>
+                <td><a href='setVoteEnd/<%= _item.placeid%>'> <input type = "submit" class="btn btn-info" value="종료" name=""></a></td>
             </tr>
             <% } %>
             <% }) %>
