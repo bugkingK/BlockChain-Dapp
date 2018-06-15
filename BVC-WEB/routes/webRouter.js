@@ -227,7 +227,6 @@ router.get('/getCounting', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                console.log(item["isStarted"])
                                 outcome.push(webClosureAdd(0, item["placeid"], null, null));
                             })
 

@@ -78,6 +78,7 @@ module.exports.selectBookedCandidateList = function(placeid, result) {
     })
 }
 
+// placeid에 해당하는 placeinfo를 가져옵니다.
 module.exports.searchPlaceInfo = function(placeid, result) {
     var sql = 'SELECT * FROM placeinfo WHERE placeid=?';
     var params = [placeid]
