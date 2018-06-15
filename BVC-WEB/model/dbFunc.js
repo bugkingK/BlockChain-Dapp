@@ -4,7 +4,7 @@ var path = process.cwd();
 var db = require( path + '/config/database');
 db.connect();
 
-// db에 투표장 정보를 입력합니다.
+// 1. 선거장을 생성합니다. db에 선거장 정보를 입력합니다.
 module.exports.insertPlaceInfo = function(placeid, isStarted, info, result) {
     var placeID = parseInt(placeid);
 
@@ -14,11 +14,11 @@ module.exports.insertPlaceInfo = function(placeid, isStarted, info, result) {
     db.query(sql, params, function(err, res){
         if(!err) {
             console.log("insertplaceinfo success");
-            result("<h1>투표장이 등록되었습니다.....</h1>");
+            result("<h1>선거장이 등록되었습니다.....</h1>");
 
         } else {
             console.log("insertplaceinfo err : " + err);
-            result("투표장 등록이 실패했습니다. 잠시 후 다시 시도해주세요.");
+            result("선거장 등록이 실패했습니다. 잠시 후 다시 시도해주세요.");
         }
     })
 };
@@ -52,6 +52,7 @@ module.exports.insertCandidateInfo = function(placeid, candidateid, name, user_l
     })
 }
 
+// 후보자를 사퇴시킵니다.
 module.exports.updateCandidateState = function(candidateid, result){
     var sql = 'UPDATE candidateinfo SET state=3 WHERE candidateid=?'
     var params = [candidateid]
@@ -64,6 +65,7 @@ module.exports.updateCandidateState = function(candidateid, result){
     })
 }
 
+// placeid에 해당하는 등록된 후보자 리스트를 출력합니다.
 module.exports.selectBookedCandidateList = function(placeid, result) {
     var sql = 'SELECT * FROM candidateinfo WHERE placeid=?'
     var params = [placeid];
@@ -76,12 +78,10 @@ module.exports.selectBookedCandidateList = function(placeid, result) {
     })
 }
 
-//투표장 아이디를 가져옵니다.
-module.exports.searchPlaceId = function(placename, result) {
-    var sql = 'SELECT placeid FROM vote.placeinfo WHERE name=?';
-    var name=placename;
-    var param =[name];
-    db.query(sql, param, function(err, res){
+module.exports.searchPlaceInfo = function(placeid, result) {
+    var sql = 'SELECT * FROM placeinfo WHERE placeid=?';
+    var params = [placeid]
+    db.query(sql, params, function(err, res){
         if(!err) {
             result(null, res);
         } else {
@@ -89,7 +89,6 @@ module.exports.searchPlaceId = function(placename, result) {
         }
     })
 }
-
 
 // db에서 후보자의 정보를 가져옵니다.
 module.exports.searchCandidateInfo = function(placeid, candidateid, result) {
@@ -101,20 +100,6 @@ module.exports.searchCandidateInfo = function(placeid, candidateid, result) {
             result(null, res)
         } else {
             result(err, null)
-        }
-    })
-}
-
-
-
-module.exports.searchPlaceInfo = function(placeid, result) {
-    var sql = 'SELECT * FROM placeinfo WHERE placeid=?';
-    var params = [placeid]
-    db.query(sql, params, function(err, res){
-        if(!err) {
-            result(null, res);
-        } else {
-            result(err, null);
         }
     })
 }
