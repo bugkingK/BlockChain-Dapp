@@ -45,7 +45,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="http://yangarch.iptime.org:4210/web/setPollingPlace">선거장 생성</a></li>
                 <li><a href="http://yangarch.iptime.org:4210/web/getAllplace">선거장 관리</a></li>
-                <li class="active"><a href="#">개표하기</a></li>
+                <li class="active"><a href="http://yangarch.iptime.org:4210/web/getCounting">개표하기</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -59,6 +59,7 @@
 
         <table class="table table-hover">
             <tr>
+                <th>no</th>
                 <th>투표장</th>
                 <th>등록시작</th>
                 <th>등록종료</th>
@@ -66,21 +67,20 @@
                 <th>투표내용</th>
                 <th>투표시작</th>
                 <th>투표종료</th>
-                <th>no</th>
                 <th>개표</th>
             </tr>
             <% placeInfoList.forEach(function(item, index){ %>
             <% item.forEach(function(_item, _index){ %>
             <% if(_item.isStarted == 3){ %>
             <tr>
-                <td><%=_item.name%></td>
+                <td name="placeid" type = "text"><%=_item.placeid%></td>
+                <td><a href='getBookedCandidate/<%= _item.placeid%>'><%=_item.name%></a></td>
                 <td><%=_item.start_regist_period.getFullYear() + '년 ' + _item.start_regist_period.getMonth() + '월 ' + _item.start_regist_period.getDate() + '일 ' + _item.start_regist_period.getHours() + '시 ' + _item.start_regist_period.getMinutes() + '분 ' + _item.start_regist_period.getSeconds() + '초'%></td>
                 <td><%=_item.end_regist_period.getFullYear() + '년 ' + _item.end_regist_period.getMonth() + '월 ' + _item.end_regist_period.getDate() + '일 ' + _item.end_regist_period.getHours() + '시 ' + _item.end_regist_period.getMinutes() + '분 ' + _item.end_regist_period.getSeconds() + '초'%></td>
                 <td><%=_item.votedate.getFullYear() + '년 ' + _item.votedate.getMonth() + '월 ' + _item.votedate.getDate() + '일 ' + _item.votedate.getHours() + '시 ' + _item.votedate.getMinutes() + '분 ' + _item.votedate.getSeconds() + '초'%></td>
                 <td><%=_item.contents%></td>
                 <td><%=_item.start_vote_time%></td>
                 <td><%=_item.end_vote_time%></td>
-                <td name="placeid" type = "text"><%=_item.placeid%></td>
                 <td><a href='setVoteStart/<%= item.placeid%>'> <input type="submit" class="btn btn-info" value="결과" ></a></td>
             </tr>
             <% } %>

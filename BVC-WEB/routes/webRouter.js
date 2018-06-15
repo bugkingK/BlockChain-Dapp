@@ -177,7 +177,32 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
     var placeid = req.params.placeid;
 
     fs.readFile( path + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
-        console.log('등록된 후보자 : '+placeid)
+        blockFunc.candidateLength(function(err, length){
+            if(!err){
+                blockFunc.extractArr(1, placeid, length, function(_err, _result){
+                    if(!_err) {
+                        var outcomeBooked = []
+
+                        _result.map(function (item, index) {
+                            if(item == null) {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                            } else {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                            }
+                        })
+
+                        async.series(outcomeBooked, function(err1, resEnd1){
+                            res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                        })
+
+                    } else {
+                        res.send('err');
+                    }
+                })
+            } else {
+                res.send('err');
+            }
+        })
     });
 });
 
