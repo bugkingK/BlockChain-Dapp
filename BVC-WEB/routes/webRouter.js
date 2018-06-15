@@ -276,6 +276,44 @@ router.get('/getCounting', function(req, res){
     })
 });
 
+// 7. 개표결과 페이지입니다.
+router.get('/getVotingCount/:placeid', function(req, res){
+  var placeid = req.params.placeid;
+  
+  fs.readFile( path + '/public/getVotingCount.html', 'utf8', function(err, data){
+    if(!err){
+      blockFunc.candidateLength(function(err, length){
+          if(!err){
+              blockFunc.extractArr(1, placeid, length, function(_err, _result){
+                  if(!_err) {
+                      var outcomeBooked = []
+
+                      _result.map(function (item, index) {
+                          if(item == null) {
+                              outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                          } else {
+                              outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                          }
+                      })
+
+                      async.series(outcomeBooked, function(err1, resEnd1){
+                          res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                      })
+
+                  } else {
+                      res.send('err');
+                  }
+              })
+          } else {
+              res.send('err');
+          }
+      })
+    } else {
+        res.send("투표 시작 페이지를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.");
+    }
+  })
+});
+
 function webClosureAdd(selector, placeid, item, candidateid){
     switch(selector) {
         case 0:
