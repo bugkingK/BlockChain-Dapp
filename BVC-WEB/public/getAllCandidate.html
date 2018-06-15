@@ -27,7 +27,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     </head>
     <![endif]-->
-
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,8 +42,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="http://yangarch.iptime.org/web/setPollingPlace">선거장 생성</a></li>
-                <li class="active"><a href="#">선거장 관리</a></li>
+                <li><a href="http://yangarch.iptime.org:4210/web/setPollingPlace">선거장 생성</a></li>
+                <li class="active"><a href="http://yangarch.iptime.org:4210/web/getAllplace">선거장 관리</a></li>
                 <li><a href="http://yangarch.iptime.org:4210/web/getCounting">개표하기</a></li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -61,17 +60,23 @@
             <tr>
                 <th>아이디</th>
                 <th>이메일</th>
-                <th>내용</th>
+                <th>가입일자</th>
+                <th>투표장 id</th>
+                <th>후보자 이름</th>
                 <th>등록</th>
             </tr>
 
             <% candidateList.forEach(function(item, index){ %>
+             <% if(item.state==0){ %>
                 <tr>
                     <td><%=item.user_login%></td>
                     <td><%=item.user_email%></td>
-                    <td><%=item.result%></td> 
-                    <td><a href='setCandidate/<%=item.result%>/<%=item.user_login%>'> <input type = "submit" value="등록" name=""> </td>
-                    </tr>
+                    <td><%=item.user_registered.getFullYear() + '년 ' + item.user_registered.getMonth() + '월 ' + item.user_registered.getDate() + '일 ' + item.user_registered.getHours() + '시 ' + item.user_registered.getMinutes() + '분 ' + item.user_registered.getSeconds() + '초'%></td>
+                    <td><%=item.wantVote%></td>
+                    <td><%=item.name%></td>
+                    <td><a href='setCandidate/<%=item.wantVote%>/<%=item.user_login%>/<%=item.name%>'><input type = "submit" class="btn btn-info" value="등록" name=""></a></td>
+                </tr>
+             <% } %>
                 <%});%>
         </table>
     </div>
@@ -88,32 +93,31 @@
             <tr>
                 <th>no</th>
                 <th>이름</th>
-                <th>거주지</th>
-                <th>연락처</th>
-                <th>선거장</th>
-                <th>학력</th>
+                <th>투표장 id</th>
                 <th>사퇴</th>
             </tr>
             <% bookedCandidateList.forEach(function(item, index){ %>
-                <% if(item.state) { %>
+                <% item.forEach(function(_item, _index){ %>
+                <% if(_item.state==1) { %>
                 <tr>
-                    <td><%=item.candidateid%></td>
-                    <td><%=item.name%></td>
-                    <td><%=item.hometown%></td> 
-                    <td><%=item.phone%></td>
-                    <td><%=item.wantvote%></td> 
-                    <td><%=item.career%></td> 
-                    <td><a href='setCandidateResign/<%=item.wantvote%>/<%=item.candidateid%>'> <input type = "submit" value="사퇴" name=""> </td>
-                    </tr>
+                    <td><%=_item.candidateid%></td>
+                    <td><%=_item.name%></td>
+                    <td><%=_item.wantvote%></td>
+                    <td><a href='setCandidateResign/<%=_item.candidateid%>/<%=_item.wantvote%>'> <input type = "submit" class="btn btn-info" value="사퇴" name=""> </td>
+                </tr>
                 <% } %>
+                <% }) %>
                 <%});%>
         </table>
+</div><!-- /.container -->
+
+<nav class="navbar navbar-fixed-bottom">
     <div class="container">
         <center>
             <p class="footer_text">이용약관 | 개인정보 취급방침 | 자주 묻는 질문 | 온라인 투표 시스템</p>
         </center>
     </div>
-</div><!-- /.container -->
+</nav>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

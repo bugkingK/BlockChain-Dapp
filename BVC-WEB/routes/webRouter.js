@@ -1,4 +1,5 @@
 // 웹과 연동하는 라우터입니다.
+var async = require('async');
 var ejs = require('ejs')
 var fs = require('fs');
 var express = require('express');
@@ -47,11 +48,29 @@ router.post('/setPollingPlace', function(req, res){
 router.get('/getAllplace', function(req, res){
     fs.readFile( path + '/public/getAllplace.html', 'utf8', function(err, data){
         if(!err){
-            dbFunc.searchPlaceInfo(function(err, result){
-                if(!err) {
-                    res.send(ejs.render(data, {placeInfoList : result}));
+            blockFunc.placeLength(function(err, length){
+                if(!err){
+                    blockFunc.extractArr(0, 0, length, function(err, result){
+                        var outcome = [];
+
+                        if(!err) {
+                            result.map(function (item, index) {
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                            })
+
+                            async.series(outcome, function(err, resEnd){
+                                if (!err){
+                                    res.send(ejs.render(data, { placeInfoList : resEnd }));
+                                } else {
+                                    res.send(err);
+                                }
+                            })
+                        } else {
+                            res.send('err')
+                        }
+                    })
                 } else {
-                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+                    res.send('err')
                 }
             })
         } else {
@@ -69,7 +88,6 @@ router.get('/setVoteStart/:placeid', function (req, res) {
             dbFunc.updateIsStarted(placeid, true, function(_err, _res) {
                 if (!_err) {
                     res.redirect('/web/getAllplace');
-                    //res.send('<h1>투표장 번호 : ' + placeid + ' 가 시작되었습니다.....end</h1>')
                 } else {
                     result('<h1>투표를 시작하지 못했습니다.....db err</h1>');
                 }
@@ -89,7 +107,6 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
             dbFunc.updateIsStarted(placeid, 3, function(_err, _res) {
                 if (!_err) {
                     res.redirect('/web/getAllplace');
-                    //res.send('<h1>투표장 번호 : ' + placeid + ' 가 종료되었습니다.....end</h1>')
                 } else {
                     result('<h1>투표를 종료하지 못했습니다.....db err</h1>');
                 }
@@ -100,25 +117,53 @@ router.get('/setVoteEnd/:placeid', function (req, res) {
     });
 });
 
-
-//// 아직
 // 3-1. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
-router.get('/getAllCandidate/:placename', function(req, res){
-    var placeName = req.params.placename;
+router.get('/getAllCandidate/:placeid', function(req, res){
+    var placeid = req.params.placeid;
     var nowcandidate = [];
-    
+    var bookedCandidate = [];
+
     fs.readFile('public/getAllCandidate.html', 'utf8', function(err, data){
-        dbFunc.selectCandidateList(placeName, function(_err, _res) {
+        dbFunc.selectCandidateList(placeid, function(_err, _res) {
             if(!_err){
-                _res.forEach(function(_item, _index){
-                    var candidateinfo = _item.result.split(",");
-                    
-                    if(candidateinfo[3] == placeName && !_item.state){
-                        nowcandidate.push(_item);
-                    }
+                var result = []
+
+                _res.map(function (item, index) {
+                    result.push(webClosureAdd(1, null, item, null));
                 })
-                dbFunc.selectBookedCandidateList(placeName, function(__err, __res){
-                    res.send(ejs.render(data, {candidateList : nowcandidate, bookedCandidateList : __res}));
+
+                async.series(result, function(err, resEnd){
+                    nowcandidate = resEnd
+                })
+
+                blockFunc.candidateLength(function(err, length){
+                    if(!err){
+                        blockFunc.extractArr(1, placeid, length, function(_err, _result){
+                            if(!_err) {
+                                var outcomeBooked = []
+
+                                _result.map(function (item, index) {
+                                    if(item == null) {
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                    } else {
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                    }
+
+                                })
+
+                                async.series(outcomeBooked, function(err1, resEnd1){
+                                    bookedCandidate = resEnd1
+                                    console.log(resEnd1)
+                                    res.send(ejs.render(data, {candidateList : nowcandidate, bookedCandidateList : bookedCandidate}));
+                                })
+
+                            } else {
+                                res.send('err');
+                            }
+                        })
+                    } else {
+                        res.send('err');
+                    }
                 })
             } else {
                 res.send("err candidateList를 가져오지 못했습니다.")
@@ -132,60 +177,97 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
     var placeid = req.params.placeid;
 
     fs.readFile( path + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
-        console.log('등록된 후보자 : '+placeid)
+        blockFunc.candidateLength(function(err, length){
+            if(!err){
+                blockFunc.extractArr(1, placeid, length, function(_err, _result){
+                    if(!_err) {
+                        var outcomeBooked = []
+
+                        _result.map(function (item, index) {
+                            if(item == null) {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                            } else {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                            }
+                        })
+
+                        async.series(outcomeBooked, function(err1, resEnd1){
+                            res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                        })
+
+                    } else {
+                        res.send('err');
+                    }
+                })
+            } else {
+                res.send('err');
+            }
+        })
     });
 });
 
 // 3-3. 후보자를 등록합니다. 웹페이지
-router.get('/getAllCandidate/setCandidate/:result/:user_login', function (req, res) {
-    var candidate=req.params.result;
+router.get('/getAllCandidate/setCandidate/:placeid/:user_login/:name', function (req, res) {
     var user_login=req.params.user_login;
-    var candidateinfo=candidate.split(",");
-    var placeid;
-    
-    dbFunc.searchPlaceId(candidateinfo[3], function(err,result){
-        if(!err){
-            result.forEach(function(item, index){
-                blockFunc.setCandidate(item.placeid, function(_err, candidateid){
-                    if(!_err){
-                        dbFunc.insertCandidateInfo(item.placeid, candidateid, candidateinfo, user_login, function(result){
-                            if(!err){
-                                res.redirect('/web/getAllCandidate/' + candidateinfo[3]);
-                            }
-                        })
-                    }
-                })
+    var name=req.params.name;
+    var placeid=req.params.placeid;
+
+    blockFunc.setCandidate(placeid, function(err, candidateid){
+        if(!err) {
+            dbFunc.insertCandidateInfo(placeid, candidateid, name, user_login, function(result){
+                if (!err) {
+                    res.redirect('/web/getAllCandidate/' + placeid);
+                } else {
+                    console.log('candidate insert fail');
+                }
             })
-        } else {
-            
+        }else{
+            console.log('setCandidate bv fail')
         }
     })
 });
 
 // 3-4. 후보자를 사퇴시킵니다.
-router.get('/getAllCandidate/setCandidateResign/:placeName/:candidateid', function(req, res){
+router.get('/getAllCandidate/setCandidateResign/:candidateid/:placeid', function(req, res){
     var candidateid = req.params.candidateid;
-    var placeName = req.params.placeName;
-    
+    var placeid = req.params.placeid;
     dbFunc.updateCandidateState(candidateid, function(_err, _res){
         if(!_err){
             console.log('state update success');
-            res.redirect('/web/getAllCandidate/' + placeName)
+            res.redirect('/web/getAllCandidate/' + placeid);
         } else {
             console.log('state update err : ' + err);
         }
     })
 })
 
-// 6. 개표합니다. - 웹페이지 형태와 json 형태가 필요합니다.
+// 6. 개표합니다.
 router.get('/getCounting', function(req, res){
     fs.readFile( path + '/public/getCounting.html', 'utf8', function(err, data){
         if(!err){
-            dbFunc.searchPlaceInfo(function(err, result){
-                if(!err) {
-                    res.send(ejs.render(data, {placeInfoList : result}));
+            blockFunc.placeLength(function(err, length){
+                if(!err){
+                    blockFunc.extractArr(0, 0, length, function(err, result){
+                        var outcome = [];
+
+                        if(!err) {
+                            result.map(function (item, index) {
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                            })
+
+                            async.series(outcome, function(err, resEnd){
+                                if (!err){
+                                    res.send(ejs.render(data, { placeInfoList : resEnd }));
+                                } else {
+                                    res.send(err);
+                                }
+                            })
+                        } else {
+                            res.send('err')
+                        }
+                    })
                 } else {
-                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+                    res.send('err')
                 }
             })
         } else {
@@ -193,6 +275,31 @@ router.get('/getCounting', function(req, res){
         }
     })
 });
+
+function webClosureAdd(selector, placeid, item, candidateid){
+    switch(selector) {
+        case 0:
+            return function(callback){
+                dbFunc.searchPlaceInfo(placeid, function(err, result){
+                    callback(null, result)
+                })
+            }
+            break;
+        case 1:
+            return function(callback){
+                callback(null, item)
+            }
+            break;
+        case 2:
+            return function(callback){
+                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+                    callback(null, result)
+                })
+            }
+        default:
+            console.log("why?")
+    }
+}
 
 
 module.exports = router;
