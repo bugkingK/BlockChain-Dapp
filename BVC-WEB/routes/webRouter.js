@@ -55,7 +55,7 @@ router.get('/getAllplace', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(closureAd1d(item["placeid"]));
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -78,14 +78,6 @@ router.get('/getAllplace', function(req, res){
         }
     })
 });
-
-function closureAd1d(placeid){
-    return function(callback){
-        dbFunc.searchPlaceInfo(placeid, function(err, result){
-            callback(null, result)
-        })
-    }
-}
 
 // 2-2. 투표를 시작합니다. (정해진 기간동안 투표권을 행사할 수 있습니다.)
 router.get('/setVoteStart/:placeid', function (req, res) {
@@ -137,7 +129,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                 var result = []
 
                 _res.map(function (item, index) {
-                    result.push(closureAd2d(item));
+                    result.push(webClosureAdd(1, null, item, null));
                 })
 
                 async.series(result, function(err, resEnd){
@@ -151,7 +143,12 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                                 var outcomeBooked = []
 
                                 _result.map(function (item, index) {
-                                    outcomeBooked.push(closureAd3d(placeid, item["CandidateID"]));
+                                    if(item == null) {
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                    } else {
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                    }
+
                                 })
 
                                 async.series(outcomeBooked, function(err1, resEnd1){
@@ -175,26 +172,37 @@ router.get('/getAllCandidate/:placeid', function(req, res){
     })
 })
 
-function closureAd2d(item){
-    return function(callback){
-        callback(null, item)
-    }
-}
-
-function closureAd3d(placeid, candidateid){
-    return function(callback){
-        dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
-            callback(null, result)
-        })
-    }
-}
-
 // 3-2. 입력한 투표장의 등록된 후보자를 볼 수 있습니다.
 router.get('/getBookedCandidate/:placeid', function (req, res){
     var placeid = req.params.placeid;
 
     fs.readFile( path + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
-        console.log('등록된 후보자 : '+placeid)
+        blockFunc.candidateLength(function(err, length){
+            if(!err){
+                blockFunc.extractArr(1, placeid, length, function(_err, _result){
+                    if(!_err) {
+                        var outcomeBooked = []
+
+                        _result.map(function (item, index) {
+                            if(item == null) {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                            } else {
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                            }
+                        })
+
+                        async.series(outcomeBooked, function(err1, resEnd1){
+                            res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                        })
+
+                    } else {
+                        res.send('err');
+                    }
+                })
+            } else {
+                res.send('err');
+            }
+        })
     });
 });
 
@@ -233,15 +241,33 @@ router.get('/getAllCandidate/setCandidateResign/:candidateid/:placeid', function
     })
 })
 
-// 6. 개표합니다. - 웹페이지 형태와 json 형태가 필요합니다.
+// 6. 개표합니다.
 router.get('/getCounting', function(req, res){
     fs.readFile( path + '/public/getCounting.html', 'utf8', function(err, data){
         if(!err){
-            dbFunc.searchPlaceInfo(function(err, result){
-                if(!err) {
-                    res.send(ejs.render(data, {placeInfoList : result}));
+            blockFunc.placeLength(function(err, length){
+                if(!err){
+                    blockFunc.extractArr(0, 0, length, function(err, result){
+                        var outcome = [];
+
+                        if(!err) {
+                            result.map(function (item, index) {
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                            })
+
+                            async.series(outcome, function(err, resEnd){
+                                if (!err){
+                                    res.send(ejs.render(data, { placeInfoList : resEnd }));
+                                } else {
+                                    res.send(err);
+                                }
+                            })
+                        } else {
+                            res.send('err')
+                        }
+                    })
                 } else {
-                    res.send("데이터를 불러올 수 없습니다. 잠시 후 다시 접속해주세요.")
+                    res.send('err')
                 }
             })
         } else {
@@ -249,6 +275,31 @@ router.get('/getCounting', function(req, res){
         }
     })
 });
+
+function webClosureAdd(selector, placeid, item, candidateid){
+    switch(selector) {
+        case 0:
+            return function(callback){
+                dbFunc.searchPlaceInfo(placeid, function(err, result){
+                    callback(null, result)
+                })
+            }
+            break;
+        case 1:
+            return function(callback){
+                callback(null, item)
+            }
+            break;
+        case 2:
+            return function(callback){
+                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+                    callback(null, result)
+                })
+            }
+        default:
+            console.log("why?")
+    }
+}
 
 
 module.exports = router;
