@@ -110,17 +110,30 @@ router.get('/getEndedPlace', function(req, res){
     })
 })
 
-// 4. 입력한 투표장의 모든 후보자를 볼 수 있습니다.
-router.get('/getAllCandidate', function(req, res){
+// 4. 입력한 선거장의 모든 후보자를 볼 수 있습니다.
+router.get('/getBookedCandidate', function(req, res){
     var placeid = req.param('placeid');
 
-	blockFunc.candidateLength(function(err, length){
+    blockFunc.candidateLength(function(err, length){
         if(!err){
-            blockFunc.extractArr(1, placeid, length, function(_err, result){
+            blockFunc.extractArr(1, placeid, length, function(_err, _result){
                 if(!_err) {
-                    view.jsonParsing(200, "success", result, function(jsonData){
-                        res.json(jsonData);
+                    var outcomeBooked = []
+
+                    _result.map(function (item, index) {
+                        if(item == null) {
+                            outcomeBooked.push(appClosureAdd(2, placeid, null, null));
+                        } else {
+                            outcomeBooked.push(appClosureAdd(2, placeid, null, item["CandidateID"]));
+                        }
                     })
+
+                    async.series(outcomeBooked, function(err1, resEnd1){
+                        view.jsonParsing(200, "success", resEnd1, function(jsonData){
+                            res.json(jsonData);
+                        })
+                    })
+
                 } else {
                     view.jsonParsing(400, "등록된 후보자를 확인할 수 없습니다.", "", function(jsonData){
                         res.json(jsonData);
@@ -133,7 +146,7 @@ router.get('/getAllCandidate', function(req, res){
             })
         }
     })
-});
+})
 
 // 6. 개표합니다.
 router.get('/getCounting', function(req, res){
@@ -202,6 +215,12 @@ function appClosureAdd(selector, placeid, item, candidateid){
                 callback(null, item)
             }
             break;
+        case 2:
+            return function(callback){
+                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+                    callback(null, result)
+                })
+            }
         default:
             console.log("why?")
     }
