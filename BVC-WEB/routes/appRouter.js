@@ -148,6 +148,34 @@ router.get('/getBookedCandidate', function(req, res){
     })
 })
 
+// 5. 투표권을 행사합니다.
+router.get('/setVote', function(req, res){
+    var placeid = parseInt(req.param('placeid'));
+    var candidateid = parseInt(req.param('candidateid'));
+    var phone = parseInt(req.param('phone'));
+
+    blockFunc.getCheckVoted(placeid, phone, function(err, resd){
+        if(!resd){
+            blockFunc.setVote(placeid, candidateid, phone, function(_err, _res) {
+                console.log(_err)
+                if(!_err) {
+                    view.jsonParsing(200, "success", _res, function(jsonData){
+                        res.json(jsonData);
+                    })
+                } else {
+                    view.jsonParsing(400, "투표를 진행할 수 없습니다.", "", function(jsonData){
+                        res.json(jsonData);
+                    })
+                }
+            });
+        } else {
+            view.jsonParsing(401, "이미 투표권을 행사하셨습니다.", "", function(jsonData){
+                res.json(jsonData)
+            })
+        }
+    })
+});
+
 // 6. 개표합니다.
 router.get('/getCounting', function(req, res){
     var placeid = req.param('placeid');
@@ -168,33 +196,6 @@ router.get('/getCounting', function(req, res){
         } else {
             view.jsonParsing(400, "개표 결과를 볼 수 없습니다.", "", function(jsonData){
                 res.json(jsonData);
-            })
-        }
-    })
-});
-
-// 5. 투표권을 행사합니다.
-router.get('/setVote', function(req, res){
-    var placeid = req.param('placeid');
-    var candidateid = req.param('candidateid');
-    var phone = req.param('phone');
-
-    blockFunc.getCheckVoted(placeid, phone, function(err, res){
-        if(!err){
-            blockFunc.setVote(placeid, candidateid, phone, function(_err, _res) {
-                if(!err) {
-                    view.jsonParsing(200, "success", _res, function(jsonData){
-                        res.json(jsonData);
-                    })
-                } else {
-                    view.jsonParsing(400, "투표를 진행할 수 없습니다.", "", function(jsonData){
-                        res.json(jsonData);
-                    })
-                }
-            });
-        } else {
-            view.jsonParsing(401, "이미 투표권을 행사하셨습니다.", "", function(jsonData){
-                res.json(jsonData)
             })
         }
     })
