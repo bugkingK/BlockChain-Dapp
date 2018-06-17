@@ -72,7 +72,6 @@ class VoteListViewCell: UICollectionViewCell {
                 }
             }
         }
-//        self.imageView.image = image
         titleLabel.text = title
         contentLabel.text = contents
     }

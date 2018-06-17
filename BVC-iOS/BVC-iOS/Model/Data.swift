@@ -77,6 +77,6 @@ struct UserInfo {
 }
 
 
-var candidateInfo: [CandidateInfo] = []
+
 var countingInfo: [CountingInfo] = []
 var userInfo: UserInfo = UserInfo(selectPlaceid: nil, selectCandidateid: nil, phone: nil)

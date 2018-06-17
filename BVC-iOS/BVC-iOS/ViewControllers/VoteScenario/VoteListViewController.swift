@@ -76,7 +76,7 @@ extension VoteListViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! VoteListViewCell
         
         cell.configure(
-            imageURL: "https://robohash.org/123.png",
+            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p2",
             title: startedPlaceinfo[indexPath.row].name,
             contents: startedPlaceinfo[indexPath.row].contents
         )

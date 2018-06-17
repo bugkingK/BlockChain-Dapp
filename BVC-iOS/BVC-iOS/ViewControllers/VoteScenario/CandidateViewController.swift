@@ -9,9 +9,8 @@ private let reuseIdentifier = "CandidateViewCell"
 
 class CandidateViewController: UIViewController {
     
-    typealias Message = [String: String]
+    var candidateInfo: [CandidateInfo] = []
     
-    fileprivate var messages: [Message] = []
     fileprivate let cellAnumationDuration: Double = 0.25
     fileprivate let animationDelayStep: Double = 0.1
     
@@ -30,7 +29,6 @@ class CandidateViewController: UIViewController {
         super.viewDidLoad()
         title = "후보자 명단"
         
-        messages = NSArray(contentsOfFile: Bundle.main.path(forResource: "CandidateDataList", ofType: "plist")!) as! [Message]
         view.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -48,8 +46,18 @@ class CandidateViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         prepareVisibleCellsForAnimation()
         
+        guard let selectedPlaceid = userInfo.selectPlaceid else {
+            let alert = UIAlertController(title: nil, message: "잘못된 경로입니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return;
+        }
+        
         let apiClient = APIClient()
-        apiClient.getBookedCandidate(placeid: "1")
+        apiClient.getBookedCandidate(placeid: selectedPlaceid) { response in
+            self.candidateInfo = response
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,27 +70,23 @@ class CandidateViewController: UIViewController {
 extension CandidateViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return candidateInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CandidateViewCell
-        
-        let message = messages[(indexPath as NSIndexPath).row]
-        
+
         cell.configure(
-            image: UIImage(named: message[candidateImage]!)!,
-            candidateName: message[candidateName]!,
-            partyName: message[partyName]!)
+            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p3",
+            candidateName: candidateInfo[indexPath.row].name,
+            partyName: candidateInfo[indexPath.row].candidateid)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let message = messages[(indexPath as NSIndexPath).row]
-        
-        print(message)
+        //let message = messages[(indexPath as NSIndexPath).row]
         
         navigationController?.pushViewController(PromiseViewController(), animated: true)
     }

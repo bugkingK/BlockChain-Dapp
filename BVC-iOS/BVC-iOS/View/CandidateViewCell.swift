@@ -1,5 +1,6 @@
 
 import UIKit
+import Alamofire
 
 class CandidateViewCell: UICollectionViewCell {
    
@@ -67,8 +68,15 @@ class CandidateViewCell: UICollectionViewCell {
         partyName.heightAnchor.constraint(equalToConstant: self.frame.height / 2).isActive = true
     }
     
-    func configure(image: UIImage, candidateName: String, partyName: String) {
-        self.imageView.image = image
+    func configure(imageURL: String, candidateName: String, partyName: String) {
+        Alamofire.request(imageURL, method: .get).responseData { response in
+            if response.error == nil {
+                // Show the downloaded image:
+                if let data = response.data {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }
+        }
         self.candidateName.text = candidateName
         self.partyName.text = partyName
     }

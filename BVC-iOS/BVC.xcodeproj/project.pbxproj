@@ -32,7 +32,6 @@
 		85F87D7820B503AE00E15BF2 /* HowToCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6920B503AE00E15BF2 /* HowToCollectionViewCell.swift */; };
 		85F87D7920B503AE00E15BF2 /* VoteListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6A20B503AE00E15BF2 /* VoteListViewCell.swift */; };
 		85F87D7A20B503AE00E15BF2 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */; };
-		85F87D7B20B503AE00E15BF2 /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */; };
 		85F87D7C20B503AE00E15BF2 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6E20B503AE00E15BF2 /* EndViewController.swift */; };
 		85F87D7D20B503AE00E15BF2 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */; };
 		85F87D7E20B503AE00E15BF2 /* VoteStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */; };
@@ -85,7 +84,6 @@
 		85F87D6920B503AE00E15BF2 /* HowToCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToCollectionViewCell.swift; sourceTree = "<group>"; };
 		85F87D6A20B503AE00E15BF2 /* VoteListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteListViewCell.swift; sourceTree = "<group>"; };
 		85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhyViewController.swift; sourceTree = "<group>"; };
 		85F87D6E20B503AE00E15BF2 /* EndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteStatusViewController.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			children = (
 				85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */,
 				85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */,
-				85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */,
 				85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */,
 				85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */,
 				85F87D6E20B503AE00E15BF2 /* EndViewController.swift */,
@@ -590,7 +587,6 @@
 				85F87D7C20B503AE00E15BF2 /* EndViewController.swift in Sources */,
 				85F87D5C20B502CC00E15BF2 /* YALFoldingTabBarController.m in Sources */,
 				85F87D5F20B502CC00E15BF2 /* YALFoldingTabBar.m in Sources */,
-				85F87D7B20B503AE00E15BF2 /* WhyViewController.swift in Sources */,
 				8564223B209566CC00E665D0 /* extUserDefaults.swift in Sources */,
 				85F87D5720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m in Sources */,
 				85F87D5D20B502CC00E15BF2 /* YALTabBarItem.m in Sources */,

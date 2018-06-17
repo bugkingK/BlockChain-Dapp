@@ -150,7 +150,7 @@ class APIClient {
     }
     
     // placeid에 해당하는 후보자 리스트
-    func getBookedCandidate(placeid: String) {
+    func getBookedCandidate(placeid: String, completion: @escaping ( [CandidateInfo] ) -> Void) {
         let parameters: Parameters = ["placeid" : placeid]
         
         let network = Network(siteURL.getBookedCandidate.rawValue, method: .get, parameters : parameters)
@@ -161,6 +161,8 @@ class APIClient {
                     self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
                     return
             }
+            
+            var candidateInfo: [CandidateInfo] = []
             
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
@@ -181,9 +183,7 @@ class APIClient {
             
             switch resultCode {
             case 200:
-                // 연결만 하면 됨....
-                self.appDelegate.showAlert(resultMessage)
-                print(candidateInfo)
+                completion(candidateInfo)
                 break
             default:
                 self.appDelegate.showAlert(resultMessage)
