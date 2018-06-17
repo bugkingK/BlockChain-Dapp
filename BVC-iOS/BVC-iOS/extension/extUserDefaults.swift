@@ -7,6 +7,7 @@ extension UserDefaults {
         case isLoggedIn
         case phoneNumber
         case isAutu
+        case selectedPlaceId
     }
     
     func setisFirstExcuteIn(value: Bool){
@@ -27,15 +28,6 @@ extension UserDefaults {
         return bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
     }
     
-    func setPhoneNumber(value: String) {
-        set(value, forKey: UserDefaultsKeys.phoneNumber.rawValue)
-        synchronize()
-    }
-    
-    func getPhoneNumber() -> String {
-        return string(forKey: UserDefaultsKeys.phoneNumber.rawValue)!
-    }
-    
     func setIsAutu(value: Bool) {
         set(value, forKey: UserDefaultsKeys.isAutu.rawValue)
         synchronize()
@@ -43,5 +35,14 @@ extension UserDefaults {
     
     func getisAutu() -> Bool {
         return bool(forKey: UserDefaultsKeys.isAutu.rawValue)
+    }
+    
+    func setSelectedPlaceId(value: String) {
+        set(value, forKey: UserDefaultsKeys.selectedPlaceId.rawValue)
+        synchronize()
+    }
+    
+    func getselectedPlaceId() -> String {
+        return string(forKey: UserDefaultsKeys.selectedPlaceId.rawValue)!
     }
 }

@@ -20,9 +20,7 @@ class ReportViewController: UIViewController {
         super.viewDidLoad()
     }
     override func viewDidAppear(_ animated: Bool) {
-        print("report: \(placeid)")
-        //getCurrentDate()
-        getCounting(placeid: "5")
+        getCounting(placeid: UserDefaults.standard.getselectedPlaceId())
     }
 
     func getCurrentDate() {

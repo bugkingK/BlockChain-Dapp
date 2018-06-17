@@ -58,7 +58,7 @@ class APIClient {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     //선거가 시작 중인 선거장
-    func getStartedPlace() {
+    func getStartedPlace(completion: @escaping ( [PlaceInfo] ) -> Void) {
         let network = Network(siteURL.getStartedPlace.rawValue, method: .get)
         network.connetion(){ response in
             
@@ -67,6 +67,8 @@ class APIClient {
                     self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
                     return
             }
+            
+            var startedPlaceinfo: [PlaceInfo] = []
             
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
@@ -92,9 +94,7 @@ class APIClient {
             
             switch resultCode {
             case 200:
-                // 연결만 하면 됨....
-                self.appDelegate.showAlert(resultMessage)
-                print(startedPlaceinfo)
+                completion(startedPlaceinfo)
                 break
             default:
                 self.appDelegate.showAlert(resultMessage)
@@ -104,7 +104,7 @@ class APIClient {
     }
     
     //선거가 시작 중인 선거장
-    func getEndedPlace() {
+    func getEndedPlace(completion: @escaping ( [PlaceInfo] ) -> Void) {
         let network = Network(siteURL.getEndedPlace.rawValue, method: .get)
         network.connetion(){ response in
             
@@ -113,6 +113,8 @@ class APIClient {
                     self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
                     return
             }
+            
+            var endedPlaceinfo: [PlaceInfo] = []
             
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
@@ -138,9 +140,7 @@ class APIClient {
             
             switch resultCode {
             case 200:
-                // 연결만 하면 됨....
-                self.appDelegate.showAlert(resultMessage)
-                print(endedPlaceinfo)
+                completion(endedPlaceinfo)
                 break
             default:
                 self.appDelegate.showAlert(resultMessage)

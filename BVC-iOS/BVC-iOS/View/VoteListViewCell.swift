@@ -1,5 +1,6 @@
 
 import UIKit
+import Alamofire
 
 class VoteListViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
@@ -62,8 +63,16 @@ class VoteListViewCell: UICollectionViewCell {
         contentLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
-    func configure(image: UIImage, title: String, contents: String) {
-        self.imageView.image = image
+    func configure(imageURL: String, title: String, contents: String) {
+        Alamofire.request(imageURL, method: .get).responseData { response in
+            if response.error == nil {
+                // Show the downloaded image:
+                if let data = response.data {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }
+        }
+//        self.imageView.image = image
         titleLabel.text = title
         contentLabel.text = contents
     }

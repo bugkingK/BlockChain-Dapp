@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" afterPath="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,10 +27,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="appRouter.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="appRouter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
+            <state relative-caret-position="2764">
               <caret line="154" column="45" lean-forward="false" selection-start-line="154" selection-start-column="45" selection-end-line="154" selection-end-column="45" />
               <folding />
             </state>
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BVC.sol" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BVC.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/BVC.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="100" column="35" lean-forward="true" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
+            <state relative-caret-position="599">
+              <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -212,10 +212,10 @@
         <option value="$PROJECT_DIR$/BVC-WEB/public/getAllplace.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/getBookedCandidatePlace.html" />
         <option value="$PROJECT_DIR$/BVC-WEB/public/getBookedCandidatePlaces.html" />
-        <option value="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
         <option value="$PROJECT_DIR$/BVC-WEB/config/blockChain.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
         <option value="$PROJECT_DIR$/BVC-WEB/routes/appRouter.js" />
+        <option value="$PROJECT_DIR$/BVC-WEB/BVC.sol" />
       </list>
     </option>
   </component>
@@ -372,12 +372,12 @@
       <workItem from="1529113023403" duration="34000" />
       <workItem from="1529129072241" duration="3156000" />
       <workItem from="1529135762190" duration="888000" />
-      <workItem from="1529189309151" duration="7340000" />
+      <workItem from="1529189309151" duration="7989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168497000" />
+    <option name="totallyTimeSpent" value="169146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="53" width="1680" height="972" extended-state="0" />
@@ -626,18 +626,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/BVC.sol">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="100" column="35" lean-forward="true" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
+        <state relative-caret-position="2764">
+          <caret line="154" column="45" lean-forward="false" selection-start-line="154" selection-start-column="45" selection-end-line="154" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
+    <entry file="file://$PROJECT_DIR$/BVC-WEB/BVC.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="154" column="45" lean-forward="false" selection-start-line="154" selection-start-column="45" selection-end-line="154" selection-end-column="45" />
+        <state relative-caret-position="599">
+          <caret line="76" column="43" lean-forward="true" selection-start-line="76" selection-start-column="43" selection-end-line="76" selection-end-column="43" />
           <folding />
         </state>
       </provider>

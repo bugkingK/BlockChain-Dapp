@@ -64,7 +64,19 @@ struct CountingInfo {
     }
 }
 
-var startedPlaceinfo: [PlaceInfo] = []
-var endedPlaceinfo: [PlaceInfo] = []
+struct UserInfo {
+    var selectPlaceid: String?
+    var selectCandidateid: String?
+    var phone: String?
+    
+    init(selectPlaceid: String?, selectCandidateid: String?, phone: String?){
+        self.selectPlaceid = selectPlaceid
+        self.selectCandidateid = selectCandidateid
+        self.phone = phone
+    }
+}
+
+
 var candidateInfo: [CandidateInfo] = []
 var countingInfo: [CountingInfo] = []
+var userInfo: UserInfo = UserInfo(selectPlaceid: nil, selectCandidateid: nil, phone: nil)

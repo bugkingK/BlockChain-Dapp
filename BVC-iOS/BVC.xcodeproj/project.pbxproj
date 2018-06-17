@@ -151,6 +151,37 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		85D2287F20D61C1B003BCE65 /* VoteScenario */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */,
+				85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */,
+				85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */,
+				85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */,
+				85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */,
+				85F87D6E20B503AE00E15BF2 /* EndViewController.swift */,
+			);
+			path = VoteScenario;
+			sourceTree = "<group>";
+		};
+		85D2288020D61C3B003BCE65 /* PollScenario */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */,
+				85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */,
+			);
+			path = PollScenario;
+			sourceTree = "<group>";
+		};
+		85D2288120D61C5B003BCE65 /* INTRO */ = {
+			isa = PBXGroup;
+			children = (
+				85F87D7120B503AE00E15BF2 /* TabBarFirstItemVC.swift */,
+				85F87D7220B503AE00E15BF2 /* HowToViewController.swift */,
+			);
+			path = INTRO;
+			sourceTree = "<group>";
+		};
 		85F87D3020B502CC00E15BF2 /* FoldingTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,16 +376,9 @@
 		85F87D6B20B503AE00E15BF2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				85F87D6C20B503AE00E15BF2 /* AuthViewController.swift */,
-				85F87D6D20B503AE00E15BF2 /* WhyViewController.swift */,
-				85F87D6E20B503AE00E15BF2 /* EndViewController.swift */,
-				85F87D6F20B503AE00E15BF2 /* ReportViewController.swift */,
-				85F87D7020B503AE00E15BF2 /* VoteStatusViewController.swift */,
-				85F87D7120B503AE00E15BF2 /* TabBarFirstItemVC.swift */,
-				85F87D7220B503AE00E15BF2 /* HowToViewController.swift */,
-				85F87D7320B503AE00E15BF2 /* PromiseViewController.swift */,
-				85F87D7420B503AE00E15BF2 /* CandidateViewController.swift */,
-				85F87D7520B503AE00E15BF2 /* VoteListViewController.swift */,
+				85D2288120D61C5B003BCE65 /* INTRO */,
+				85D2287F20D61C1B003BCE65 /* VoteScenario */,
+				85D2288020D61C3B003BCE65 /* PollScenario */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

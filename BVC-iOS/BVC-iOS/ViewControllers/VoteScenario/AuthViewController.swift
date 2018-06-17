@@ -43,31 +43,22 @@ class AuthViewController: UIViewController, YALTabBarDelegate {
         alert.addTextField() { (tf) in tf.placeholder = "휴대전화번호 입력.." }
         alert.addAction(UIAlertAction(title: "확인.", style: .default) { (_) in
             let phoneNumber = alert.textFields?[0].text // 전화번호
-            UserDefaults.standard.setPhoneNumber(value: phoneNumber!)
-            print(UserDefaults.standard.getPhoneNumber())
+            userInfo.phone = phoneNumber
             UserDefaults.standard.setIsAutu(value: true)
-            print(UserDefaults.standard.getisAutu())
+            print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         })
         
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
         tabBarController?.selectedIndex = 2
-        print("일단은 인증성공합니당.")
     }
 }
 
 extension AuthViewController: UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
-        print("request : \(request)")
         appDelegate.invisibleActivityIndicatory()
-        
         return true
-    }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        // 직접 구현..
     }
 }
 

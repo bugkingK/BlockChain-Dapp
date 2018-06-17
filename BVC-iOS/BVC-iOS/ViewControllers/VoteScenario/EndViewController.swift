@@ -2,10 +2,11 @@
 import UIKit
 
 class EndViewController: UIViewController {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     private let titleLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "투표가 완료되었습니다."
+        lb.text = "투표가 완료되었습니다. \n 곧 화면이 이동합니다."
         lb.tintColor = .black
         lb.font = UIFont.boldSystemFont(ofSize: 16)
         lb.textAlignment = .center
@@ -14,7 +15,7 @@ class EndViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         setupViews()
         view.backgroundColor = UIColor.CSviewBackgroundColor
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -24,13 +25,19 @@ class EndViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        appDelegate.tabBarController?.tabBar.isHidden = false
+    }
+    
     func setupViews() {
         view.addSubview(titleLabel)
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        
-        
     }
 
 }

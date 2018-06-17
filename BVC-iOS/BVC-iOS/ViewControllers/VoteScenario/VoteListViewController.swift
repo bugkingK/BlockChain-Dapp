@@ -1,18 +1,17 @@
 
 import UIKit
+import Alamofire
 
 private let statusImage = "image"
 private let statusTitle = "title"
 private let statusDate = "date"
 class VoteListViewController: UIViewController{
     
+    var startedPlaceinfo: [PlaceInfo] = []
     private let cellId = "VoteListViewCell"
-    typealias Message = [String: String]
-    fileprivate var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messages = NSArray(contentsOfFile: Bundle.main.path(forResource: "StatusDataList", ofType: "plist")!) as! [Message]
         self.setupViews()
     }
     
@@ -30,8 +29,10 @@ class VoteListViewController: UIViewController{
         }
         
         let apiClient = APIClient()
-        apiClient.getStartedPlace()
-        
+        apiClient.getStartedPlace() { response in
+            self.startedPlaceinfo = response
+            self.collectionView.reloadData()
+        }
     }
     
     deinit {
@@ -68,26 +69,24 @@ class VoteListViewController: UIViewController{
 extension VoteListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return startedPlaceinfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! VoteListViewCell
-        let message = messages[(indexPath as NSIndexPath).row]
+        
         cell.configure(
-            image: UIImage(named: message[statusImage]!)!,
-            title: message[statusTitle]!,
-            contents: message[statusDate]!
+            imageURL: "https://robohash.org/123.png",
+            title: startedPlaceinfo[indexPath.row].name,
+            contents: startedPlaceinfo[indexPath.row].contents
         )
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            let whyVC = WhyViewController()
-            self.present(whyVC, animated: true, completion: nil)
-        }
+        userInfo.selectPlaceid = String(startedPlaceinfo[indexPath.row].placeid)
+        print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         
         navigationController?.pushViewController(CandidateViewController(), animated: true)
     }
