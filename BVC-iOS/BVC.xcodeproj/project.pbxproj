@@ -14,6 +14,7 @@
 		8564223B209566CC00E665D0 /* extUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564223A209566CC00E665D0 /* extUserDefaults.swift */; };
 		856422432096C65C00E665D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856422422096C65C00E665D0 /* Images.xcassets */; };
 		85E1E40220974D5E003C20AC /* CandidateDataList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85E1E40120974D5E003C20AC /* CandidateDataList.plist */; };
+		85F626CA20D55E4200A024AD /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F626C920D55E4200A024AD /* Data.swift */; };
 		85F87D5620B502CC00E15BF2 /* UIView+Insets.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3420B502CC00E15BF2 /* UIView+Insets.m */; };
 		85F87D5720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */; };
 		85F87D5820B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3B20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
@@ -56,6 +57,7 @@
 		8564223A209566CC00E665D0 /* extUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extUserDefaults.swift; sourceTree = "<group>"; };
 		856422422096C65C00E665D0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		85E1E40120974D5E003C20AC /* CandidateDataList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CandidateDataList.plist; sourceTree = "<group>"; };
+		85F626C920D55E4200A024AD /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		85F87D3320B502CC00E15BF2 /* UIView+Insets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Insets.h"; sourceTree = "<group>"; };
 		85F87D3420B502CC00E15BF2 /* UIView+Insets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Insets.m"; sourceTree = "<group>"; };
 		85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+YALTabBarViewAnimations.m"; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				850434A220BA9E8D008135EA /* Network.swift */,
+				85F626C920D55E4200A024AD /* Data.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				85F87D7920B503AE00E15BF2 /* VoteListViewCell.swift in Sources */,
 				8564222F20940F8500E665D0 /* extUIColor.swift in Sources */,
 				85F87D5820B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */,
+				85F626CA20D55E4200A024AD /* Data.swift in Sources */,
 				85F87D5B20B502CC00E15BF2 /* YALSpringAnimation.m in Sources */,
 				85F87D7D20B503AE00E15BF2 /* ReportViewController.swift in Sources */,
 				85F87D7C20B503AE00E15BF2 /* EndViewController.swift in Sources */,

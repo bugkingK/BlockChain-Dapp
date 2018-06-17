@@ -29,7 +29,8 @@ class VoteListViewController: UIViewController{
             self.present(alert, animated: true)
         }
         
-        
+        let apiClient = APIClient()
+        apiClient.getStartedPlace()
         
     }
     

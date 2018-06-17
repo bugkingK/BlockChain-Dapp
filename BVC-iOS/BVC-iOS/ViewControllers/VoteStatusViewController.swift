@@ -32,17 +32,20 @@ class VoteStatusViewController: UIViewController {
     
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
     prepareVisibleCellsForAnimation()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
-    animateVisibleCells()
-  }
+        let apiClient = APIClient()
+//        apiClient.getEndedPlace()
+        apiClient.setVote(placeid: "1", candidateid: "1", phone: "1")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        animateVisibleCells()
+    }
   
     private func showHowToVC() {
         // 앱 사용법을 팝업창으로 실행시킵니다.

@@ -47,6 +47,9 @@ class CandidateViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         prepareVisibleCellsForAnimation()
+        
+        let apiClient = APIClient()
+        apiClient.getBookedCandidate(placeid: "1")
     }
     
     override func viewDidAppear(_ animated: Bool) {

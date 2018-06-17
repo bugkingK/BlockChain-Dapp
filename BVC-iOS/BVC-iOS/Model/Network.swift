@@ -11,9 +11,10 @@ import UIKit
 import Alamofire
 
 private enum siteURL: String {
-    case server             = "http://bug.lasel.kr:4210/app/"
-    case getAllplace        = "getAllplace"
-    case getAllCandidate    = "getAllCandidate"
+    case server             = "http://yangarch.iptime.org:4210/app/"
+    case getStartedPlace    = "getStartedPlace"
+    case getEndedPlace      = "getEndedPlace"
+    case getBookedCandidate = "getBookedCandidate"
     case setVote            = "setVote"
     case getCounting        = "getCounting"
 }
@@ -56,44 +57,137 @@ class Network{
 class APIClient {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    //등록된 투표장보기
-    func getAllplace() {
-        let network = Network(siteURL.getAllplace.rawValue, method: .get)
+    //선거가 시작 중인 선거장
+    func getStartedPlace() {
+        let network = Network(siteURL.getStartedPlace.rawValue, method: .get)
         network.connetion(){ response in
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
-                switch resultCode {
-                case 200:
-                    self.appDelegate.showAlert(resultMessage)
-                    print(resultData)
-                    break
-                default:
-                    self.appDelegate.showAlert(resultMessage)
-                    break
+            
+            guard let resultCode = response["code"] as? Int,
+                  let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            if let data = response["data"] {
+                for index in data as! [[[String: AnyObject]]] {
+                    for _index in index {
+                        guard let placeid = _index["placeid"] as? Int,
+                              let name = _index["name"] as? String,
+                              let start_regist_period = _index["start_regist_period"] as? String,
+                              let end_regist_period = _index["end_regist_period"] as? String,
+                              let votedate = _index["votedate"] as? String,
+                              let start_vote_time = _index["start_vote_time"] as? String,
+                              let end_vote_time = _index["end_vote_time"] as? String,
+                              let contents = _index["contents"] as? String,
+                              let isStarted = _index["isStarted"] as? Int else {
+                                self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
+                                return
+                        }
+                        let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
+                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted)
+                        startedPlaceinfo.append(placeinfo)
+                    }
                 }
-            } else {
-                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+            }
+            
+            switch resultCode {
+            case 200:
+                // 연결만 하면 됨....
+                self.appDelegate.showAlert(resultMessage)
+                print(startedPlaceinfo)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
             }
         }
     }
     
-    // 등록된 후보자 보기
-    func getAllCandidate(placeid: String) {
+    //선거가 시작 중인 선거장
+    func getEndedPlace() {
+        let network = Network(siteURL.getEndedPlace.rawValue, method: .get)
+        network.connetion(){ response in
+            
+            guard let resultCode = response["code"] as? Int,
+                let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            if let data = response["data"] {
+                for index in data as! [[[String: AnyObject]]] {
+                    for _index in index {
+                        guard let placeid = _index["placeid"] as? Int,
+                            let name = _index["name"] as? String,
+                            let start_regist_period = _index["start_regist_period"] as? String,
+                            let end_regist_period = _index["end_regist_period"] as? String,
+                            let votedate = _index["votedate"] as? String,
+                            let start_vote_time = _index["start_vote_time"] as? String,
+                            let end_vote_time = _index["end_vote_time"] as? String,
+                            let contents = _index["contents"] as? String,
+                            let isStarted = _index["isStarted"] as? Int else {
+                                self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
+                                return
+                        }
+                        let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
+                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted)
+                        endedPlaceinfo.append(placeinfo)
+                    }
+                }
+            }
+            
+            switch resultCode {
+            case 200:
+                // 연결만 하면 됨....
+                self.appDelegate.showAlert(resultMessage)
+                print(endedPlaceinfo)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
+            }
+        }
+    }
+    
+    // placeid에 해당하는 후보자 리스트
+    func getBookedCandidate(placeid: String) {
         let parameters: Parameters = ["placeid" : placeid]
         
-        let network = Network(siteURL.getAllCandidate.rawValue, method: .get, parameters : parameters)
+        let network = Network(siteURL.getBookedCandidate.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
-            print(response)
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
-                switch resultCode {
-                case 200:
-                    print(resultData)
-                    break
-                default:
-                    self.appDelegate.showAlert(resultMessage)
-                    break
+            
+            guard let resultCode = response["code"] as? Int,
+                let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            if let data = response["data"] {
+                for index in data as! [[[String: AnyObject]]] {
+                    for _index in index {
+                        guard
+                              let candidateid = _index["candidateid"] as? String,
+                              let name = _index["name"] as? String,
+                              let wantvote = _index["wantvote"] as? String else {
+                                self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
+                                return
+                        }
+                        let candidateinfo = CandidateInfo(candidateid: candidateid, name: name, wantvote: wantvote)
+                        candidateInfo.append(candidateinfo)
+                        
+                    }
                 }
-            } else {
-                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+            }
+            
+            switch resultCode {
+            case 200:
+                // 연결만 하면 됨....
+                self.appDelegate.showAlert(resultMessage)
+                print(candidateInfo)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
             }
         }
     }
@@ -105,6 +199,7 @@ class APIClient {
         let network = Network(siteURL.setVote.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             print(response)
+            
             if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String {
                 switch resultCode {
                 case 200:
@@ -124,9 +219,10 @@ class APIClient {
     func getCounting(placeid: String) {
         let parameters: Parameters = ["placeid" : placeid]
         
-        let network = Network(siteURL.setVote.rawValue, method: .get, parameters : parameters)
+        let network = Network(siteURL.getCounting.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             print(response)
+            
             if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
                 switch resultCode {
                 case 200:

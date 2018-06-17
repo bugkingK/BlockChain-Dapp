@@ -34,6 +34,10 @@ class PromiseViewController: UIViewController {
     }
     
     @objc func handleVote() {
+        /// 투표하기
+        var apiClient = APIClient()
+        apiClient.setVote(placeid: "1", candidateid: "1", phone: "1")
+        
         navigationController?.pushViewController(EndViewController(), animated: true)
     }
 }
