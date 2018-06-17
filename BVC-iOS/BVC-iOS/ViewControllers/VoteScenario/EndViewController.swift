@@ -27,10 +27,15 @@ class EndViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isHidden = true
+        userInfo.name = nil
+        userInfo.phone = nil
+        userInfo.selectCandidateid = nil
+        userInfo.selectPlaceid = nil
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
         appDelegate.tabBarController?.tabBar.isHidden = false
     }
     

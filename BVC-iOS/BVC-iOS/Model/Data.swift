@@ -68,15 +68,17 @@ struct UserInfo {
     var selectPlaceid: String?
     var selectCandidateid: String?
     var phone: String?
+    var name: String?
     
-    init(selectPlaceid: String?, selectCandidateid: String?, phone: String?){
+    init(selectPlaceid: String?, selectCandidateid: String?, phone: String?, name: String?){
         self.selectPlaceid = selectPlaceid
         self.selectCandidateid = selectCandidateid
         self.phone = phone
+        self.name = name
     }
 }
 
 
 
 var countingInfo: [CountingInfo] = []
-var userInfo: UserInfo = UserInfo(selectPlaceid: nil, selectCandidateid: nil, phone: nil)
+var userInfo: UserInfo = UserInfo(selectPlaceid: nil, selectCandidateid: nil, phone: nil, name: nil)

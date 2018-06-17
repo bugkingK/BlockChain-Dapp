@@ -16,6 +16,7 @@ class VoteListViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.isHidden = true
         
@@ -34,6 +35,12 @@ class VoteListViewController: UIViewController{
             self.collectionView.reloadData()
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     
     deinit {
         print("VoteListViewController deinit" )

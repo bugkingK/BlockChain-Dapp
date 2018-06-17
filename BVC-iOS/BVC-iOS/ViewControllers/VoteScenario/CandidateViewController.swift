@@ -85,9 +85,9 @@ extension CandidateViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        //let message = messages[(indexPath as NSIndexPath).row]
-        
+        userInfo.selectCandidateid = String(candidateInfo[indexPath.row].candidateid)
+        userInfo.name = candidateInfo[indexPath.row].name
+        print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         navigationController?.pushViewController(PromiseViewController(), animated: true)
     }
 }

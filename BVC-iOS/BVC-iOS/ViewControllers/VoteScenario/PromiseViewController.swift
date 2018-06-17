@@ -55,12 +55,30 @@ class PromiseViewController: UIViewController {
         agreeBtn.heightAnchor.constraint(equalToConstant: view.frame.height / 10).isActive = true
     }
     
+    /// 투표하기
     @objc func handleVote() {
-        /// 투표하기
-        let apiClient = APIClient()
-        apiClient.setVote(placeid: "1", candidateid: "1", phone: "1")
+        guard let placeid = userInfo.selectPlaceid,
+              let candidateid = userInfo.selectCandidateid,
+              let phone = userInfo.phone,
+              let name = userInfo.name else {
+                let alert = UIAlertController(title: nil, message: "잘못된 경로입니다.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+        }
         
-        navigationController?.pushViewController(EndViewController(), animated: true)
+        let alert = UIAlertController(title: "투표하시겠습니까?", message: "\(name)이 맞습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default) { (_) in
+            let apiClient = APIClient()
+            apiClient.setVote(placeid: placeid, candidateid: candidateid, phone: phone)
+            
+            self.navigationController?.pushViewController(EndViewController(), animated: true)
+        }
+        let noAction = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
