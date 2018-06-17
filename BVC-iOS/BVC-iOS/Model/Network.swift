@@ -218,24 +218,45 @@ class APIClient {
     }
     
     // 투표 결과 가져오기
-    func getCounting(placeid: String) {
+    func getCounting(placeid: String, completion: @escaping ( [CountingInfo] ) -> Void) {
         let parameters: Parameters = ["placeid" : placeid]
         
         let network = Network(siteURL.getCounting.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
-            print(response)
             
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String, let resultData = response["data"] as? [[String: String]] {
-                switch resultCode {
-                case 200:
-                    print(resultData)
-                    break
-                default:
-                    self.appDelegate.showAlert(resultMessage)
-                    break
+            guard let resultCode = response["code"] as? Int,
+                let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            var countingInfo: [CountingInfo] = []
+            
+            if let data = response["data"] {
+                for index in data as! [[[String: AnyObject]]] {
+                    for _index in index {
+                        guard
+                            let candidateid = _index["candidateid"] as? String,
+                            let name = _index["name"] as? String,
+                            let placeid = _index["wantvote"] as? String,
+                            let voteCount = _index["candidateresult"] as? Int else {
+                                self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
+                                return
+                        }
+                        let countinginfo = CountingInfo(name: name, placeid: placeid, candidateid: candidateid, voteCount: voteCount)
+                        countingInfo.append(countinginfo)
+                        
+                    }
                 }
-            } else {
-                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+            }
+            
+            switch resultCode {
+            case 200:
+                completion(countingInfo)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
             }
         }
     }

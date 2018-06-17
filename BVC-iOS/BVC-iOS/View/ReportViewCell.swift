@@ -1,9 +1,17 @@
+//
+//  ReportViewCell.swift
+//  BVC
+//
+//  Created by kimun on 2018. 6. 17..
+//  Copyright © 2018년 Yalantis. All rights reserved.
+//
+
 
 import UIKit
 import Alamofire
 
-class CandidateViewCell: UICollectionViewCell {
-   
+class ReportViewCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupViews()
@@ -67,7 +75,7 @@ class CandidateViewCell: UICollectionViewCell {
         partyName.heightAnchor.constraint(equalToConstant: self.frame.height / 2).isActive = true
     }
     
-    func configure(imageURL: String, candidateName: String, partyName: String) {
+    func configure(imageURL: String, candidateName: String, voteCount: Int) {
         Alamofire.request(imageURL, method: .get).responseData { response in
             if response.error == nil {
                 // Show the downloaded image:
@@ -77,6 +85,6 @@ class CandidateViewCell: UICollectionViewCell {
             }
         }
         self.candidateName.text = candidateName
-        self.partyName.text = partyName
+        self.partyName.text = String(voteCount)
     }
 }

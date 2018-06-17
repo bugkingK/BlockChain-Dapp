@@ -17,7 +17,7 @@ router.get('/getStartedPlace', function(req, res){
 
                 if(!err) {
                     result.map(function (item, index) {
-                        outcome.push(appClosureAdd(0, item["placeid"], null, null));
+                        outcome.push(appClosureAdd(0, item["placeid"], null, null, null));
                     })
 
                     async.series(outcome, function(err, resEnd){
@@ -28,7 +28,7 @@ router.get('/getStartedPlace', function(req, res){
                                 resEnd.map(function (item, index){
                                     item.map(function(_item, _index){
                                         if(_item["isStarted"] == 1){
-                                            startedOutcom.push(appClosureAdd(1, null, item, null));
+                                            startedOutcom.push(appClosureAdd(1, null, item, null, null));
                                         }
                                     })
                                 })
@@ -68,7 +68,7 @@ router.get('/getEndedPlace', function(req, res){
 
                 if(!err) {
                     result.map(function (item, index) {
-                        outcome.push(appClosureAdd(0, item["placeid"], null, null));
+                        outcome.push(appClosureAdd(0, item["placeid"], null, null, null));
                     })
 
                     async.series(outcome, function(err, resEnd){
@@ -79,7 +79,7 @@ router.get('/getEndedPlace', function(req, res){
                                 resEnd.map(function (item, index){
                                     item.map(function(_item, _index){
                                         if(_item["isStarted"] == 3){
-                                            startedOutcom.push(appClosureAdd(1, null, item, null));
+                                            startedOutcom.push(appClosureAdd(1, null, item, null, null));
                                         }
                                     })
                                 })
@@ -122,9 +122,9 @@ router.get('/getBookedCandidate', function(req, res){
 
                     _result.map(function (item, index) {
                         if(item == null) {
-                            outcomeBooked.push(appClosureAdd(2, placeid, null, null));
+                            outcomeBooked.push(appClosureAdd(2, placeid, null, null, null));
                         } else {
-                            outcomeBooked.push(appClosureAdd(2, placeid, null, item["CandidateID"]));
+                            outcomeBooked.push(appClosureAdd(2, placeid, null, item["CandidateID"], null));
                         }
                     })
 
@@ -182,11 +182,24 @@ router.get('/getCounting', function(req, res){
 
     blockFunc.candidateLength(function(err, length){
         if(!err){
-            blockFunc.extractArr(2, placeid, length, function(_err, result){
+            blockFunc.extractArr(2, placeid, length, function(_err, _result){
                 if(!_err) {
-                    view.jsonParsing(200, "success", result, function(jsonData){
-                        res.json(jsonData);
+                    var outcomeBooked = []
+
+                    _result.map(function (item, index) {
+                        if(item == null) {
+                            outcomeBooked.push(appClosureAdd(3, placeid, null, null, null));
+                        } else {
+                            outcomeBooked.push(appClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
+                        }
                     })
+
+                    async.series(outcomeBooked, function(err1, resEnd1){
+                        view.jsonParsing(200, "success", resEnd1, function(jsonData){
+                            res.json(jsonData);
+                        })
+                    })
+
                 } else {
                     view.jsonParsing(400, "개표 결과를 볼 수 없습니다.", "", function(jsonData){
                         res.json(jsonData);
@@ -201,7 +214,7 @@ router.get('/getCounting', function(req, res){
     })
 });
 
-function appClosureAdd(selector, placeid, item, candidateid){
+function appClosureAdd(selector, placeid, item, candidateid, counting){
     switch(selector) {
         case 0:
             return function(callback){
@@ -219,6 +232,12 @@ function appClosureAdd(selector, placeid, item, candidateid){
         case 2:
             return function(callback){
                 dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+                    callback(null, result)
+                })
+            }
+        case 3:
+            return function(callback){
+                dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
                     callback(null, result)
                 })
             }
