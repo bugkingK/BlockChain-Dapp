@@ -83,7 +83,7 @@ extension VoteListViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! VoteListViewCell
         
         cell.configure(
-            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p2",
+            imageURL: startedPlaceinfo[indexPath.row].imageURL,
             title: startedPlaceinfo[indexPath.row].name,
             contents: startedPlaceinfo[indexPath.row].contents
         )
@@ -93,7 +93,6 @@ extension VoteListViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         userInfo.selectPlaceid = String(startedPlaceinfo[indexPath.row].placeid)
-        print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         
         navigationController?.pushViewController(CandidateViewController(), animated: true)
     }

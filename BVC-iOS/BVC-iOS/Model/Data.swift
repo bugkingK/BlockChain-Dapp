@@ -14,13 +14,15 @@ struct PlaceInfo {
     var period: Period
     var contents: String
     var isStarted: Int
+    var imageURL: String
     
-    init(placeid: Int, name: String, period: Period, contents: String, isStarted: Int) {
+    init(placeid: Int, name: String, period: Period, contents: String, isStarted: Int, imageURL: String) {
         self.placeid = placeid
         self.name = name
         self.period = period
         self.contents = contents
         self.isStarted = isStarted
+        self.imageURL = imageURL
     }
 }
 
@@ -44,11 +46,15 @@ struct CandidateInfo {
     var candidateid: String
     var name: String
     var wantvote: String
+    var imageURL: String
+    var pdfURL: String
     
-    init(candidateid: String, name: String, wantvote: String) {
+    init(candidateid: String, name: String, wantvote: String, imageURL: String, pdfURL: String) {
         self.candidateid = candidateid
         self.name = name
         self.wantvote = wantvote
+        self.imageURL = imageURL
+        self.pdfURL = pdfURL
     }
 }
 
@@ -57,12 +63,14 @@ struct CountingInfo {
     var placeid: String
     var candidateid: String
     var voteCount: Int
+    var imageURL: String
     
-    init(name: String, placeid: String, candidateid: String, voteCount: Int) {
+    init(name: String, placeid: String, candidateid: String, voteCount: Int, imageURL: String) {
         self.name = name
         self.placeid = placeid
         self.candidateid = candidateid
         self.voteCount = voteCount
+        self.imageURL = imageURL
     }
 }
 
@@ -83,5 +91,5 @@ struct UserInfo {
 }
 
 
-
+var candidateInfo: [CandidateInfo] = []
 var userInfo: UserInfo = UserInfo(selectPlaceid: nil, selectCandidateid: nil, phone: nil, name: nil, transactionAddress: nil)

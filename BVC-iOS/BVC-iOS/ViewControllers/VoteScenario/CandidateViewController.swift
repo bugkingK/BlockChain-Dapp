@@ -77,7 +77,7 @@ extension CandidateViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CandidateViewCell
 
         cell.configure(
-            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p3",
+            imageURL: candidateInfo[indexPath.row].imageURL,
             candidateName: candidateInfo[indexPath.row].name,
             partyName: candidateInfo[indexPath.row].candidateid)
         
@@ -85,9 +85,9 @@ extension CandidateViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        UserDefaults.standard.setSelectedIndex(value: indexPath.row)
         userInfo.selectCandidateid = String(candidateInfo[indexPath.row].candidateid)
         userInfo.name = candidateInfo[indexPath.row].name
-        print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         navigationController?.pushViewController(PromiseViewController(), animated: true)
     }
 }

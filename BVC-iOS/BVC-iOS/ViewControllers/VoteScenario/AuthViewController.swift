@@ -45,7 +45,6 @@ class AuthViewController: UIViewController, YALTabBarDelegate {
             let phoneNumber = alert.textFields?[0].text // 전화번호
             userInfo.phone = phoneNumber
             UserDefaults.standard.setIsAutu(value: true)
-            print("placeid : \(userInfo.selectPlaceid), candidateid : \(userInfo.selectCandidateid), phone : \(userInfo.phone)")
         })
         
         DispatchQueue.main.async {

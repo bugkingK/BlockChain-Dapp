@@ -85,8 +85,11 @@ class APIClient {
                                 self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
+                        // 임시용 imageURL
+                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p2"
+                        
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
-                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted)
+                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted, imageURL: imageURL)
                         startedPlaceinfo.append(placeinfo)
                     }
                 }
@@ -131,8 +134,11 @@ class APIClient {
                                 self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
+                        // 임시용 imageURL
+                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p2"
+                        
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
-                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted)
+                        let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted, imageURL: imageURL)
                         endedPlaceinfo.append(placeinfo)
                     }
                 }
@@ -162,8 +168,6 @@ class APIClient {
                     return
             }
             
-            var candidateInfo: [CandidateInfo] = []
-            
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
                     for _index in index {
@@ -174,7 +178,12 @@ class APIClient {
                                 self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        let candidateinfo = CandidateInfo(candidateid: candidateid, name: name, wantvote: wantvote)
+                        // 임시용 imageURL
+                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p3"
+                        // 임시용 pdfURL
+                        let pdfURL = "http://yangarch.iptime.org/bvc/candidateimg/comm/1moon.pdf"
+                        
+                        let candidateinfo = CandidateInfo(candidateid: candidateid, name: name, wantvote: wantvote, imageURL: imageURL, pdfURL: pdfURL)
                         candidateInfo.append(candidateinfo)
                         
                     }
@@ -243,7 +252,10 @@ class APIClient {
                                 self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        let countinginfo = CountingInfo(name: name, placeid: placeid, candidateid: candidateid, voteCount: voteCount)
+                        // 임시용 imageURL
+                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p3"
+                        
+                        let countinginfo = CountingInfo(name: name, placeid: placeid, candidateid: candidateid, voteCount: voteCount, imageURL: imageURL)
                         countingInfo.append(countinginfo)
                         
                     }

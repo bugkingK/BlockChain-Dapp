@@ -38,7 +38,9 @@ class PromiseViewController: UIViewController {
         view.addSubview(agreeBtn)
         view.addSubview(webView)
         
-        if let url = URL(string: "http://yangarch.iptime.org/bvc/candidateimg/comm/1moon.pdf") {
+        let index = UserDefaults.standard.getSelectedIndex()
+        print("index : \(index)")
+        if let url = URL(string: candidateInfo[index].pdfURL) {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
             appDelegate.isshowActivityIndicatory()

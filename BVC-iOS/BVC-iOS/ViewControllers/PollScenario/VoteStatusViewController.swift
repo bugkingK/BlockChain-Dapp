@@ -65,7 +65,8 @@ extension VoteStatusViewController: UICollectionViewDataSource {
         
         cell.configure(
             title: self.endedPlaceinfo[indexPath.row].name,
-            date: self.endedPlaceinfo[indexPath.row].period.votedate
+            date: self.endedPlaceinfo[indexPath.row].period.votedate,
+            imageURL: self.endedPlaceinfo[indexPath.row].imageURL
         )
         
         return cell

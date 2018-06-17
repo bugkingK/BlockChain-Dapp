@@ -8,6 +8,7 @@ extension UserDefaults {
         case phoneNumber
         case isAutu
         case selectedPlaceId
+        case selectedIndex
     }
     
     func setisFirstExcuteIn(value: Bool){
@@ -44,5 +45,14 @@ extension UserDefaults {
     
     func getselectedPlaceId() -> String {
         return string(forKey: UserDefaultsKeys.selectedPlaceId.rawValue)!
+    }
+    
+    func setSelectedIndex(value: Int) {
+        set(value, forKey: UserDefaultsKeys.selectedIndex.rawValue)
+        synchronize()
+    }
+    
+    func getSelectedIndex() -> Int {
+        return integer(forKey: UserDefaultsKeys.selectedIndex.rawValue)
     }
 }
