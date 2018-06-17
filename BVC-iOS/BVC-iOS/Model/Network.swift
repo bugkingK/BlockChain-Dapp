@@ -193,24 +193,26 @@ class APIClient {
     }
    
     // 투표하기
-    func setVote(placeid: String, candidateid: String, phone: String) {
+    func setVote(placeid: String, candidateid: String, phone: String, completion: @escaping (String) -> Void) {
         let parameters: Parameters = ["placeid" : placeid, "candidateid" : candidateid, "phone" : phone]
         
         let network = Network(siteURL.setVote.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
-            print(response)
             
-            if let resultCode = response["code"] as? Int, let resultMessage = response["message"] as? String {
-                switch resultCode {
-                case 200:
-                    self.appDelegate.showAlert(resultMessage)
-                    break
-                default:
-                    self.appDelegate.showAlert(resultMessage)
-                    break
-                }
-            } else {
-                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+            guard let resultCode = response["code"] as? Int,
+                  let resultMessage = response["message"] as? String,
+                  let resultData = response["data"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            switch resultCode {
+            case 200:
+                completion(resultData)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
             }
         }
     }

@@ -70,7 +70,9 @@ class PromiseViewController: UIViewController {
         let alert = UIAlertController(title: "투표하시겠습니까?", message: "\(name)이 맞습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { (_) in
             let apiClient = APIClient()
-            apiClient.setVote(placeid: placeid, candidateid: candidateid, phone: phone)
+            apiClient.setVote(placeid: placeid, candidateid: candidateid, phone: phone) { response in
+                userInfo.transactionAddress = response
+            }
             
             self.navigationController?.pushViewController(EndViewController(), animated: true)
         }
