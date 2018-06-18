@@ -9,17 +9,31 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended : false}));
 
-var path = process.cwd();
-var blockFunc = require( path + '/model/blockFunc' );
-var dbFunc = require( path + '/model/dbFunc' );
+var rootPath = process.cwd();
+var blockFunc = require( rootPath + '/model/blockFunc' );
+var dbFunc = require( rootPath + '/model/dbFunc' );
+var FH = require( rootPath + '/model/funcHandling')
+
+const path = require("path");
+const multer = require("multer");
+const handleError = (err, res) => {
+    res
+        .status(500)
+        .contentType("text/plain")
+        .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+    dest: "/path/to/temporary/directory/to/store/uploaded/files"
+});
 
 // 1-1. 선거장 생성 page open
 router.get('/setPollingPlace', function(req, res){
-    res.sendFile( path + '/public/setPollingPlace.html');
+    res.sendFile( rootPath + '/public/setPollingPlace.html');
 });
 
 // 1-2. 선거장 생성하는 메소드
-router.post('/setPollingPlace', function(req, res){
+router.post('/setPollingPlace', upload.single("file"), function(req, res){
     var info = [req.body.user_name,
                 req.body.start_regist_period,
                 req.body.end_regist_period,
@@ -32,7 +46,26 @@ router.post('/setPollingPlace', function(req, res){
         if (!err) {
             if (placeid != null){
                 dbFunc.insertPlaceInfo(placeid, isStarted, info, function(result){
-                    res.redirect('/web/getAllplace');
+                    const tempPath = req.file.path;
+                    const targetPath = path.join( rootPath, "/uploads/place/" + placeid + ".png");
+
+                    if (path.extname(req.file.originalname).toLowerCase() === ".png" ||
+                        path.extname(req.file.originalname).toLowerCase() === ".jpg" ) {
+                        fs.rename(tempPath, targetPath, err => {
+                            if (err) return handleError(err, res);
+
+                            res.redirect('/web/getAllplace');
+                        });
+                    } else {
+                        fs.unlink(tempPath, err => {
+                            if (err) return handleError(err, res);
+
+                        res
+                            .status(403)
+                            .contentType("text/plain")
+                            .end("png와 jpg파일만 올려주세요.");
+                        });
+                    }
                 });
             } else {
                 res.send('block Chain err!')
@@ -46,7 +79,7 @@ router.post('/setPollingPlace', function(req, res){
 
 // 2-1. 모든 선거리스트를 전송합니다.
 router.get('/getAllplace', function(req, res){
-    fs.readFile( path + '/public/getAllplace.html', 'utf8', function(err, data){
+    fs.readFile( rootPath + '/public/getAllplace.html', 'utf8', function(err, data){
         if(!err){
             blockFunc.placeLength(function(err, length){
                 if(!err){
@@ -55,7 +88,7 @@ router.get('/getAllplace', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                                outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null, null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -129,7 +162,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                 var result = []
 
                 _res.map(function (item, index) {
-                    result.push(webClosureAdd(1, null, item, null));
+                    result.push(FH.handlingClosureAdd(1, null, item, null, null));
                 })
 
                 async.series(result, function(err, resEnd){
@@ -144,9 +177,9 @@ router.get('/getAllCandidate/:placeid', function(req, res){
 
                                 _result.map(function (item, index) {
                                     if(item == null) {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                        outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, null, null));
                                     } else {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                        outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, item["CandidateID"], null));
                                     }
 
                                 })
@@ -176,7 +209,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
 router.get('/getBookedCandidate/:placeid', function (req, res){
     var placeid = req.params.placeid;
 
-    fs.readFile( path + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
+    fs.readFile( rootPath + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
         blockFunc.candidateLength(function(err, length){
             if(!err){
                 blockFunc.extractArr(1, placeid, length, function(_err, _result){
@@ -185,9 +218,9 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
 
                         _result.map(function (item, index) {
                             if(item == null) {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, null, null));
                             } else {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, item["CandidateID"], null));
                             }
                         })
 
@@ -243,7 +276,7 @@ router.get('/getAllCandidate/setCandidateResign/:candidateid/:placeid', function
 
 // 6. 개표합니다.
 router.get('/getCounting', function(req, res){
-    fs.readFile( path + '/public/getCounting.html', 'utf8', function(err, data){
+    fs.readFile( rootPath + '/public/getCounting.html', 'utf8', function(err, data){
         if(!err){
             blockFunc.placeLength(function(err, length){
                 if(!err){
@@ -252,7 +285,7 @@ router.get('/getCounting', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                                outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null,null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -279,25 +312,25 @@ router.get('/getCounting', function(req, res){
 // 7. 개표결과 페이지입니다.
 router.get('/getVotingCount/:placeid', function(req, res){
   var placeid = req.params.placeid;
-  
-  fs.readFile( path + '/public/getVotingCount.html', 'utf8', function(err, data){
+
+  fs.readFile( rootPath + '/public/getVotingCount.html', 'utf8', function(err, data){
     if(!err){
       blockFunc.candidateLength(function(err, length){
           if(!err){
-              blockFunc.extractArr(1, placeid, length, function(_err, _result){
+              blockFunc.extractArr(2, placeid, length, function(_err, _result){
                   if(!_err) {
                       var outcomeBooked = []
 
                       _result.map(function (item, index) {
                           if(item == null) {
-                              outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                              outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, null, null));
                           } else {
-                              outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                              outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
                           }
                       })
 
                       async.series(outcomeBooked, function(err1, resEnd1){
-                          res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                          res.send(ejs.render(data, {VotedList : resEnd1}));
                       })
 
                   } else {
@@ -313,31 +346,38 @@ router.get('/getVotingCount/:placeid', function(req, res){
     }
   })
 });
-
-function webClosureAdd(selector, placeid, item, candidateid){
-    switch(selector) {
-        case 0:
-            return function(callback){
-                dbFunc.searchPlaceInfo(placeid, function(err, result){
-                    callback(null, result)
-                })
-            }
-            break;
-        case 1:
-            return function(callback){
-                callback(null, item)
-            }
-            break;
-        case 2:
-            return function(callback){
-                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
-                    callback(null, result)
-                })
-            }
-        default:
-            console.log("why?")
-    }
-}
+//
+// function webClosureAdd(selector, placeid, item, candidateid, counting){
+//     switch(selector) {
+//         case 0:
+//             return function(callback){
+//                 dbFunc.searchPlaceInfo(placeid, function(err, result){
+//                     callback(null, result)
+//                 })
+//             }
+//             break;
+//         case 1:
+//             return function(callback){
+//                 callback(null, item)
+//             }
+//             break;
+//         case 2:
+//             return function(callback){
+//                 dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+//                     callback(null, result)
+//                 })
+//             }
+//             break;
+//         case 3:
+//             return function(callback){
+//                 dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
+//                     callback(null, result)
+//         })
+//       }
+//         default:
+//             console.log("why?")
+//     }
+// }
 
 
 module.exports = router;

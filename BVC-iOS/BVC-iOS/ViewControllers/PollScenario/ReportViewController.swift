@@ -1,17 +1,20 @@
+//
+//  ReportViewController.swift
+//  Example-Swift
+//
+//  Created by kimun on 2018. 4. 29..
+//  Copyright © 2018년 Yalantis. All rights reserved.
+//
 
 import UIKit
+import Alamofire
 
-private let candidateImage = "image"
-private let candidateName = "candidateName"
-private let partyName = "partyName"
+private let reuseIdentifier = "ReportViewCell"
 
-private let reuseIdentifier = "CandidateViewCell"
-
-class CandidateViewController: UIViewController {
+class ReportViewController: UIViewController {
     
-    typealias Message = [String: String]
+    var countingInfo: [CountingInfo] = []
     
-    fileprivate var messages: [Message] = []
     fileprivate let cellAnumationDuration: Double = 0.25
     fileprivate let animationDelayStep: Double = 0.1
     
@@ -24,17 +27,15 @@ class CandidateViewController: UIViewController {
         return collectionView
     }()
     
-    
-    //MARK: - View & VC life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "후보자 명단"
         
-        messages = NSArray(contentsOfFile: Bundle.main.path(forResource: "CandidateDataList", ofType: "plist")!) as! [Message]
+        title = "투표 결과"
+        
         view.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CandidateViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(ReportViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         view.addSubview(collectionView)
         
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -45,8 +46,9 @@ class CandidateViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
         prepareVisibleCellsForAnimation()
+        
+        getCounting(placeid: UserDefaults.standard.getselectedPlaceId())
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,47 +56,46 @@ class CandidateViewController: UIViewController {
         
         animateVisibleCells()
     }
+    
+    //// 개표하기 APIClient - getCounting을 불러옵니다.
+    func getCounting(placeid: String) {
+        let api = APIClient()
+        api.getCounting(placeid: placeid) { response in
+            print(response)
+            self.countingInfo = response
+            self.collectionView.reloadData()
+        }
+    }
 }
 
-extension CandidateViewController: UICollectionViewDataSource {
+extension ReportViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return countingInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CandidateViewCell
-        
-        let message = messages[(indexPath as NSIndexPath).row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ReportViewCell
         
         cell.configure(
-            image: UIImage(named: message[candidateImage]!)!,
-            candidateName: message[candidateName]!,
-            partyName: message[partyName]!)
+            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p3",
+            candidateName: countingInfo[indexPath.row].name,
+            voteCount: countingInfo[indexPath.row].voteCount)
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let message = messages[(indexPath as NSIndexPath).row]
-        
-        print(message)
-        
-        navigationController?.pushViewController(PromiseViewController(), animated: true)
-    }
 }
 
-extension CandidateViewController: UICollectionViewDelegateFlowLayout {
+extension ReportViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-//        return CGSize(width: view.bounds.width, height: layout.itemSize.height)
+        //        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        //        return CGSize(width: view.bounds.width, height: layout.itemSize.height)
         return CGSize(width: view.bounds.width, height: view.bounds.height / 4)
     }
 }
 
-extension CandidateViewController {
+extension ReportViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         segue.destination.hidesBottomBarWhenPushed = true
@@ -103,7 +104,7 @@ extension CandidateViewController {
 
 //MARK: - Cell's animation
 
-private extension CandidateViewController {
+private extension ReportViewController {
     
     func prepareVisibleCellsForAnimation() {
         collectionView.visibleCells.forEach {

@@ -29,11 +29,11 @@ module.exports.insertCandidateInfo = function(placeid, candidateid, name, user_l
     var placeID = parseInt(placeid);
     var sql='INSERT INTO candidateinfo (name, wantvote, candidateid, state) VALUES (?, ?, ?, 1)';
     var params = [name, placeID, candidateID];
-        
+
     db.query(sql, params, function(err, res){
         if(!err) {
             console.log("insert success");
-            
+
             var sql1='UPDATE wp_users SET state=1 WHERE user_login=?';
             var params1=[user_login]
             db.query(sql1, params1, function(err, res){
@@ -127,9 +127,27 @@ module.exports.selectCandidateList = function(placeid, result){
         if(!err){
             result(null, res);
         }else{
-            result(err, null);    
+            result(err, null);
         }
     })
 }
 
-
+module.exports.updateCounting = function(placeid, candidateid, counting, result) {
+    var sql = 'UPDATE candidateinfo SET candidateresult=? WHERE wantvote=? AND candidateid=?'
+    var params = [counting, placeid, candidateid];
+    db.query(sql, params, function(err, res){
+        if(!err){
+            sql = 'SELECT * FROM candidateinfo WHERE wantvote=? AND candidateid=?';
+            params = [placeid, candidateid]
+            db.query(sql, params, function(_err, _res){
+                if(!_err){
+                    result(null, _res)
+                } else {
+                    result(_err, null)
+                }
+            })
+        } else {
+            result(err, null);
+        }
+    })
+}

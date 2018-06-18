@@ -70,14 +70,18 @@ contract BVC {
     }
     //-- 해당 후보자가 해당 투표장에 등록된 후보자가 맞는지 검출
 
-    // set 함수지만 return이 bool 이고
-    function setVote(uint _placeID, uint _candidateID, uint _phone) {
     // 투표를 진행. getCheckVoted에서 true를 반환받았을 때에만 실행할 수 있어야 함.
-        voterList.length += 1;
-        uint index = voterList.length - 1;
-        voterList[index].phone = _phone;
-        voterList[index].votedPlace = _placeID;
-        candidateList[_candidateID].voteCount += 1;
+    function setVote(uint _placeID, uint _candidateID, uint _phone) {
+        // voterList.length += 1;
+        // uint index = voterList.length - 1;
+        // voterList[index].phone = _phone;
+        // voterList[index].votedPlace = _placeID;
+        for (uint i = 0; i < candidateList.length; i++) {
+            if(candidateList[i].candidateID == _candidateID) {
+                candidateList[i].voteCount += 1;
+                break;
+            }
+        }
     }
 
     // 전화번호가 중복인지 체크하는 함수           phone number check
@@ -111,11 +115,10 @@ contract BVC {
 
     // 해당 후보자의 득표수를 리턴하는 get 함수
     function getCounting(uint _placeID, uint _index) constant returns(uint, uint, uint) {
-        //for (uint i = 0; i < placeList.length; i++) {
-        //    if(candidateList[i].placeID == _placeID) {
-        //        return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
-        //    }
-        //}
-        return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
+        for (uint i = 0; i < placeList.length; i++) {
+            if(candidateList[i].placeID == _placeID) {
+                return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
+            }
+        }
     }
 }
