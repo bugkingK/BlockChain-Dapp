@@ -17,7 +17,7 @@ var abiDefinition = JSON.parse(compiledCode.contracts[':BVC'].interface);
 web3.eth.defaultAccount = web3.eth.accounts[0];
 
 // sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0xdcefd97b84e2208fc4b0cdf38a2adb4de853e8ff';
+var contractAddress = '0x608b300a106566ada56626f7111c4e54a98ff909';
 
 // 컨트랙트를 연결합니다.
 var contract = web3.eth.contract(abiDefinition);
