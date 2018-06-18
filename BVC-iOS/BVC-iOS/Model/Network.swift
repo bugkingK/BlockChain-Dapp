@@ -86,7 +86,7 @@ class APIClient {
                                 return
                         }
                         // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p2"
+                        let imageURL = "http://yangarch.iptime.org/bvc/uploads/place/\(placeid).png"
                         
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
                         let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted, imageURL: imageURL)
@@ -135,7 +135,7 @@ class APIClient {
                                 return
                         }
                         // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p2"
+                        let imageURL = "http://yangarch.iptime.org/bvc/uploads/place/\(placeid).png"
                         
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
                         let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted, imageURL: imageURL)
