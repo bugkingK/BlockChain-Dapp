@@ -2,7 +2,6 @@
 
 var async = require('async');
 var path = process.cwd();
-var view = require( path + '/view/json' );
 var BVC = require( path + '/config/blockChain')
 
 // 1. 블록체인에 선거장을 생성합니다. placeid를 반환합니다.
