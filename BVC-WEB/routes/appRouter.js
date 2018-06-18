@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var path = process.cwd();
 var blockFunc = require( path + '/model/blockFunc' );
-var dbFunc = require( path + '/model/dbFunc' );
+var FH = require( path + '/model/funcHandling')
 var view = require( path + '/view/json' );
 
 // 1. 선거가 시작 중인 선거장
@@ -17,7 +17,7 @@ router.get('/getStartedPlace', function(req, res){
 
                 if(!err) {
                     result.map(function (item, index) {
-                        outcome.push(appClosureAdd(0, item["placeid"], null, null, null));
+                        outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null, null));
                     })
 
                     async.series(outcome, function(err, resEnd){
@@ -28,7 +28,7 @@ router.get('/getStartedPlace', function(req, res){
                                 resEnd.map(function (item, index){
                                     item.map(function(_item, _index){
                                         if(_item["isStarted"] == 1){
-                                            startedOutcom.push(appClosureAdd(1, null, item, null, null));
+                                            startedOutcom.push(FH.handlingClosureAdd(1, null, item, null, null));
                                         }
                                     })
                                 })
@@ -68,7 +68,7 @@ router.get('/getEndedPlace', function(req, res){
 
                 if(!err) {
                     result.map(function (item, index) {
-                        outcome.push(appClosureAdd(0, item["placeid"], null, null, null));
+                        outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null, null));
                     })
 
                     async.series(outcome, function(err, resEnd){
@@ -79,7 +79,7 @@ router.get('/getEndedPlace', function(req, res){
                                 resEnd.map(function (item, index){
                                     item.map(function(_item, _index){
                                         if(_item["isStarted"] == 3){
-                                            startedOutcom.push(appClosureAdd(1, null, item, null, null));
+                                            startedOutcom.push(FH.handlingClosureAdd(1, null, item, null, null));
                                         }
                                     })
                                 })
@@ -122,9 +122,9 @@ router.get('/getBookedCandidate', function(req, res){
 
                     _result.map(function (item, index) {
                         if(item == null) {
-                            outcomeBooked.push(appClosureAdd(2, placeid, null, null, null));
+                            outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, null, null));
                         } else {
-                            outcomeBooked.push(appClosureAdd(2, placeid, null, item["CandidateID"], null));
+                            outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, item["CandidateID"], null));
                         }
                     })
 
@@ -188,9 +188,9 @@ router.get('/getCounting', function(req, res){
 
                     _result.map(function (item, index) {
                         if(item == null) {
-                            outcomeBooked.push(appClosureAdd(3, placeid, null, null, null));
+                            outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, null, null));
                         } else {
-                            outcomeBooked.push(appClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
+                            outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
                         }
                     })
 
@@ -213,36 +213,5 @@ router.get('/getCounting', function(req, res){
         }
     })
 });
-
-function appClosureAdd(selector, placeid, item, candidateid, counting){
-    switch(selector) {
-        case 0:
-            return function(callback){
-                dbFunc.searchPlaceInfo(placeid, function(err, result){
-                    callback(null, result)
-                })
-            }
-            break;
-        case 1:
-            return function(callback){
-                callback(null, item)
-            }
-            break;
-        case 2:
-            return function(callback){
-                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
-                    callback(null, result)
-                })
-            }
-        case 3:
-            return function(callback){
-                dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
-                    callback(null, result)
-                })
-            }
-        default:
-            console.log("why?")
-    }
-}
 
 module.exports = router;

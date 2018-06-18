@@ -12,6 +12,7 @@ router.use(bodyParser.urlencoded({extended : false}));
 var rootPath = process.cwd();
 var blockFunc = require( rootPath + '/model/blockFunc' );
 var dbFunc = require( rootPath + '/model/dbFunc' );
+var FH = require( rootPath + '/model/funcHandling')
 
 const path = require("path");
 const multer = require("multer");
@@ -48,7 +49,8 @@ router.post('/setPollingPlace', upload.single("file"), function(req, res){
                     const tempPath = req.file.path;
                     const targetPath = path.join( rootPath, "/uploads/place/" + placeid + ".png");
 
-                    if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+                    if (path.extname(req.file.originalname).toLowerCase() === ".png" ||
+                        path.extname(req.file.originalname).toLowerCase() === ".jpg" ) {
                         fs.rename(tempPath, targetPath, err => {
                             if (err) return handleError(err, res);
 
@@ -61,7 +63,7 @@ router.post('/setPollingPlace', upload.single("file"), function(req, res){
                         res
                             .status(403)
                             .contentType("text/plain")
-                            .end("Only .png files are allowed!");
+                            .end("png와 jpg파일만 올려주세요.");
                         });
                     }
                 });
@@ -86,7 +88,7 @@ router.get('/getAllplace', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null, null));
+                                outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null, null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -160,7 +162,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                 var result = []
 
                 _res.map(function (item, index) {
-                    result.push(webClosureAdd(1, null, item, null, null));
+                    result.push(FH.handlingClosureAdd(1, null, item, null, null));
                 })
 
                 async.series(result, function(err, resEnd){
@@ -175,9 +177,9 @@ router.get('/getAllCandidate/:placeid', function(req, res){
 
                                 _result.map(function (item, index) {
                                     if(item == null) {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null, null));
+                                        outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, null, null));
                                     } else {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"], null));
+                                        outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, item["CandidateID"], null));
                                     }
 
                                 })
@@ -216,9 +218,9 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
 
                         _result.map(function (item, index) {
                             if(item == null) {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, null, null));
+                                outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, null, null));
                             } else {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"], null));
+                                outcomeBooked.push(FH.handlingClosureAdd(2, placeid, null, item["CandidateID"], null));
                             }
                         })
 
@@ -283,7 +285,7 @@ router.get('/getCounting', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null,null));
+                                outcome.push(FH.handlingClosureAdd(0, item["placeid"], null, null,null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -321,9 +323,9 @@ router.get('/getVotingCount/:placeid', function(req, res){
 
                       _result.map(function (item, index) {
                           if(item == null) {
-                              outcomeBooked.push(webClosureAdd(3, placeid, null, null, null));
+                              outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, null, null));
                           } else {
-                              outcomeBooked.push(webClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
+                              outcomeBooked.push(FH.handlingClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
                           }
                       })
 
@@ -344,38 +346,38 @@ router.get('/getVotingCount/:placeid', function(req, res){
     }
   })
 });
-
-function webClosureAdd(selector, placeid, item, candidateid, counting){
-    switch(selector) {
-        case 0:
-            return function(callback){
-                dbFunc.searchPlaceInfo(placeid, function(err, result){
-                    callback(null, result)
-                })
-            }
-            break;
-        case 1:
-            return function(callback){
-                callback(null, item)
-            }
-            break;
-        case 2:
-            return function(callback){
-                dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
-                    callback(null, result)
-                })
-            }
-            break;
-        case 3:
-            return function(callback){
-                dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
-                    callback(null, result)
-        })
-      }
-        default:
-            console.log("why?")
-    }
-}
+//
+// function webClosureAdd(selector, placeid, item, candidateid, counting){
+//     switch(selector) {
+//         case 0:
+//             return function(callback){
+//                 dbFunc.searchPlaceInfo(placeid, function(err, result){
+//                     callback(null, result)
+//                 })
+//             }
+//             break;
+//         case 1:
+//             return function(callback){
+//                 callback(null, item)
+//             }
+//             break;
+//         case 2:
+//             return function(callback){
+//                 dbFunc.searchCandidateInfo(placeid, candidateid, function(err, result){
+//                     callback(null, result)
+//                 })
+//             }
+//             break;
+//         case 3:
+//             return function(callback){
+//                 dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
+//                     callback(null, result)
+//         })
+//       }
+//         default:
+//             console.log("why?")
+//     }
+// }
 
 
 module.exports = router;
