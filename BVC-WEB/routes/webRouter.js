@@ -86,7 +86,7 @@ router.get('/getAllplace', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null, null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -160,7 +160,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
                 var result = []
 
                 _res.map(function (item, index) {
-                    result.push(webClosureAdd(1, null, item, null));
+                    result.push(webClosureAdd(1, null, item, null, null));
                 })
 
                 async.series(result, function(err, resEnd){
@@ -175,9 +175,9 @@ router.get('/getAllCandidate/:placeid', function(req, res){
 
                                 _result.map(function (item, index) {
                                     if(item == null) {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, null, null));
                                     } else {
-                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                        outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"], null));
                                     }
 
                                 })
@@ -216,9 +216,9 @@ router.get('/getBookedCandidate/:placeid', function (req, res){
 
                         _result.map(function (item, index) {
                             if(item == null) {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, null, null));
                             } else {
-                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                                outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"], null));
                             }
                         })
 
@@ -283,7 +283,7 @@ router.get('/getCounting', function(req, res){
 
                         if(!err) {
                             result.map(function (item, index) {
-                                outcome.push(webClosureAdd(0, item["placeid"], null, null));
+                                outcome.push(webClosureAdd(0, item["placeid"], null, null,null));
                             })
 
                             async.series(outcome, function(err, resEnd){
@@ -310,25 +310,25 @@ router.get('/getCounting', function(req, res){
 // 7. 개표결과 페이지입니다.
 router.get('/getVotingCount/:placeid', function(req, res){
   var placeid = req.params.placeid;
-  
+
   fs.readFile( rootPath + '/public/getVotingCount.html', 'utf8', function(err, data){
     if(!err){
       blockFunc.candidateLength(function(err, length){
           if(!err){
-              blockFunc.extractArr(1, placeid, length, function(_err, _result){
+              blockFunc.extractArr(2, placeid, length, function(_err, _result){
                   if(!_err) {
                       var outcomeBooked = []
 
                       _result.map(function (item, index) {
                           if(item == null) {
-                              outcomeBooked.push(webClosureAdd(2, placeid, null, null));
+                              outcomeBooked.push(webClosureAdd(3, placeid, null, null, null));
                           } else {
-                              outcomeBooked.push(webClosureAdd(2, placeid, null, item["CandidateID"]));
+                              outcomeBooked.push(webClosureAdd(3, placeid, null, item["candidateid"], item["voteCount"]));
                           }
                       })
 
                       async.series(outcomeBooked, function(err1, resEnd1){
-                          res.send(ejs.render(data, {bookedCandidateList : resEnd1}));
+                          res.send(ejs.render(data, {VotedList : resEnd1}));
                       })
 
                   } else {
@@ -345,7 +345,7 @@ router.get('/getVotingCount/:placeid', function(req, res){
   })
 });
 
-function webClosureAdd(selector, placeid, item, candidateid){
+function webClosureAdd(selector, placeid, item, candidateid, counting){
     switch(selector) {
         case 0:
             return function(callback){
@@ -365,6 +365,13 @@ function webClosureAdd(selector, placeid, item, candidateid){
                     callback(null, result)
                 })
             }
+            break;
+        case 3:
+            return function(callback){
+                dbFunc.updateCounting(placeid, candidateid, counting, function(err, result){
+                    callback(null, result)
+        })
+      }
         default:
             console.log("why?")
     }
