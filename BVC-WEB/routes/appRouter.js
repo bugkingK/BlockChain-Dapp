@@ -223,7 +223,6 @@ function appClosureAdd(selector, placeid, item, candidateid, counting){
                 })
             }
             break;
-
         case 1:
             return function(callback){
                 callback(null, item)
