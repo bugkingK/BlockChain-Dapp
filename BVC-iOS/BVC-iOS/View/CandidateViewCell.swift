@@ -1,5 +1,6 @@
 
 import UIKit
+import Alamofire
 
 class CandidateViewCell: UICollectionViewCell {
    
@@ -28,7 +29,7 @@ class CandidateViewCell: UICollectionViewCell {
         lb.text = "제목입니당"
         lb.textAlignment = .center
         lb.font = UIFont.boldSystemFont(ofSize: 20)
-        lb.textColor = UIColor(white: 0.2, alpha: 1)
+        lb.textColor = UIColor(red: 112/255, green: 206/255, blue: 240/255, alpha: 1)
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
@@ -37,9 +38,8 @@ class CandidateViewCell: UICollectionViewCell {
         let lb = UILabel()
         lb.text = "내용 샘플"
         lb.textAlignment = .center
-        lb.numberOfLines = 5
-        lb.font = UIFont.systemFont(ofSize: 14)
-        lb.textColor = UIColor(white: 0.5, alpha: 1)
+        lb.font = UIFont.boldSystemFont(ofSize: 30)
+        lb.textColor = .white
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
@@ -67,8 +67,15 @@ class CandidateViewCell: UICollectionViewCell {
         partyName.heightAnchor.constraint(equalToConstant: self.frame.height / 2).isActive = true
     }
     
-    func configure(image: UIImage, candidateName: String, partyName: String) {
-        self.imageView.image = image
+    func configure(imageURL: String, candidateName: String, partyName: String) {
+        Alamofire.request(imageURL, method: .get).responseData { response in
+            if response.error == nil {
+                // Show the downloaded image:
+                if let data = response.data {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }
+        }
         self.candidateName.text = candidateName
         self.partyName.text = partyName
     }

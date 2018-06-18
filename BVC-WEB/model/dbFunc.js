@@ -132,4 +132,22 @@ module.exports.selectCandidateList = function(placeid, result){
     })
 }
 
-
+module.exports.updateCounting = function(placeid, candidateid, counting, result) {
+    var sql = 'UPDATE candidateinfo SET candidateresult=? WHERE wantvote=? AND candidateid=?'
+    var params = [counting, placeid, candidateid];
+    db.query(sql, params, function(err, res){
+        if(!err){
+            sql = 'SELECT * FROM candidateinfo WHERE wantvote=? AND candidateid=?';
+            params = [placeid, candidateid]
+            db.query(sql, params, function(_err, _res){
+                if(!_err){
+                    result(null, _res)
+                } else {
+                    result(_err, null)
+                }
+            })
+        } else {
+            result(err, null);
+        }
+    })
+}

@@ -43,10 +43,6 @@ class VoteListLayout: UICollectionViewFlowLayout {
             let frame = attributes.frame
             //4
             let distance = abs(collectionView!.contentOffset.x + collectionView!.contentInset.left - frame.origin.x)
-            print("distance : \(distance)")
-            print("collectionView!.contentOffset.x : \(collectionView!.contentOffset.x)")
-            print("collectionView!.contentInset.left : \(collectionView!.contentInset.left)")
-            print("frame.origin.x : \(frame.origin.x)")
             //5
             let scale = 0.75 * min(max(1 - distance / (collectionView!.bounds.width), 0.9), 1)
             //6

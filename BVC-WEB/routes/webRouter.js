@@ -9,17 +9,30 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended : false}));
 
-var path = process.cwd();
-var blockFunc = require( path + '/model/blockFunc' );
-var dbFunc = require( path + '/model/dbFunc' );
+var rootPath = process.cwd();
+var blockFunc = require( rootPath + '/model/blockFunc' );
+var dbFunc = require( rootPath + '/model/dbFunc' );
+
+const path = require("path");
+const multer = require("multer");
+const handleError = (err, res) => {
+    res
+        .status(500)
+        .contentType("text/plain")
+        .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+    dest: "/path/to/temporary/directory/to/store/uploaded/files"
+});
 
 // 1-1. 선거장 생성 page open
 router.get('/setPollingPlace', function(req, res){
-    res.sendFile( path + '/public/setPollingPlace.html');
+    res.sendFile( rootPath + '/public/setPollingPlace.html');
 });
 
 // 1-2. 선거장 생성하는 메소드
-router.post('/setPollingPlace', function(req, res){
+router.post('/setPollingPlace', upload.single("file"), function(req, res){
     var info = [req.body.user_name,
                 req.body.start_regist_period,
                 req.body.end_regist_period,
@@ -32,7 +45,25 @@ router.post('/setPollingPlace', function(req, res){
         if (!err) {
             if (placeid != null){
                 dbFunc.insertPlaceInfo(placeid, isStarted, info, function(result){
-                    res.redirect('/web/getAllplace');
+                    const tempPath = req.file.path;
+                    const targetPath = path.join( rootPath, "/uploads/place/" + placeid + ".png");
+
+                    if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+                        fs.rename(tempPath, targetPath, err => {
+                            if (err) return handleError(err, res);
+
+                            res.redirect('/web/getAllplace');
+                        });
+                    } else {
+                        fs.unlink(tempPath, err => {
+                            if (err) return handleError(err, res);
+
+                        res
+                            .status(403)
+                            .contentType("text/plain")
+                            .end("Only .png files are allowed!");
+                        });
+                    }
                 });
             } else {
                 res.send('block Chain err!')
@@ -46,7 +77,7 @@ router.post('/setPollingPlace', function(req, res){
 
 // 2-1. 모든 선거리스트를 전송합니다.
 router.get('/getAllplace', function(req, res){
-    fs.readFile( path + '/public/getAllplace.html', 'utf8', function(err, data){
+    fs.readFile( rootPath + '/public/getAllplace.html', 'utf8', function(err, data){
         if(!err){
             blockFunc.placeLength(function(err, length){
                 if(!err){
@@ -176,7 +207,7 @@ router.get('/getAllCandidate/:placeid', function(req, res){
 router.get('/getBookedCandidate/:placeid', function (req, res){
     var placeid = req.params.placeid;
 
-    fs.readFile( path + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
+    fs.readFile( rootPath + '/public/getBookedCandidate.html', 'utf8', function(err, data) {
         blockFunc.candidateLength(function(err, length){
             if(!err){
                 blockFunc.extractArr(1, placeid, length, function(_err, _result){
@@ -243,7 +274,7 @@ router.get('/getAllCandidate/setCandidateResign/:candidateid/:placeid', function
 
 // 6. 개표합니다.
 router.get('/getCounting', function(req, res){
-    fs.readFile( path + '/public/getCounting.html', 'utf8', function(err, data){
+    fs.readFile( rootPath + '/public/getCounting.html', 'utf8', function(err, data){
         if(!err){
             blockFunc.placeLength(function(err, length){
                 if(!err){
@@ -280,7 +311,7 @@ router.get('/getCounting', function(req, res){
 router.get('/getVotingCount/:placeid', function(req, res){
   var placeid = req.params.placeid;
   
-  fs.readFile( path + '/public/getVotingCount.html', 'utf8', function(err, data){
+  fs.readFile( rootPath + '/public/getVotingCount.html', 'utf8', function(err, data){
     if(!err){
       blockFunc.candidateLength(function(err, length){
           if(!err){
