@@ -72,10 +72,10 @@ contract BVC {
 
     // 투표를 진행. getCheckVoted에서 true를 반환받았을 때에만 실행할 수 있어야 함.
     function setVote(uint _placeID, uint _candidateID, uint _phone) {
-        // voterList.length += 1;
-        // uint index = voterList.length - 1;
-        // voterList[index].phone = _phone;
-        // voterList[index].votedPlace = _placeID;
+         voterList.length += 1;
+         uint index = voterList.length - 1;
+         voterList[index].phone = _phone;
+         voterList[index].votedPlace = _placeID;
         for (uint i = 0; i < candidateList.length; i++) {
             if(candidateList[i].candidateID == _candidateID) {
                 candidateList[i].voteCount += 1;
