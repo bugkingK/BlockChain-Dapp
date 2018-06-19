@@ -40,7 +40,7 @@ module.exports.setCandidate = function(placeid, result) {
 
 // 5. 투표하는 메소드입니다.
 module.exports.setVote = function(placeid, candidateid, phone, result) {
-    BVC.setVote(placeid, candidateid, phone, function(err, res) {
+    BVC.setVote.sendTransaction(placeid, candidateid, phone, {gas: 900000, gasPrice: 1}, function(err, res) {
         if(!err) {
             result(null, res);
         } else {
