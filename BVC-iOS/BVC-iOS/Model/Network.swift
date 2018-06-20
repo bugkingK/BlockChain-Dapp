@@ -179,7 +179,7 @@ class APIClient {
                                 return
                         }
                         // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p3"
+                        let imageURL = "http://yangarch.iptime.org/voteweb/wp-content/uploads/2018/06/\(candidateid).png"
                         // 임시용 pdfURL
                         let pdfURL = "http://yangarch.iptime.org/bvc/candidateimg/comm/1moon.pdf"
                         
@@ -253,7 +253,7 @@ class APIClient {
                                 return
                         }
                         // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/bvc/placeimg/p3"
+                        let imageURL = "http://yangarch.iptime.org/voteweb/wp-content/uploads/2018/06/\(candidateid).png"
                         
                         let countinginfo = CountingInfo(name: name, placeid: placeid, candidateid: candidateid, voteCount: voteCount, imageURL: imageURL)
                         countingInfo.append(countinginfo)

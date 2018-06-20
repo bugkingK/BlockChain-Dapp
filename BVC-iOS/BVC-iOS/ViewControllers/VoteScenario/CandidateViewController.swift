@@ -55,6 +55,7 @@ class CandidateViewController: UIViewController {
         
         let apiClient = APIClient()
         apiClient.getBookedCandidate(placeid: selectedPlaceid) { response in
+            self.candidateInfo.removeAll()
             self.candidateInfo = response
             self.collectionView.reloadData()
         }

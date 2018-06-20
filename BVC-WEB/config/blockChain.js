@@ -15,12 +15,12 @@ var abiDefinition = JSON.parse(compiledCode.contracts[':BVC'].interface);
 
 // eth를 지불할 eth지갑을 선택합니다.
 web3.eth.defaultAccount = web3.eth.accounts[0];
-
 // sol파일의 컨트랙트 주소입니다.
-var contractAddress = '0xdcefd97b84e2208fc4b0cdf38a2adb4de853e8ff';
-
+var contractAddress = '0x53e22abb33fbfd970e86f087722fbf1deefd8e92';
+//var gaslimit = '9999999999';
 // 컨트랙트를 연결합니다.
 var contract = web3.eth.contract(abiDefinition);
 var BVC = contract.at(contractAddress);
+
 
 module.exports = BVC;

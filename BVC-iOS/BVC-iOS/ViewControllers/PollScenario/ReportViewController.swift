@@ -61,7 +61,7 @@ class ReportViewController: UIViewController {
     func getCounting(placeid: String) {
         let api = APIClient()
         api.getCounting(placeid: placeid) { response in
-            print(response)
+            self.countingInfo.removeAll()
             self.countingInfo = response
             self.collectionView.reloadData()
         }
@@ -78,7 +78,7 @@ extension ReportViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ReportViewCell
         
         cell.configure(
-            imageURL: "http://yangarch.iptime.org/bvc/placeimg/p3",
+            imageURL: countingInfo[indexPath.row].imageURL,
             candidateName: countingInfo[indexPath.row].name,
             voteCount: countingInfo[indexPath.row].voteCount)
         
