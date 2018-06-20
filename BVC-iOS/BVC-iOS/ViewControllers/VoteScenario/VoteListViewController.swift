@@ -31,6 +31,7 @@ class VoteListViewController: UIViewController{
         
         let apiClient = APIClient()
         apiClient.getStartedPlace() { response in
+            self.startedPlaceinfo.removeAll()
             self.startedPlaceinfo = response
             self.collectionView.reloadData()
         }

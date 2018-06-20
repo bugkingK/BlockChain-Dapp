@@ -33,6 +33,7 @@ class VoteStatusViewController: UIViewController {
         
         let apiClient = APIClient()
         apiClient.getEndedPlace() { response in
+            self.endedPlaceinfo.removeAll()
             self.endedPlaceinfo = response
             self.collectionView.reloadData()
             
