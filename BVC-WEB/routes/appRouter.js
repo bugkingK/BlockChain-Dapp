@@ -154,10 +154,17 @@ router.get('/setVote', function(req, res){
     var candidateid = parseInt(req.param('candidateid'));
     var phone = parseInt(req.param('phone'));
 
+    placeid = 1;
+    candidateid = 1;
+    phone = parseInt('01077277673222');
+
     blockFunc.getCheckVoted(placeid, phone, function(err, resd){
-        if(!resd){
+        console.log('getcheckVoted : '+'placeid : ' + placeid + ', candidateid : ' + candidateid + ', phone :  ' + phone);
+        console.log(resd[0] + resd[1] + resd[2]);
+        if(!resd[0]){
             blockFunc.setVote(placeid, candidateid, phone, function(_err, _res) {
-                console.log(_err)
+                console.log('setvote : '+'placeid : ' + placeid + ', candidateid : ' + candidateid + ', phone :  ' + phone);
+                console.log(_res);
                 if(!_err) {
                     view.jsonParsing(200, "success", _res, function(jsonData){
                         res.json(jsonData);
@@ -209,6 +216,18 @@ router.get('/getCounting', function(req, res){
         } else {
             view.jsonParsing(400, "개표 결과를 볼 수 없습니다.", "", function(jsonData){
                 res.json(jsonData);
+            })
+        }
+    })
+});
+
+
+router.get('/test', function(req, res){
+    blockFunc.voteringLength(function(err, length){
+        console.log('voter length : ' + length);
+        if(!err){
+            blockFunc.extractArr(3, null, length, function(_err, _result){
+                console.log(_result);
             })
         }
     })

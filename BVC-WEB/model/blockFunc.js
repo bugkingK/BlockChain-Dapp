@@ -126,6 +126,12 @@ function closureAdd(number, index, placeid){
                 })
             }
             break;
+        case 3:
+            return function(callback){
+                exports.votering(index, function(err, result){
+                    callback(null, result);
+                })
+            }
         default:
             console.log("why?")
     }
@@ -194,6 +200,28 @@ module.exports.getCounting = function(index, placeid, candidateInfo) {
             } else {
                 candidateInfo(null, null)
             }
+        } else {
+            console.log(err);
+        }
+    })
+};
+
+// 등록된 후보자 길이 반환
+module.exports.voteringLength = function(result) {
+    BVC.voteringLength(function(err, res){
+        if(!err) {
+            result(null, res.toLocaleString());
+        } else {
+            result(err, null);
+        }
+    })
+};
+
+// voter
+module.exports.votering = function(index, voter) {
+    BVC.votering(index, function(err, res){
+        if(!err) {
+            voter(null, res);
         } else {
             console.log(err);
         }

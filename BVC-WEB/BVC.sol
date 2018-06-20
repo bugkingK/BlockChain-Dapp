@@ -85,15 +85,13 @@ contract BVC {
     }
 
     // 전화번호가 중복인지 체크하는 함수           phone number check
-    function getCheckVoted(uint _placeID, uint _phone) constant returns(bool) {
+    function getCheckVoted(uint _placeID, uint256 _phone) constant returns(bool, uint, uint256) {
         for (uint i = 0; i < voterList.length; i++) {
-            if (voterList[i].phone == _phone) {
-                if (voterList[i].votedPlace == _placeID) {
-                    return true;
-                }
+            if (voterList[i].phone == _phone && voterList[i].votedPlace == _placeID) {
+                return (true, voterList[i].votedPlace, voterList[i].phone);
             }
         }
-        return false;
+        return (false, _placeID, _phone);
     }
 
     // 투표를 시작하도록 하는 함수
@@ -120,5 +118,15 @@ contract BVC {
                 return (candidateList[_index].placeID, candidateList[_index].candidateID, candidateList[_index].voteCount);
             }
         }
+    }
+
+    //d voter length 리턴
+    function voteringLength() constant returns (uint){
+        return voterList.length;
+    }
+
+    // voter 내용 리턴
+    function votering(uint _index) constant returns(uint, uint) {
+        return (voterList[_index].phone, voterList[_index].votedPlace);
     }
 }
