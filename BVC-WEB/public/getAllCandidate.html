@@ -104,9 +104,10 @@
                     <td><%=_item.candidateid%></td>
                     <td><%=_item.name%></td>
                     <td><%=_item.wantvote%></td>
-                        <td><img src="http://yangarch.iptime.org/voteweb/wp-content/uploads/2018/06/<%=_item.candidateid%>.png" width="150" height="150" alt="후보자사진" ></td>
+                        <td><img src="<%=_item.candidateurl%>" width="150" height="150" alt="후보자사진" ></td>
                     <td><a href='setCandidateResign/<%=_item.candidateid%>/<%=_item.wantvote%>'> <input type = "submit" class="btn btn-info" value="사퇴" name=""> </td>
                 </tr>
+                 
                 <% } %>
                 <% }) %>
                 <%});%>

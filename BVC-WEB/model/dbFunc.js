@@ -27,27 +27,37 @@ module.exports.insertPlaceInfo = function(placeid, isStarted, info, result) {
 module.exports.insertCandidateInfo = function(placeid, candidateid, name, user_login, result){
     var candidateID = parseInt(candidateid);
     var placeID = parseInt(placeid);
-    var sql='INSERT INTO candidateinfo (name, wantvote, candidateid, state) VALUES (?, ?, ?, 1)';
-    var params = [name, placeID, candidateID];
+    
+    var sql ='SELECT LEFT(SUBSTRING_INDEX(m.meta_value,\'"\',-2), LENGTH(SUBSTRING_INDEX(m.meta_value,\'"\',-2))-3) AS \'image\' FROM wp_users u JOIN wp_usermeta m ON u.ID = m.user_id WHERE m.meta_key= "wp_user_avatars" AND u.user_login=?'
+    var params = [user_login];
+   
+    db.query(sql, params, function(err, url){
+        if(!err){
+            sql = 'INSERT INTO candidateinfo (name, wantvote, candidateid, candidatelogin, state, candidateurl) VALUES (?, ?, ?, ?, 1, ?)';
+            params = [name, placeID, candidateID, user_login, url[0].image];
+            db.query(sql, params, function(err, res){
+            if(!err) {
+                console.log("insert success");
 
-    db.query(sql, params, function(err, res){
-        if(!err) {
-            console.log("insert success");
+                var sql1='UPDATE wp_users SET state=1 WHERE user_login=?';
+                var params1=[user_login]
+                db.query(sql1, params1, function(err, res){
+                    if(!err){
+                        console.log("the end")
+                        result(null, res);
+                    } else {
+                        console.log("not end")
+                        result(err, null);
+                    }
+                })
 
-            var sql1='UPDATE wp_users SET state=1 WHERE user_login=?';
-            var params1=[user_login]
-            db.query(sql1, params1, function(err, res){
-                if(!err){
-                    console.log("the end")
-                    result(null, res);
-                } else {
-                    console.log("not end")
-                    result(err, null);
-                }
-            })
+            } else {
+                console.log(err);
+            }
+        })
 
         } else {
-            console.log(err);
+            result(err, null);
         }
     })
 }
