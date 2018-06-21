@@ -39,12 +39,15 @@ class AuthViewController: UIViewController, YALTabBarDelegate {
     
     func tabBarDidSelectExtraRightItem(_ tabBar: YALFoldingTabBar) {
         UserDefaults.standard.setIsLoggedIn(value: true)
-        let alert = UIAlertController(title: "Information", message: "인증되었습니다", preferredStyle: .alert)
-        alert.addTextField() { (tf) in tf.placeholder = "휴대전화번호 입력.." }
-        alert.addAction(UIAlertAction(title: "확인.", style: .default) { (_) in
-            let phoneNumber = alert.textFields?[0].text // 전화번호
-            userInfo.phone = phoneNumber
-            UserDefaults.standard.setIsAutu(value: true)
+        let alert = UIAlertController(title: "Information", message: "토큰을 입력해주세요.", preferredStyle: .alert)
+        alert.addTextField() { (tf) in tf.placeholder = "Token..." }
+        alert.addAction(UIAlertAction(title: "확인", style: .default) { (_) in
+            guard let phoneNumber = alert.textFields?[0].text else {
+                return
+            }
+            
+            let apiClient = APIClient()
+            apiClient.isAuth(token: phoneNumber)
         })
         
         DispatchQueue.main.async {

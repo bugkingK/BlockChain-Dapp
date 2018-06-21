@@ -71,7 +71,7 @@ class PromiseViewController: UIViewController {
               let candidateid = userInfo.selectCandidateid,
               let phone = userInfo.phone,
               let name = userInfo.name else {
-                let alert = UIAlertController(title: nil, message: "잘못된 경로입니다.", preferredStyle: .alert)
+                let alert = UIAlertController(title: nil, message: "다시 인증해주세요", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
@@ -79,12 +79,21 @@ class PromiseViewController: UIViewController {
         
         let alert = UIAlertController(title: "투표하시겠습니까?", message: "\(name)이 맞습니까?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "예", style: .default) { (_) in
-            let apiClient = APIClient()
-            apiClient.setVote(placeid: placeid, candidateid: candidateid, phone: phone) { response in
-                userInfo.transactionAddress = response
-            }
             
-            self.navigationController?.pushViewController(EndViewController(), animated: true)
+            let apiClient = APIClient()
+            apiClient.isAction(token: phone) { isAction in
+                print(isAction)
+                
+                if(isAction){
+                    apiClient.setVote(placeid: placeid, candidateid: candidateid, phone: phone) { response in
+                        userInfo.transactionAddress = response
+                        apiClient.setAuth(token: phone)
+                        self.navigationController?.pushViewController(EndViewController(), animated: true)
+                    }
+                } else {
+                    self.appDelegate.showAlert("잘못된 토큰입니다.")
+                }
+            }
         }
         let noAction = UIAlertAction(title: "아니요", style: .cancel, handler: nil)
         alert.addAction(okAction)

@@ -53,7 +53,7 @@ class ReportViewCell: UICollectionViewCell {
     }()
     
     private func setupViews() {
-        backgroundColor = UIColor(red: 102/255, green: 100/255, blue: 155/255, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.4061414931, green: 0.4124077691, blue: 0.6305338542, alpha: 1)
         addSubview(imageView)
         addSubview(candidateName)
         addSubview(partyName)

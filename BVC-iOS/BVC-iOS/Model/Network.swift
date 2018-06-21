@@ -17,7 +17,9 @@ private enum siteURL: String {
     case getBookedCandidate = "getBookedCandidate"
     case setVote            = "setVote"
     case getCounting        = "getCounting"
-    case setAutu            = "setAutu"
+    case isAuth             = "isAuth"
+    case isAction           = "isAction"
+    case setAuth            = "setAuth"
 }
 
 class Network{
@@ -274,12 +276,59 @@ class APIClient {
     }
     
     
-    func setAutu(token: Int) {
+    func isAuth(token: String) {
         let parameters: Parameters = ["token" : token]
         
-        let network = Network(siteURL.setAutu.rawValue, method: .get, parameters : parameters)
+        let network = Network(siteURL.isAuth.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             
+            guard let resultCode = response["code"] as? Int,
+                  let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            switch resultCode {
+            case 200:
+                self.appDelegate.showAlert(resultMessage)
+                userInfo.phone = token
+                UserDefaults.standard.setIsAutu(value: true)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                break
+            }
+        }
+    }
+    
+    func isAction(token: String, completion: @escaping ( Bool ) -> Void){
+        let parameters: Parameters = ["token" : token]
+        let network = Network(siteURL.isAction.rawValue, method: .get, parameters : parameters)
+        network.connetion(){ response in
+            print(response)
+            guard let resultCode = response["code"] as? Int,
+                let resultMessage = response["message"] as? String else {
+                    self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                    return
+            }
+            
+            switch resultCode {
+            case 200:
+                completion(true)
+                break
+            default:
+                self.appDelegate.showAlert(resultMessage)
+                completion(false)
+                break
+            }
+        }
+    }
+    
+    func setAuth(token: String){
+        let parameters: Parameters = ["token" : token]
+        let network = Network(siteURL.setAuth.rawValue, method: .get, parameters : parameters)
+        network.connetion(){ response in
+            print(response)
         }
     }
 }
