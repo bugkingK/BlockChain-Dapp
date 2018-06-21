@@ -2,10 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8716b12-b212-4617-9be1-2c928aedb326" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-40.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-40@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-40@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-60@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-60@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-72.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-72@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-76.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-76@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-83.5@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-Small-50.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-Small-50@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-Small.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-Small@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon-Small@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Icon@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/NotificationIcon@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/NotificationIcon@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/NotificationIcon~ipad.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/NotificationIcon~ipad@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/ios-marketing.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" afterPath="$PROJECT_DIR$/BVC-WEB/model/blockFunc.js" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/public/upload.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" afterPath="$PROJECT_DIR$/BVC-WEB/routes/webRouter.js" />
+      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/AppIcon.appiconset/Contents.json" />
+      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/list1.imageset/Contents.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC-iOS/Images.xcassets/list1.imageset/list1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/BVC-iOS/BVC.xcworkspace/xcuserdata/bugking.xcuserdatad/UserInterfaceState.xcuserstate" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="440">
-              <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+              <caret line="236" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -42,7 +65,7 @@
       <file leaf-file-name="webRouter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="987">
               <caret line="47" column="72" lean-forward="false" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
               <folding />
             </state>
@@ -53,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1058">
-              <caret line="79" column="52" lean-forward="true" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
+              <caret line="79" column="52" lean-forward="false" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -63,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getVotingCount.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
-              <caret line="63" column="30" lean-forward="true" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+              <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -359,12 +382,12 @@
       <workItem from="1529309556083" duration="874000" />
       <workItem from="1529402337016" duration="674000" />
       <workItem from="1529485050303" duration="6370000" />
-      <workItem from="1529502326051" duration="12199000" />
+      <workItem from="1529502326051" duration="12557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202159000" />
+    <option name="totallyTimeSpent" value="202517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="23" width="1649" height="972" extended-state="0" />
@@ -608,7 +631,7 @@
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/getVotingCount.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
-          <caret line="63" column="30" lean-forward="true" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -616,7 +639,7 @@
     <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/appRouter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
+          <caret line="236" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -640,14 +663,14 @@
     <entry file="file://$PROJECT_DIR$/BVC-WEB/public/setPollingPlace.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1058">
-          <caret line="79" column="52" lean-forward="true" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
+          <caret line="79" column="52" lean-forward="false" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BVC-WEB/routes/webRouter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="987">
           <caret line="47" column="72" lean-forward="false" selection-start-line="47" selection-start-column="72" selection-end-line="47" selection-end-column="72" />
           <folding />
         </state>
