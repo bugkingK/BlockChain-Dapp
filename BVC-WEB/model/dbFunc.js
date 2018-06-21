@@ -161,3 +161,53 @@ module.exports.updateCounting = function(placeid, candidateid, counting, result)
         }
     })
 }
+
+// 인증 검사
+module.exports.isAuth = function(token, result){
+    var sql = 'SELECT isAction FROM auth WHERE token=?';
+    var params = [token];
+    db.query(sql, params, function(err, res){
+        if(!err){
+            var numRows = res.length;
+
+            if(numRows > 0){
+                result(null, "인증되었습니다.");
+            } else {
+                result("잘못된 토큰입니다.", null);
+            }
+        } else {
+            result("잘못된 토큰입니다.", null);
+        }
+    })
+}
+
+module.exports.isAction = function(token, result){
+    var sql = 'SELECT isAction FROM auth WHERE token=?';
+    var params = [token];
+    db.query(sql, params, function(err, res){
+        if(!err){
+            var numRows = res.length;
+
+            if(numRows > 0 && res[0].isAction==0){
+                result(null, "투표");
+            } else {
+                result("이미 투표를 진행했습니다.", null);
+            }
+        } else {
+            result("잘못된 토큰입니다.", null);
+        }
+    })
+}
+
+// 투표 후 isAction 1로 변경
+module.exports.setAuth = function(token, result){
+    var sql = 'UPDATE auth SET isAction=1 where token=?';
+    var params = [token];
+    db.query(sql, params, function(err, res){
+        if(!err){
+            result(null, res);
+        } else {
+            result(err, null);
+        }
+    })
+}
