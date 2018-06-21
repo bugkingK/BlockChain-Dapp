@@ -36,7 +36,7 @@ class CandidateViewCell: UICollectionViewCell {
     
     private let partyName: UILabel = {
         let lb = UILabel()
-        lb.text = "내용 샘플"
+//        lb.text = "내용 샘플"
         lb.textAlignment = .center
         lb.font = UIFont.boldSystemFont(ofSize: 30)
         lb.textColor = .white
@@ -67,7 +67,7 @@ class CandidateViewCell: UICollectionViewCell {
         partyName.heightAnchor.constraint(equalToConstant: self.frame.height / 2).isActive = true
     }
     
-    func configure(imageURL: String, candidateName: String, partyName: String) {
+    func configure(imageURL: String, candidateName: String) {
         Alamofire.request(imageURL, method: .get).responseData { response in
             if response.error == nil {
                 // Show the downloaded image:
@@ -77,6 +77,5 @@ class CandidateViewCell: UICollectionViewCell {
             }
         }
         self.candidateName.text = candidateName
-        self.partyName.text = partyName
     }
 }

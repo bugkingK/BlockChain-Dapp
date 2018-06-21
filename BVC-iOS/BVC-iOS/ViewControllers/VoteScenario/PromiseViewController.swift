@@ -25,12 +25,12 @@ class PromiseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        setupViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,12 +47,15 @@ class PromiseViewController: UIViewController {
         view.addSubview(webView)
         
         let index = UserDefaults.standard.getSelectedIndex()
+        appDelegate.isshowActivityIndicatory()
         
-        if let url = URL(string: candidateInfo[index].pdfURL) {
-            let request = URLRequest(url: url)
-            webView.loadRequest(request)
-            appDelegate.isshowActivityIndicatory()
+        guard let url = URL(string: candidateInfo[index].pdfURL) else {
+            appDelegate.showAlert("pdf를 불러올 수 없습니다.")
+            return
         }
+        
+        let request = URLRequest(url: url)
+        webView.loadRequest(request)
         
         webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true

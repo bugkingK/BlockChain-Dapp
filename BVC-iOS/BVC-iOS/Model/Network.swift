@@ -165,6 +165,7 @@ class APIClient {
         let network = Network(siteURL.getBookedCandidate.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
             candidateInfo.removeAll()
+            print(response)
             
             guard let resultCode = response["code"] as? Int,
                 let resultMessage = response["message"] as? String else {
@@ -178,13 +179,13 @@ class APIClient {
                         guard let candidateid = _index["candidateid"] as? String,
                               let name = _index["name"] as? String,
                               let imageURL = _index["candidateurl"] as? String,
+                              let loginID = _index["candidatelogin"] as? String,
                               let wantvote = _index["wantvote"] as? String else {
                                 self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
                         
-                        // 임시용 pdfURL
-                        let pdfURL = "http://yangarch.iptime.org/bvc/candidateimg/comm/1moon.pdf"
+                        let pdfURL = "http://yangarch.iptime.org/bvc/candidateimg/comm/\(loginID).pdf"
                         
                         let candidateinfo = CandidateInfo(candidateid: candidateid, name: name, wantvote: wantvote, imageURL: imageURL, pdfURL: pdfURL)
                         candidateInfo.append(candidateinfo)

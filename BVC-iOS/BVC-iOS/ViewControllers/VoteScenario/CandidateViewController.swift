@@ -94,8 +94,9 @@ extension CandidateViewController: UICollectionViewDataSource {
 
         cell.configure(
             imageURL: candidateInfo[indexPath.row].imageURL,
-            candidateName: candidateInfo[indexPath.row].name,
-            partyName: candidateInfo[indexPath.row].candidateid)
+            candidateName: candidateInfo[indexPath.row].name
+            //partyName: candidateInfo[indexPath.row].candidateid
+        )
         
         return cell
     }
