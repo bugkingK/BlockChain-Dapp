@@ -13,6 +13,7 @@ class VoteStatusViewController: UIViewController {
     fileprivate let animationDelayStep: Double = 0.1
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var refresher:UIRefreshControl!
     
     //MARK: - View & VC life cycle
     override func viewDidLoad() {
@@ -25,19 +26,18 @@ class VoteStatusViewController: UIViewController {
                 self.showHowToVC()
             }
         }
-        
+
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.white
+        self.refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadAPI()
         
-        let apiClient = APIClient()
-        apiClient.getEndedPlace() { response in
-            self.endedPlaceinfo.removeAll()
-            self.endedPlaceinfo = response
-            self.collectionView.reloadData()
-            
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,6 +52,20 @@ class VoteStatusViewController: UIViewController {
         // if 처음이라면... 실행
         let howToVC = HowToViewController()
         present(howToVC, animated: true, completion: nil)
+    }
+    
+    func loadAPI(){
+        let apiClient = APIClient()
+        apiClient.getEndedPlace() { response in
+            self.endedPlaceinfo.removeAll()
+            self.endedPlaceinfo = response
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @objc func refresh(){
+        loadAPI()
+        self.refresher.endRefreshing()
     }
 }
 
@@ -74,7 +88,6 @@ extension VoteStatusViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(endedPlaceinfo[indexPath.row].placeid)
         UserDefaults.standard.setSelectedPlaceId(value: String(endedPlaceinfo[indexPath.row].placeid))
     }
 }

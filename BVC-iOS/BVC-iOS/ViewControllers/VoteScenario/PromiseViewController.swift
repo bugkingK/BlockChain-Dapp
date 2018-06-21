@@ -25,21 +25,29 @@ class PromiseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     func setupViews() {
         title = "공약보기"
         self.view.backgroundColor = .white
-        tabBarController?.tabBar.isHidden = true
+        
         webView.delegate = self
         view.addSubview(agreeBtn)
         view.addSubview(webView)
         
         let index = UserDefaults.standard.getSelectedIndex()
-        print("index : \(index)")
+        
         if let url = URL(string: candidateInfo[index].pdfURL) {
             let request = URLRequest(url: url)
             webView.loadRequest(request)

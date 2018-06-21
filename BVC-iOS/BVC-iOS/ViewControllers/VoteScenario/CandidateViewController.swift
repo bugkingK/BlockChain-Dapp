@@ -9,7 +9,8 @@ private let reuseIdentifier = "CandidateViewCell"
 
 class CandidateViewController: UIViewController {
     
-    var candidateInfo: [CandidateInfo] = []
+    var candidateInfot: [CandidateInfo] = []
+    var refresher:UIRefreshControl!
     
     fileprivate let cellAnumationDuration: Double = 0.25
     fileprivate let animationDelayStep: Double = 0.1
@@ -39,13 +40,28 @@ class CandidateViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        self.refresher = UIRefreshControl()
+        self.collectionView.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.white
+        self.refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.collectionView.addSubview(refresher)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         prepareVisibleCellsForAnimation()
+        loadAPI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        animateVisibleCells()
+    }
+    
+    func loadAPI(){
         guard let selectedPlaceid = userInfo.selectPlaceid else {
             let alert = UIAlertController(title: nil, message: "잘못된 경로입니다.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
@@ -55,16 +71,15 @@ class CandidateViewController: UIViewController {
         
         let apiClient = APIClient()
         apiClient.getBookedCandidate(placeid: selectedPlaceid) { response in
-            self.candidateInfo.removeAll()
-            self.candidateInfo = response
+            self.candidateInfot.removeAll()
+            self.candidateInfot = response
             self.collectionView.reloadData()
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        animateVisibleCells()
+    @objc func refresh(){
+        loadAPI()
+        self.refresher.endRefreshing()
     }
 }
 

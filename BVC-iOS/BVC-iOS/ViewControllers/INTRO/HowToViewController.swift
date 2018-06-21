@@ -133,12 +133,9 @@ class HowToViewController: UIViewController {
         if pageNumber >= messages.count - 1 {
             bottomBtn[0].constant = 40
             startBtn.isHidden = false
-            
-            
         } else {
             bottomBtn[0].constant = -20
             startBtn.isHidden = true
-            
         }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
@@ -147,8 +144,6 @@ class HowToViewController: UIViewController {
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        //print(UIDevice.current.orientation.isLandscape)
-        
         collectionView.collectionViewLayout.invalidateLayout()
         
         let indexPath = IndexPath(item: pageControl.currentPage, section: 0)

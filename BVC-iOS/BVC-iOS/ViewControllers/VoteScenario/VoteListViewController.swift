@@ -8,6 +8,7 @@ private let statusDate = "date"
 class VoteListViewController: UIViewController{
     
     var startedPlaceinfo: [PlaceInfo] = []
+    var refresher:UIRefreshControl!
     private let cellId = "VoteListViewCell"
     
     override func viewDidLoad() {
@@ -28,13 +29,7 @@ class VoteListViewController: UIViewController{
             alert.addAction(okAction)
             self.present(alert, animated: true)
         }
-        
-        let apiClient = APIClient()
-        apiClient.getStartedPlace() { response in
-            self.startedPlaceinfo.removeAll()
-            self.startedPlaceinfo = response
-            self.collectionView.reloadData()
-        }
+        loadAPI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,7 +65,25 @@ class VoteListViewController: UIViewController{
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        
+        self.refresher = UIRefreshControl()
+        self.collectionView.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.white
+        self.refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.collectionView.addSubview(refresher)
+    }
+    
+    func loadAPI(){
+        let apiClient = APIClient()
+        apiClient.getStartedPlace() { response in
+            self.startedPlaceinfo.removeAll()
+            self.startedPlaceinfo = response
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @objc func refresh(){
+        loadAPI()
+        self.refresher.endRefreshing()
     }
 }
 

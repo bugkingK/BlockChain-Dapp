@@ -17,6 +17,7 @@ private enum siteURL: String {
     case getBookedCandidate = "getBookedCandidate"
     case setVote            = "setVote"
     case getCounting        = "getCounting"
+    case setAutu            = "setAutu"
 }
 
 class Network{
@@ -85,7 +86,7 @@ class APIClient {
                                 self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        // 임시용 imageURL
+                        
                         let imageURL = "http://yangarch.iptime.org/bvc/uploads/place/\(placeid).png"
                         
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
@@ -134,7 +135,7 @@ class APIClient {
                                 self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        // 임시용 imageURL
+                        
                         let imageURL = "http://yangarch.iptime.org/bvc/uploads/place/\(placeid).png"
                         
                         let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
@@ -161,6 +162,7 @@ class APIClient {
         
         let network = Network(siteURL.getBookedCandidate.rawValue, method: .get, parameters : parameters)
         network.connetion(){ response in
+            candidateInfo.removeAll()
             
             guard let resultCode = response["code"] as? Int,
                 let resultMessage = response["message"] as? String else {
@@ -171,15 +173,14 @@ class APIClient {
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
                     for _index in index {
-                        guard
-                              let candidateid = _index["candidateid"] as? String,
+                        guard let candidateid = _index["candidateid"] as? String,
                               let name = _index["name"] as? String,
+                              let imageURL = _index["candidateurl"] as? String,
                               let wantvote = _index["wantvote"] as? String else {
                                 self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/voteweb/wp-content/uploads/2018/06/\(candidateid).png"
+                        
                         // 임시용 pdfURL
                         let pdfURL = "http://yangarch.iptime.org/bvc/candidateimg/comm/1moon.pdf"
                         
@@ -244,16 +245,15 @@ class APIClient {
             if let data = response["data"] {
                 for index in data as! [[[String: AnyObject]]] {
                     for _index in index {
-                        guard
-                            let candidateid = _index["candidateid"] as? String,
+                        
+                      guard let candidateid = _index["candidateid"] as? String,
                             let name = _index["name"] as? String,
                             let placeid = _index["wantvote"] as? String,
+                            let imageURL = _index["candidateurl"] as? String,
                             let voteCount = _index["candidateresult"] as? Int else {
                                 self.appDelegate.showAlert("후보자 정보를 가져오지 못했습니다. 재 접속해주세요.")
                                 return
                         }
-                        // 임시용 imageURL
-                        let imageURL = "http://yangarch.iptime.org/voteweb/wp-content/uploads/2018/06/\(candidateid).png"
                         
                         let countinginfo = CountingInfo(name: name, placeid: placeid, candidateid: candidateid, voteCount: voteCount, imageURL: imageURL)
                         countingInfo.append(countinginfo)
@@ -270,6 +270,16 @@ class APIClient {
                 self.appDelegate.showAlert(resultMessage)
                 break
             }
+        }
+    }
+    
+    
+    func setAutu(token: Int) {
+        let parameters: Parameters = ["token" : token]
+        
+        let network = Network(siteURL.setAutu.rawValue, method: .get, parameters : parameters)
+        network.connetion(){ response in
+            
         }
     }
 }
