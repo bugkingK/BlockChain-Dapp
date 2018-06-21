@@ -126,12 +126,6 @@ function closureAdd(number, index, placeid){
                 })
             }
             break;
-        case 3:
-            return function(callback){
-                exports.votering(index, function(err, result){
-                    callback(null, result);
-                })
-            }
         default:
             console.log("why?")
     }
@@ -189,11 +183,8 @@ module.exports.getCandidateId = function(index, placeid, candidateInfo) {
 
 // 6. 개표합니다.
 module.exports.getCounting = function(index, placeid, candidateInfo) {
-
     BVC.getCounting(placeid, index, function(err, res){
-
         if(!err){
-
             if(parseInt(placeid) == parseInt(res[0].toLocaleString())){
                 var contents = {"placeid" : res[0].toLocaleString(), "candidateid" : res[1].toLocaleString(), "voteCount" : res[2].toLocaleString()};
                 candidateInfo(null, contents)

@@ -42,39 +42,42 @@ router.post('/setPollingPlace', upload.single("file"), function(req, res){
                 req.body.start_vote_time,
                 req.body.end_vote_time];
 
-    blockFunc.setPollingPlace(function(err, placeid, isStarted){
-        if (!err) {
-            if (placeid != null){
-                dbFunc.insertPlaceInfo(placeid, isStarted, info, function(result){
-                    const tempPath = req.file.path;
-                    const targetPath = path.join( rootPath, "/uploads/place/" + placeid + ".png");
+    const tempPath = req.file.path;
 
-                    if (path.extname(req.file.originalname).toLowerCase() === ".png" ||
-                        path.extname(req.file.originalname).toLowerCase() === ".jpg" ) {
+    if (path.extname(req.file.originalname).toLowerCase() === ".png" ||
+        path.extname(req.file.originalname).toLowerCase() === ".jpg" ) {
+
+        blockFunc.setPollingPlace(function(err, placeid, isStarted){
+            if (!err) {
+                if (placeid != null){
+                    dbFunc.insertPlaceInfo(placeid, isStarted, info, function(result){
+
+                        const targetPath = path.join( rootPath, "/uploads/place/" + placeid + ".png");
+
                         fs.rename(tempPath, targetPath, err => {
                             if (err) return handleError(err, res);
 
-                            res.redirect('/web/getAllplace');
-                        });
-                    } else {
-                        fs.unlink(tempPath, err => {
-                            if (err) return handleError(err, res);
-
-                        res
-                            .status(403)
-                            .contentType("text/plain")
-                            .end("png와 jpg파일만 올려주세요.");
-                        });
-                    }
-                });
+                        res.redirect('/web/getAllplace');
+                    });
+                    });
+                } else {
+                    res.send('block Chain err!')
+                }
             } else {
-                res.send('block Chain err!')
+                res.send('setPollingPlace... err!!!');
+                console.log(err);
             }
-        } else {
-            res.send('setPollingPlace... err!!!');
-            console.log(err);
-        }
-    });
+        });
+    } else {
+        fs.unlink(tempPath, err => {
+            if (err) return handleError(err, res);
+
+        res
+            .status(403)
+            .contentType("text/plain")
+            .end("png와 jpg파일만 올려주세요.");
+        });
+    }
 });
 
 // 2-1. 모든 선거리스트를 전송합니다.
@@ -330,6 +333,7 @@ router.get('/getVotingCount/:placeid', function(req, res){
                       })
 
                       async.series(outcomeBooked, function(err1, resEnd1){
+                          console.log('개표 결과' + resEnd1)
                           res.send(ejs.render(data, {VotedList : resEnd1}));
                       })
 
