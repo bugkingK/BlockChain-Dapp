@@ -20,11 +20,10 @@
 
 
 ## :memo: Table of Contents
-* [What is BlockChain?](#what-is-blockchain?)
-* [What is this Application?](#what-is-this-application?)
+* [What is BlockChain?](#what-is-blockchain)
+* [What is this Application?](#what-is-this-application)
 * [What is our focused point](#what-is-our-focused-point)
 * [What we used for this application](what-we-used-for-this-application)
-* [Development order](#development-order)
 
 
 # What is BlockChain?
@@ -55,29 +54,23 @@
 
 
 # What we used for this application
-### 이 어플리케이션을 위해 어떤걸 사용했나요?
+### 언어
 
-<div>
-![](/assets/images/solidity.png)
-</br>
-솔리디티
-</div>
+<div align=center border=1 >
 
-<div align=center>
-![](/assets/images/js.png)
-![](/assets/images/swift.png)
-![](/assets/images/html5.png)
+ ![](/assets/images/solidity.png)
+ ![](/assets/images/js.png)
+ ![](/assets/images/swift.png)
+ ![](/assets/images/html5.png)
 
 </div>
 
+### 프레임워크 및 툴
 
+#### server : eth-smartcontract, remix, nodejs, web3js, express-js, multer, async, solc, mysql
+#### web    : bootstrap4, wordpress
+#### app    : alamofire, FoldingTabBar
 
-# Development order
-
-1. 투표 내용을 블록체인에 저장할 수 있는 스마트 컨트랙트의 개발
-2. html과 Web3를 이용하여 블록체인과 통신하기.
-3. 웹페이지 구성
-4. 애플리케이션 구성
 
 
 </br>
