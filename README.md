@@ -79,43 +79,43 @@
 * 선거장 이름 : 선거장 테스트3
 * 후보자 이름 : test1, test2, test3
 
-#### 1.인트로 및 투표결과보기 [(소스보기)](/BVC-iOS/README.md/bulb-인트로-및-투표결과보기)
+#### 1.인트로 및 투표결과보기 [(소스보기)](https://github.com/bugkingK/BlockChain-Dapp/tree/master/BVC-iOS#bulb-인트로-및-투표결과보기)
 
 <div align=center> 
 
-<img src="/gifs/1.gif" width="400" height="700">
+<img src="/assets/gifs/1.gif" width="400" height="700">
 
 </div>
 
-#### 2.인증과 선거장보기 [(소스보기)](/BVC-iOS/README.md/bulb-인증과-선거장보기)
+#### 2.인증과 선거장보기 [(소스보기)](https://github.com/bugkingK/BlockChain-Dapp/tree/master/BVC-iOS#bulb-인증과-선거장보기)
 
 <div align=center> 
 
-<img src="/gifs/2.gif" width="400" height="700">
+<img src="/assets/gifs/2.gif" width="400" height="700">
 
 </div>
 
-#### 3.후보자와 선거공약보기 [(소스보기)](/BVC-iOS/README.md/bulb-후보자와-선거공약보기)
+#### 3.후보자와 선거공약보기 [(소스보기)](https://github.com/bugkingK/BlockChain-Dapp/tree/master/BVC-iOS#bulb-후보자와-선거공약보기)
 
 <div align=center> 
 
-<img src="/gifs/3.gif" width="400" height="700">
+<img src="/assets/gifs/3.gif" width="400" height="700">
 
 </div>
 
-#### 4. 1인 1회 투표하기 [(소스보기)](/BVC-iOS/README.md/bulb-1인-1회-투표하기)
+#### 4. 1인 1회 투표하기 [(소스보기)](https://github.com/bugkingK/BlockChain-Dapp/tree/master/BVC-iOS#bulb-1인-1회-투표하기)
 
 <div align=center> 
 
-<img src="/gifs/4.gif" width="400" height="700">
+<img src="/assets/gifs/4.gif" width="400" height="700">
 
 </div>
 
-#### 5. 투표결과 확인하기 [(소스보기)](/BVC-iOS/README.md/bulb-투표결과-확인하기)
+#### 5. 투표결과 확인하기 [(소스보기)](https://github.com/bugkingK/BlockChain-Dapp/tree/master/BVC-iOS#bulb-투표결과-확인하기)
 
 <div align=center> 
 
-<img src="/gifs/5.gif" width="400" height="700">
+<img src="/assets/gifs/5.gif" width="400" height="700">
 
 </div>
 
