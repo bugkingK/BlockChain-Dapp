@@ -125,9 +125,130 @@ func getEndedPlace(completion: @escaping ( [PlaceInfo] ) -> Void) {
 * 비동기가 완료되고 @escaping 시켜 정보를 [VoteStatusViewController](https://github.com/bugkingK/BlockChain-Dapp/blob/master/BVC-iOS/BVC-iOS/ViewControllers/PollScenario/VoteStatusViewController.swift)에게 전달하고 해당 컨트롤러는 화면에 표출합니다.
 
 ## :bulb: 인증과 선거장보기
+#### 인증과정
+~~~swift
+func isAuth(token: String) {
+    let parameters: Parameters = ["token" : token]
+
+    let network = Network(siteURL.isAuth.rawValue, method: .get, parameters : parameters)
+    network.connetion(){ response in
+
+        guard let resultCode = response["code"] as? Int,
+              let resultMessage = response["message"] as? String else {
+                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                return
+        }
+
+        switch resultCode {
+        case 200:
+            self.appDelegate.showAlert(resultMessage)
+            userInfo.phone = token
+            UserDefaults.standard.setIsAutu(value: true)
+            break
+        default:
+            self.appDelegate.showAlert(resultMessage)
+            break
+        }
+    }
+}
+
+func isAction(token: String, completion: @escaping ( Bool ) -> Void){
+    let parameters: Parameters = ["token" : token]
+    let network = Network(siteURL.isAction.rawValue, method: .get, parameters : parameters)
+    network.connetion(){ response in
+        print(response)
+        guard let resultCode = response["code"] as? Int,
+            let resultMessage = response["message"] as? String else {
+                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                return
+        }
+
+        switch resultCode {
+        case 200:
+            completion(true)
+            break
+        default:
+            self.appDelegate.showAlert(resultMessage)
+            completion(false)
+            break
+        }
+    }
+}
+
+func setAuth(token: String){
+    let parameters: Parameters = ["token" : token]
+    let network = Network(siteURL.setAuth.rawValue, method: .get, parameters : parameters)
+    network.connetion(){ response in
+        print(response)
+    }
+}
+~~~
+* 투표하는 과정 속 SMS 인증과정을 거치나 비용을 지불해야 하기에 임시로 토큰발행으로 변경했습니다. 
+* 토큰의 값을 입력받고 그 값을 서버에 전달하여 일치하는 토큰인 경우 인증, 없는 토큰이면 잘못된 토큰으로 처리했습니다.
+* 실제 투표를 진행했을 때 1인 1투표를 실행하기 위해 해당 토큰을 더 이상 사용할 수 없습니다.
+
+#### 선거가 시작 중인 
+~~~swift
+//선거가 시작 중인 선거장
+func getStartedPlace(completion: @escaping ( [PlaceInfo] ) -> Void) {
+    let network = Network(siteURL.getStartedPlace.rawValue, method: .get)
+    network.connetion(){ response in
+
+        guard let resultCode = response["code"] as? Int,
+              let resultMessage = response["message"] as? String else {
+                self.appDelegate.showAlert("오류가 발생하였습니다. 재 접속해주세요")
+                return
+        }
+
+        var startedPlaceinfo: [PlaceInfo] = []
+
+        if let data = response["data"] {
+            for index in data as! [[[String: AnyObject]]] {
+                for _index in index {
+                    guard let placeid = _index["placeid"] as? Int,
+                          let name = _index["name"] as? String,
+                          let start_regist_period = _index["start_regist_period"] as? String,
+                          let end_regist_period = _index["end_regist_period"] as? String,
+                          let votedate = _index["votedate"] as? String,
+                          let start_vote_time = _index["start_vote_time"] as? String,
+                          let end_vote_time = _index["end_vote_time"] as? String,
+                          let contents = _index["contents"] as? String,
+                          let isStarted = _index["isStarted"] as? Int else {
+                            self.appDelegate.showAlert("선거장 정보를 가져오지 못했습니다. 재 접속해주세요.")
+                            return
+                    }
+
+                    let imageURL = "http://yangarch.iptime.org/bvc/uploads/place/\(placeid).png"
+
+                    let period = Period(start_regist_period: start_regist_period, end_regist_period: end_regist_period, votedate: votedate, start_vote_time: start_vote_time, end_vote_time: end_vote_time)
+                    let placeinfo = PlaceInfo(placeid: placeid, name: name, period: period, contents: contents, isStarted: isStarted, imageURL: imageURL)
+                    startedPlaceinfo.append(placeinfo)
+                }
+            }
+        }
+
+        switch resultCode {
+        case 200:
+            completion(startedPlaceinfo)
+            break
+        default:
+            self.appDelegate.showAlert(resultMessage)
+            break
+        }
+    }
+}
+~~~
+* 선거가 진행 중인 정보를 서버로부터 가져옵니다. 해당 정보는 [이더리움 블록체인](https://github.com/bugkingK/BlockChain-Dapp/blob/master/BVC-WEB/BVC.sol)에 담겨있는 정보를 담고 있습니다.
+* 전달받은 데이터는 [Data.class](https://github.com/bugkingK/BlockChain-Dapp/blob/master/BVC-iOS/BVC-iOS/Model/Data.swift)의 CandidateInfo  모델에 담긱 됩니다.
+* 비동기가 완료되고 @escaping 시켜 정보를 [VoteListViewController](https://github.com/bugkingK/BlockChain-Dapp/blob/master/BVC-iOS/BVC-iOS/ViewControllers/VoteScenario/VoteListViewController.swift)에게 전달하고 해당 컨트롤러는 화면에 표출합니다.
+
+
+
 
 ## :bulb: 후보자와 선거공약보기
 
 ## :bulb: 1인 1회 투표하기
 
 ## :bulb: 투표결과 확인하기
+
+
