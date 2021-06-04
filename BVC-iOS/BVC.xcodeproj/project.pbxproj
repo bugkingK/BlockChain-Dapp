@@ -20,7 +20,6 @@
 		85F87D5720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3720B502CC00E15BF2 /* CAAnimation+YALTabBarViewAnimations.m */; };
 		85F87D5820B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3B20B502CC00E15BF2 /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
 		85F87D5920B502CC00E15BF2 /* YALAnimatingTabBarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D3E20B502CC00E15BF2 /* YALAnimatingTabBarConstants.m */; };
-		85F87D5A20B502CC00E15BF2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F87D4220B502CC00E15BF2 /* Info.plist */; };
 		85F87D5B20B502CC00E15BF2 /* YALSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4520B502CC00E15BF2 /* YALSpringAnimation.m */; };
 		85F87D5C20B502CC00E15BF2 /* YALFoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4A20B502CC00E15BF2 /* YALFoldingTabBarController.m */; };
 		85F87D5D20B502CC00E15BF2 /* YALTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F87D4E20B502CC00E15BF2 /* YALTabBarItem.m */; };
@@ -68,7 +67,6 @@
 		85F87D3E20B502CC00E15BF2 /* YALAnimatingTabBarConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALAnimatingTabBarConstants.m; sourceTree = "<group>"; };
 		85F87D3F20B502CC00E15BF2 /* YALAnimatingTabBarConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALAnimatingTabBarConstants.h; sourceTree = "<group>"; };
 		85F87D4120B502CC00E15BF2 /* FoldingTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoldingTabBar.h; sourceTree = "<group>"; };
-		85F87D4220B502CC00E15BF2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85F87D4520B502CC00E15BF2 /* YALSpringAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSpringAnimation.m; sourceTree = "<group>"; };
 		85F87D4620B502CC00E15BF2 /* YALSpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSpringAnimation.h; sourceTree = "<group>"; };
 		85F87D4920B502CC00E15BF2 /* YALFoldingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALFoldingTabBarController.h; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				85F87D4120B502CC00E15BF2 /* FoldingTabBar.h */,
-				85F87D4220B502CC00E15BF2 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -493,6 +490,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -519,7 +517,6 @@
 				C5E350F91D7402C20023E7F7 /* Main.storyboard in Resources */,
 				85F87D6420B503A200E15BF2 /* Proxima Nova Regular.otf in Resources */,
 				C5E3508E1D73FFEA0023E7F7 /* LaunchScreen.storyboard in Resources */,
-				85F87D5A20B502CC00E15BF2 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
